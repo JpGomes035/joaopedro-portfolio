@@ -1,475 +1,888 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>João Pedro | Desenvolvedor PHP/SQL</title>
-  <meta name="description" content="Portfólio de João Pedro – Desenvolvedor PHP/SQL. Sistemas web, ProControl, PDV, estoque, financeiro e mais." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b0c10;         /* fundo principal */
-      --panel:#111217;      /* cartões */
-      --muted:#a9a9b3;      /* textos secundários */
-      --text:#f2f3f5;       /* textos principais */
-      --brand:#4da3ff;      /* destaque primário */
-      --brand-2:#9c6bff;    /* destaque gradiente */
-      --ok:#3ed598;         /* verde para detalhes */
-      --danger:#ff6b6b;     /* vermelho sutil */
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius-sm: 12px;
-      --maxw: 1120px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 70% -10%, rgba(77,163,255,.15), transparent 60%),
-                  radial-gradient(900px 500px at 0% 0%, rgba(156,107,255,.12), transparent 60%),
-                  var(--bg);
-      color:var(--text);
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>João Pedro | Desenvolvedor PHP/SQL</title>
+    <meta name="description"
+        content="Portfólio de João Pedro – Desenvolvedor PHP/SQL. Sistemas web, ProControl, PDV, estoque, financeiro e mais." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="monitor.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0c10;
+            /* fundo principal */
+            --panel: #111217;
+            /* cartões */
+            --muted: #a9a9b3;
+            /* textos secundários */
+            --text: #f2f3f5;
+            /* textos principais */
+            --brand: #4da3ff;
+            /* destaque primário */
+            --brand-2: #9c6bff;
+            /* destaque gradiente */
+            --ok: #3ed598;
+            /* verde para detalhes */
+            --danger: #ff6b6b;
+            /* vermelho sutil */
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius: 18px;
+            --radius-sm: 12px;
+            --maxw: 1120px;
+        }
 
-    /* util */
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.2rem;border-radius:999px;font-weight:600;transition:.25s;backdrop-filter:saturate(140%)}
-    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0a0a0a}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(77,163,255,.25)}
-    .btn-ghost{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
-    .btn-ghost:hover{border-color:rgba(255,255,255,.25);transform:translateY(-2px)}
-    .pill{display:inline-flex;gap:.5rem;align-items:center;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:.86rem}
+        * {
+            box-sizing: border-box
+        }
 
-    /* header */
-    header{
-      position:sticky;top:0;z-index:50;background:rgba(11,12,16,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)
-    }
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;align-items:center;gap:.8rem}
-    .brand .logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:var(--shadow)}
-    .brand strong{font-weight:800;letter-spacing:.2px}
-    .nav a{color:var(--muted)}
-    .nav ul{list-style:none;display:flex;gap:1.2rem;padding:0;margin:0}
-    .nav a:hover{color:var(--text)}
-    .menu-btn{display:none}
+        html {
+            scroll-behavior: smooth
+        }
 
-    /* hero */
-    .hero{padding:72px 0 40px}
-    .hero-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:32px;align-items:center}
-    .hero-card{background:linear-gradient(160deg,rgba(77,163,255,.08),rgba(156,107,255,.06));border:1px solid rgba(255,255,255,.08);padding:32px;border-radius:var(--radius);box-shadow:var(--shadow)}
-    h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin:0}
-    .subtitle{color:var(--muted);margin-top:10px}
-    .cta{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
-    .stat{padding:16px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);text-align:center}
-    .stat strong{font-size:1.2rem}
-    .hero-figure{position:relative}
-    .hero-figure .card{
-      position:relative;border-radius:20px;background:var(--panel);border:1px solid rgba(255,255,255,.06);padding:18px;box-shadow:var(--shadow)
-    }
-    .hero-figure .browser-dots{display:flex;gap:6px;margin-bottom:12px}
-    .dot{width:10px;height:10px;border-radius:50%}
-    .dot.red{background:#ff6b6b}.dot.yellow{background:#ffd166}.dot.green{background:#3ed598}
-    .hero-figure .screen{height:260px;border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.01));display:grid;place-items:center;color:var(--muted)}
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background: radial-gradient(1200px 600px at 70% -10%, rgba(77, 163, 255, .15), transparent 60%),
+                radial-gradient(900px 500px at 0% 0%, rgba(156, 107, 255, .12), transparent 60%),
+                var(--bg);
+            color: var(--text);
+        }
 
-    /* sections */
-    section{padding:64px 0;border-top:1px solid rgba(255,255,255,.06)}
-    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-    .section-title h2{margin:0;font-size:1.6rem}
-    .grid{display:grid;gap:16px}
+        a {
+            color: inherit;
+            text-decoration: none
+        }
 
-    /* skills */
-    .skills{grid-template-columns:repeat(2,1fr)}
-    .skill-card{background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .skill-left{display:flex;align-items:center;gap:12px}
-    .skill-left i{font-size:22px}
-    .meter{height:8px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;flex:1}
-    .meter > span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+        img {
+            max-width: 100%;
+            display: block
+        }
 
-    /* projects */
-    .projects{grid-template-columns:repeat(12,1fr)}
-    .project-card{
-      grid-column:span 6;background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s
-    }
-    .project-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35)}
-    .project-cover{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(77,163,255,.22),rgba(156,107,255,.18)),url('https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop') center/cover}
-    .project-body{padding:18px}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
-    .badge{font-size:.78rem;color:#d9e7ff;background:rgba(77,163,255,.16);border:1px solid rgba(77,163,255,.35);padding:.25rem .55rem;border-radius:999px}
-    .project-actions{display:flex;gap:10px;margin-top:12px}
+        /* util */
+        .container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 20px
+        }
 
-    /* timeline */
-    .timeline{border-left:2px dashed rgba(255,255,255,.12);padding-left:18px}
-    .tl-item{margin:18px 0}
-    .tl-item h3{margin:.2rem 0 .2rem}
-    .muted{color:var(--muted)}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .9rem 1.2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: .25s;
+            backdrop-filter: saturate(140%)
+        }
 
-    /* cards generic */
-    .card{background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-sm);padding:18px}
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #0a0a0a
+        }
 
-    /* contact */
-    form .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    input, textarea{width:100%;padding:12px 14px;background:#0c0e14;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--text);font:inherit}
-    textarea{min-height:120px;resize:vertical}
-    label{font-size:.92rem;color:var(--muted)}
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(77, 163, 255, .25)
+        }
 
-    /* footer */
-    footer{padding:36px 0;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+        .btn-ghost {
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .02)
+        }
 
-    /* responsive */
-    @media (max-width: 960px){
-      .hero-grid{grid-template-columns:1fr}
-      .skills{grid-template-columns:1fr}
-      .projects .project-card{grid-column:span 12}
-      form .row{grid-template-columns:1fr}
-      .nav ul{display:none}
-      .menu-btn{display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text);padding:.5rem .8rem;border-radius:10px}
-      .nav.open ul{display:flex;position:absolute;top:64px;left:0;right:0;padding:14px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
-    }
+        .btn-ghost:hover {
+            border-color: rgba(255, 255, 255, .25);
+            transform: translateY(-2px)
+        }
 
-    /* reveal animations */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.show{opacity:1;transform:none}
-  </style>
+        .pill {
+            display: inline-flex;
+            gap: .5rem;
+            align-items: center;
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: var(--muted);
+            font-size: .86rem
+        }
+
+        /* header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 12, 16, .6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .8rem
+        }
+
+        .brand .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow)
+        }
+
+        .brand strong {
+            font-weight: 800;
+            letter-spacing: .2px
+        }
+
+        .nav a {
+            color: var(--muted)
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            padding: 0;
+            margin: 0
+        }
+
+        .nav a:hover {
+            color: var(--text)
+        }
+
+        .menu-btn {
+            display: none
+        }
+
+        /* hero */
+        .hero {
+            padding: 72px 0 40px
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .9fr;
+            gap: 32px;
+            align-items: center
+        }
+
+        .hero-card {
+            background: linear-gradient(160deg, rgba(77, 163, 255, .08), rgba(156, 107, 255, .06));
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow)
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin: 0
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-top: 10px
+        }
+
+        .cta {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 22px
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            text-align: center
+        }
+
+        .stat strong {
+            font-size: 1.2rem
+        }
+
+        .hero-figure {
+            position: relative
+        }
+
+        .hero-figure .card {
+            position: relative;
+            border-radius: 20px;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            padding: 18px;
+            box-shadow: var(--shadow)
+        }
+
+        .hero-figure .browser-dots {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%
+        }
+
+        .dot.red {
+            background: #ff6b6b
+        }
+
+        .dot.yellow {
+            background: #ffd166
+        }
+
+        .dot.green {
+            background: #3ed598
+        }
+
+        .hero-figure .screen {
+            height: 260px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .01));
+            display: grid;
+            place-items: center;
+            color: var(--muted)
+        }
+
+        /* sections */
+        section {
+            padding: 64px 0;
+            border-top: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.6rem
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px
+        }
+
+        /* skills */
+        .skills {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .skill-card {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px
+        }
+
+        .skill-left {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .skill-left i {
+            font-size: 22px
+        }
+
+        .meter {
+            height: 8px;
+            background: rgba(255, 255, 255, .06);
+            border-radius: 999px;
+            overflow: hidden;
+            flex: 1
+        }
+
+        .meter>span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand), var(--brand-2))
+        }
+
+        /* projects */
+        .projects {
+            grid-template-columns: repeat(12, 1fr)
+        }
+
+        .project-card {
+            grid-column: span 6;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: .25s
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35)
+        }
+
+        .project-cover {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(77, 163, 255, .22), rgba(156, 107, 255, .18)), url('https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop') center/cover
+        }
+
+        .project-body {
+            padding: 18px
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0
+        }
+
+        .badge {
+            font-size: .78rem;
+            color: #d9e7ff;
+            background: rgba(77, 163, 255, .16);
+            border: 1px solid rgba(77, 163, 255, .35);
+            padding: .25rem .55rem;
+            border-radius: 999px
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px
+        }
+
+        /* timeline */
+        .timeline {
+            border-left: 2px dashed rgba(255, 255, 255, .12);
+            padding-left: 18px
+        }
+
+        .tl-item {
+            margin: 18px 0
+        }
+
+        .tl-item h3 {
+            margin: .2rem 0 .2rem
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        /* cards generic */
+        .card {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: var(--radius-sm);
+            padding: 18px
+        }
+
+        /* contact */
+        form .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: #0c0e14;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 12px;
+            color: var(--text);
+            font: inherit
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+
+        label {
+            font-size: .92rem;
+            color: var(--muted)
+        }
+
+        /* footer */
+        footer {
+            padding: 36px 0;
+            color: var(--muted);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        /* responsive */
+        @media (max-width: 960px) {
+            .hero-grid {
+                grid-template-columns: 1fr
+            }
+
+            .skills {
+                grid-template-columns: 1fr
+            }
+
+            .projects .project-card {
+                grid-column: span 12
+            }
+
+            form .row {
+                grid-template-columns: 1fr
+            }
+
+            .nav ul {
+                display: none
+            }
+
+            .menu-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: .4rem;
+                border: 1px solid rgba(255, 255, 255, .12);
+                background: transparent;
+                color: var(--text);
+                padding: .5rem .8rem;
+                border-radius: 10px
+            }
+
+            .nav.open ul {
+                display: flex;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                padding: 14px;
+                background: rgba(11, 12, 16, .95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, .06)
+            }
+        }
+
+        /* reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s ease
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: none
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <div class="container nav" id="top">
-      <a class="brand" href="#top" aria-label="Ir para o topo">
-        <span class="logo" aria-hidden="true"></span>
-        <strong>João Pedro</strong>
-        <span class="pill"><i class="ri-code-s-slash-line"></i> Dev PHP/SQL</span>
-      </a>
-      <button class="menu-btn" aria-expanded="false" aria-controls="menu"><i class="ri-menu-3-line"></i> Menu</button>
-      <ul id="menu" aria-label="Navegação principal">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#habilidades">Habilidades</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#experiencia">Experiência</a></li>
-        <li><a href="#formacao">Formação</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero container">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-card reveal">
-            <h1>Desenvolvedor PHP & SQL<br/> focado em sistemas web robustos</h1>
-            <p class="subtitle">Experiência com ERP, PDV, estoque, financeiro, relatórios e integrações. Proativo, atento a detalhes e apaixonado por resolver problemas.</p>
-            <div class="cta">
-              <a class="btn btn-primary" href="assets/CVJoao.pdf" download>
-                <i class="ri-download-2-line"></i> Baixar Currículo
-              </a>
-              <a class="btn btn-ghost" href="#projetos"><i class="ri-rocket-2-line"></i> Ver Projetos</a>
-              <a class="btn btn-ghost" href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Vim%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener">
-                <i class="ri-whatsapp-line" style="color:var(--ok)"></i>
-                WhatsApp
-              </a>
-            </div>
-            <div class="stats">
-              <div class="stat"><strong>ERP</strong><div class="muted">ProControl</div></div>
-              <div class="stat"><strong>PDV</strong><div class="muted">Módulo integrado</div></div>
-              <div class="stat"><strong>+10</strong><div class="muted">Funcionalidades chave</div></div>
-            </div>
-          </div>
+    <header>
+        <div class="container nav" id="top">
+            <a class="brand" href="#top" aria-label="Ir para o topo">
+                <span class="logo" aria-hidden="true"></span>
+                <strong>João Pedro</strong>
+                <span class="pill"><i class="ri-code-s-slash-line"></i> Dev Full-Stack</span>
+            </a>
+            <button class="menu-btn" aria-expanded="false" aria-controls="menu"><i class="ri-menu-3-line"></i>
+                Menu</button>
+            <ul id="menu" aria-label="Navegação principal">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#experiencia">Experiência</a></li>
+                <li><a href="#formacao">Formação</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
         </div>
-        <div class="hero-figure reveal" aria-hidden="true">
-          <div class="card">
-            <div class="browser-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-            <div class="screen">
-              <div>
-                <div class="pill" style="justify-content:center;margin-bottom:10px"><i class="ri-dashboard-2-line"></i> Preview UI</div>
-                <div style="display:grid;gap:8px">
-                  <div class="card" style="padding:10px">Tabela de produtos • Estoque</div>
-                  <div class="card" style="padding:10px">Pedidos • Financeiro</div>
-                  <div class="card" style="padding:10px">PDV • Comprovantes</div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-card reveal">
+                        <h1>Desenvolvedor Full-Stack<br /> focado em sistemas web robustos</h1>
+                        <p class="subtitle">Experiência com ERP, PDV, estoque, financeiro, relatórios, E-commerce e integrações.
+                            Proativo, atento a detalhes e apaixonado por resolver problemas.</p>
+                        <div class="cta">
+                            <a class="btn btn-primary" href="assets/CVJoao.pdf" download>
+                                <i class="ri-download-2-line"></i> Baixar Currículo
+                            </a>
+                            <a class="btn btn-ghost" href="#projetos"><i class="ri-rocket-2-line"></i> Ver Projetos</a>
+                            <a class="btn btn-ghost"
+                                href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Vim%20pelo%20seu%20portf%C3%B3lio."
+                                target="_blank" rel="noopener">
+                                <i class="ri-whatsapp-line" style="color:var(--ok)"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                        <div class="stats">
+                            <div class="stat"><strong>ERP</strong>
+                                <div class="muted">ProControl</div>
+                            </div>
+                            <div class="stat"><strong>PDV</strong>
+                                <div class="muted">Módulo integrado</div>
+                            </div>
+                            <div class="stat"><strong>+10</strong>
+                                <div class="muted">Funcionalidades chave</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="hero-figure reveal" aria-hidden="true">
+                    <div class="card">
+                        <div class="browser-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                class="dot green"></span></div>
+                        <div class="screen">
+                            <div>
+                                <div class="pill" style="justify-content:center;margin-bottom:10px"><i
+                                        class="ri-dashboard-2-line"></i> Preview UI</div>
+                                <div style="display:grid;gap:8px">
+                                    <div class="card" style="padding:10px">E-commerce • Estoque</div>
+                                    <div class="card" style="padding:10px">Pedidos • Financeiro</div>
+                                    <div class="card" style="padding:10px">PDV • XML</div>
+                                    <div class="card" style="padding:10px">Agendamento • E-mails</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- HABILIDADES -->
-    <section id="habilidades">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="ri-magic-line"></i> Habilidades</h2>
-          <span class="muted">Stack principal e ferramentas</span>
-        </div>
-        <div class="grid skills reveal">
-          <div class="skill-card">
-            <div class="skill-left"><i class="ri-php-line"></i><strong>PHP</strong></div>
-            <div class="meter" aria-label="Nível de PHP"><span style="width:85%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-left"><i class="ri-database-2-line"></i><strong>MySQL / SQL</strong></div>
-            <div class="meter"><span style="width:85%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-left"><i class="ri-javascript-line"></i><strong>JavaScript</strong></div>
-            <div class="meter"><span style="width:70%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-left"><i class="ri-html5-line"></i><strong>HTML5 & CSS3</strong></div>
-            <div class="meter"><span style="width:80%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-left"><i class="ri-git-branch-line"></i><strong>Git</strong></div>
-            <div class="meter"><span style="width:65%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-left"><i class="ri-line-chart-line"></i><strong>Relatórios / Excel</strong></div>
-            <div class="meter"><span style="width:75%"></span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS -->
-    <section id="projetos">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="ri-rocket-line"></i> Projetos</h2>
-          <a class="pill" href="#contato"><i class="ri-send-plane-2-line"></i> Disponível para projetos</a>
-        </div>
-        <div class="grid projects reveal">
-          <!-- ProControl -->
-          <article class="project-card">
-            <div class="project-cover" role="img" aria-label="Dashboard do sistema ProControl"></div>
-            <div class="project-body">
-              <h3>ProControl – Sistema de Gestão PHP</h3>
-              <p class="muted">Sistema ERP completo desenvolvido em PHP com SQL, pensado para empresas de diversos portes. Possui módulos robustos: estoque, financeiro, pedidos, comprovantes, relatórios e e-commerce integrado.</p>
-              <div class="badges">
-                <span class="badge">PHP</span><span class="badge">MySQL</span><span class="badge">Bootstrap</span><span class="badge">JavaScript</span><span class="badge">Relatórios Excel</span>
-              </div>
-              <ul class="muted" style="margin:8px 0 0 18px">
-                <li>Controle de estoque, compras e vendas</li>
-                <li>Gestão financeira c/ alertas e integração de boletos</li>
-                <li>Envio de e-mails com confirmações automáticas</li>
-                <li>Relatórios detalhados e exportação</li>
-                <li>E-commerce integrado ao catálogo</li>
-              </ul>
-              <div class="project-actions">
-                <a class="btn btn-ghost" href="#" aria-disabled="true"><i class="ri-eye-line"></i> Demo (privado)</a>
-                <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar sobre</a>
-              </div>
+        <!-- HABILIDADES -->
+        <section id="habilidades">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="ri-magic-line"></i> Habilidades</h2>
+                    <span class="muted">Stack principal e ferramentas</span>
+                </div>
+                <div class="grid skills reveal">
+                    <div class="skill-card">
+                        <div class="skill-left"><i class="ri-code-s-slash-line"></i><strong>PHP</strong></div>
+                        <div class="meter" aria-label="Nível de PHP"><span style="width:85%"></span></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-left"><i class="ri-database-2-line"></i><strong>MySQL / SQL</strong></div>
+                        <div class="meter"><span style="width:85%"></span></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-left"><i class="ri-javascript-line"></i><strong>JavaScript</strong></div>
+                        <div class="meter"><span style="width:70%"></span></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-left"><i class="ri-html5-line"></i><strong>HTML5 & CSS3</strong></div>
+                        <div class="meter"><span style="width:80%"></span></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-left"><i class="ri-git-branch-line"></i><strong>Git</strong></div>
+                        <div class="meter"><span style="width:65%"></span></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-left"><i class="ri-line-chart-line"></i><strong>Relatórios / Excel</strong>
+                        </div>
+                        <div class="meter"><span style="width:75%"></span></div>
+                    </div>
+                </div>
             </div>
-          </article>
+        </section>
 
-          <!-- PDV -->
-          <article class="project-card">
-            <div class="project-cover" style="background-image:linear-gradient(135deg,rgba(62,213,152,.22),rgba(77,163,255,.18)),url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop');" role="img" aria-label="Interface do PDV"></div>
-            <div class="project-body">
-              <h3>PDV – Ponto de Venda (módulo)</h3>
-              <p class="muted">Módulo desenvolvido como projeto independente e integrado ao ProControl. Focado em performance e usabilidade para frente de caixa.</p>
-              <div class="badges">
-                <span class="badge">PHP</span><span class="badge">MySQL</span><span class="badge">Teclado Rápido</span><span class="badge">Comprovantes</span>
-              </div>
-              <ul class="muted" style="margin:8px 0 0 18px">
-                <li>Busca rápida de produtos e atalhos (F1…)</li>
-                <li>Emissão de comprovantes personalizados</li>
-                <li>Integração com estoque e financeiro</li>
-                <li>Layout responsivo para PDV</li>
-              </ul>
-              <div class="project-actions">
-                <a class="btn btn-ghost" href="#" aria-disabled="true"><i class="ri-eye-line"></i> Demo (privado)</a>
-                <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar sobre</a>
-              </div>
+        <!-- PROJETOS -->
+        <section id="projetos">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="ri-rocket-line"></i> Projetos</h2>
+                    <a class="pill" href="#contato"><i class="ri-send-plane-2-line"></i> Disponível para projetos</a>
+                </div>
+                <div class="grid projects reveal">
+                    <!-- ProControl -->
+                    <article class="project-card">
+                        <div class="project-cover" style="background-image:url('home.png');
+            background-size:cover;
+            background-position:center;" role="img" aria-label="Dashboard do sistema ProControl">
+                        </div>
+                        <div class="project-body">
+                            <h3>ProControl – Sistema de Gestão PHP</h3>
+                            <p class="muted">Sistema ERP completo desenvolvido em PHP com SQL, pensado para empresas de
+                                diversos portes. Possui módulos robustos: estoque, financeiro, pedidos, comprovantes,
+                                relatórios e e-commerce integrado.</p>
+                            <div class="badges">
+                                <span class="badge">PHP</span><span class="badge">MySQL</span><span
+                                    class="badge">Bootstrap</span><span class="badge">JavaScript</span><span
+                                    class="badge">Relatórios Excel</span>
+                            </div>
+                            <ul class="muted" style="margin:8px 0 0 18px">
+                                <li>Controle de estoque, compras e vendas</li>
+                                <li>Gestão financeira c/ alertas e integração de boletos</li>
+                                <li>Envio de e-mails com confirmações automáticas</li>
+                                <li>Relatórios detalhados e exportação</li>
+                                <li>E-commerce integrado ao catálogo</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="btn btn-ghost" href="#" aria-disabled="true"><i class="ri-eye-line"></i> Demo
+                                    (privado)</a>
+                                <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar
+                                    sobre</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PDV -->
+                    <article class="project-card">
+                        <div class="project-cover"
+                            style="background-image:linear-gradient(135deg,rgba(62,213,152,.22),rgba(77,163,255,.18)),url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop');"
+                            role="img" aria-label="Interface do PDV"></div>
+                        <div class="project-body">
+                            <h3>PDV – Ponto de Venda (módulo)</h3>
+                            <p class="muted">Módulo desenvolvido como projeto independente e integrado ao ProControl.
+                                Focado em performance e usabilidade para frente de caixa.</p>
+                            <div class="badges">
+                                <span class="badge">PHP</span><span class="badge">MySQL</span><span
+                                    class="badge">Teclado Rápido</span><span class="badge">Comprovantes</span>
+                            </div>
+                            <ul class="muted" style="margin:8px 0 0 18px">
+                                <li>Busca rápida de produtos e atalhos (F1…)</li>
+                                <li>Emissão de comprovantes personalizados</li>
+                                <li>Integração com estoque e financeiro</li>
+                                <li>Layout responsivo para PDV</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="btn btn-ghost" href="#" aria-disabled="true"><i class="ri-eye-line"></i> Demo
+                                    (privado)</a>
+                                <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar
+                                    sobre</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- EXPERIÊNCIA -->
-    <section id="experiencia">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="ri-briefcase-4-line"></i> Experiência</h2>
-        </div>
-        <div class="timeline reveal">
-          <div class="tl-item">
-            <h3>GF Innovation – Itajubá/MG <span class="pill" style="margin-left:.4rem"><i class="ri-code-s-slash-line"></i> Desenvolvedor</span></h3>
-            <div class="muted">2025</div>
-            <p>Atuação em melhorias de sistemas, organização de tarefas, atenção a detalhes e cumprimento de prazos.</p>
-          </div>
-          <div class="tl-item">
-            <h3>TCI Sistemas – Itajubá/MG <span class="pill" style="margin-left:.4rem"><i class="ri-customer-service-2-line"></i> Suporte Técnico</span></h3>
-            <div class="muted">2022 – 2024</div>
-            <p>Atendimento a clientes (WhatsApp, chat e presencial), treinamentos, apoio na organização de dados e documentos, foco em resolução de problemas.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMAÇÃO E CERTIFICAÇÕES -->
-    <section id="formacao">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="ri-graduation-cap-line"></i> Formação & Certificações</h2>
-        </div>
-        <div class="grid reveal" style="grid-template-columns:repeat(2,1fr)">
-          <div class="card">
-            <h3>Formação</h3>
-            <ul class="muted" style="margin-left:18px">
-              <li>Sistemas de Informação – UNOPAR (em andamento)</li>
-              <li>Análise e Desenvolvimento de Sistemas – SENAI Itajubá (2022)</li>
-              <li>Ensino Médio Completo</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Certificações</h3>
-            <ul class="muted" style="margin-left:18px">
-              <li>Introdução à Programação – Fundação Bradesco</li>
-              <li>Lógica de Programação – Fundação Bradesco</li>
-              <li>ITIL – SENAI</li>
-              <li>Fundos de Investimento, Compliance, Perfil do Investidor – AMBIMA</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Idiomas</h3>
-            <ul class="muted" style="margin-left:18px">
-              <li>Português – Nativo</li>
-              <li>Inglês – Leitura técnica</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Soft Skills</h3>
-            <ul class="muted" style="margin-left:18px">
-              <li>Proatividade e foco em solução de problemas</li>
-              <li>Atenção aos detalhes e organização</li>
-              <li>Trabalho em equipe e comunicação</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE MIM -->
-    <section id="sobre">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="ri-user-3-line"></i> Sobre Mim</h2>
-        </div>
-        <div class="grid reveal" style="grid-template-columns:1.2fr .8fr">
-          <div class="card">
-            <p>Sou João Pedro Gomes, desenvolvedor com experiência em PHP e banco de dados SQL, apaixonado por tecnologia e por criar soluções que ajudam empresas a crescer. Já atuei com suporte técnico e hoje foco no desenvolvimento de sistemas de gestão (ERP), PDV e módulos que se integram de forma robusta e segura.</p>
-            <p>Gosto de aprender, de resolver problemas e de construir interfaces limpas, responsivas e objetivas.</p>
-            <div class="cta" style="margin-top:8px">
-              <a class="btn btn-primary" href="#contato"><i class="ri-send-plane-fill"></i> Vamos conversar</a>
-              <a class="btn btn-ghost" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank" rel="noopener"><i class="ri-linkedin-box-line"></i> LinkedIn</a>
-              <a class="btn btn-ghost" href="https://github.com/" target="_blank" rel="noopener"><i class="ri-github-line"></i> GitHub</a>
+        <!-- EXPERIÊNCIA -->
+        <section id="experiencia">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="ri-briefcase-4-line"></i> Experiência</h2>
+                </div>
+                <div class="timeline reveal">
+                    <div class="tl-item">
+                        <h3>GF Innovation – Itajubá/MG <span class="pill" style="margin-left:.4rem"><i
+                                    class="ri-code-s-slash-line"></i> Desenvolvedor Full-Stack</span></h3>
+                        <div class="muted">2025</div>
+                        <p>Atuação em melhorias dos projetos utilizando Java e Postgres, organização de tarefas, reuniões, atenção a detalhes e cumprimento de
+                            prazos.</p>
+                    </div>
+                    <div class="tl-item">
+                        <h3>TCI Sistemas – Itajubá/MG <span class="pill" style="margin-left:.4rem"><i
+                                    class="ri-customer-service-2-line"></i> Analista em Suporte Computacional</span></h3>
+                        <div class="muted">2022 – 2024</div>
+                        <p>Atendimento a clientes (WhatsApp, chat e presencial), treinamentos, apoio na organização de
+                            dados e documentos, criação de foco em resolução de problemas.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <h3>Contato Rápido</h3>
-            <div class="grid" style="grid-template-columns:1fr">
-              <a class="pill" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> contat.joao10@gmail.com</a>
-              <a class="pill" href="tel:+5535984687649"><i class="ri-phone-line"></i> (35) 98468-7649</a>
-              <a class="pill" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
-              <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+        </section>
+
+        <!-- FORMAÇÃO E CERTIFICAÇÕES -->
+        <section id="formacao">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="ri-graduation-cap-line"></i> Formação & Certificações</h2>
+                </div>
+                <div class="grid reveal" style="grid-template-columns:repeat(2,1fr)">
+                    <div class="card">
+                        <h3>Formação</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Sistemas de Informação – UNOPAR (em andamento)</li>
+                            <li>Análise e Desenvolvimento de Sistemas – SENAI Itajubá (2022)</li>
+                            <li>Ensino Médio Completo</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Certificações</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Introdução à Programação – Fundação Bradesco</li>
+                            <li>Lógica de Programação – Fundação Bradesco</li>
+                            <li>ITIL – SENAI</li>
+                            <li>Fundos de Investimento, Compliance, Perfil do Investidor – AMBIMA</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Idiomas</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Português – Nativo</li>
+                            <li>Inglês – Leitura técnica</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Soft Skills</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Proatividade e foco em solução de problemas</li>
+                            <li>Atenção aos detalhes e organização</li>
+                            <li>Trabalho em equipe e comunicação</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
+        </section>
+
+        <!-- SOBRE MIM -->
+        <section id="sobre">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="ri-user-3-line"></i> Sobre Mim</h2>
+                </div>
+                <div class="grid reveal" style="grid-template-columns:1.2fr .8fr">
+                    <div class="card">
+                        <p>Sou João Pedro Gomes, desenvolvedor com experiência em PHP e banco de dados SQL, apaixonado
+                            por tecnologia e por criar soluções que ajudam empresas a crescer. Já atuei com suporte
+                            técnico e hoje foco no desenvolvimento de sistemas de gestão (ERP), PDV e módulos que se
+                            integram de forma robusta e segura.</p>
+                        <p>Gosto de aprender, de resolver problemas e de construir interfaces limpas, responsivas e
+                            objetivas.</p>
+                        <div class="cta" style="margin-top:8px">
+                            <a class="btn btn-primary" href="#contato"><i class="ri-send-plane-fill"></i> Vamos
+                                conversar</a>
+                            <a class="btn btn-ghost" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
+                                target="_blank" rel="noopener"><i class="ri-linkedin-box-line"></i> LinkedIn</a>
+                            <a class="btn btn-ghost" href="https://github.com/" target="_blank" rel="noopener"><i
+                                    class="ri-github-line"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Contato Rápido</h3>
+                        <div class="grid" style="grid-template-columns:1fr">
+                            <a class="pill" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i>
+                                contat.joao10@gmail.com</a>
+                            <a class="pill" href="tel:+5535984687649"><i class="ri-phone-line"></i> (35) 98468-7649</a>
+                            <a class="pill" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank"
+                                rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
+                            <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
+                                target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="ri-chat-1-line"></i> Contato</h2>
+                    <span class="muted">Retorno rápido por e-mail ou WhatsApp</span>
+                </div>
+                <div class="grid reveal" style="grid-template-columns:1fr .9fr">
+                    <form class="card" action="https://formspree.io/f/xeoqrjka" method="POST">
+                        <div class="row">
+                            <div>
+                                <label for="nome">Nome</label>
+                                <input id="nome" name="nome" placeholder="Seu nome" required>
+                            </div>
+                            <div>
+                                <label for="email">Email</label>
+                                <input id="email" type="email" name="email" placeholder="voce@exemplo.com" required>
+                            </div>
+                        </div>
+                        <div style="margin-top:12px">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Fale sobre sua necessidade"></textarea>
+                        </div>
+                        <div class="cta" style="margin-top:14px">
+                            <button class="btn btn-primary" type="submit"><i class="ri-send-plane-2-line"></i>
+                                Enviar</button>
+                            <a class="btn btn-ghost"
+                                href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Gostaria%20de%20um%20or%C3%A7amento."
+                                target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
+                        </div>
+                        <small class="muted">Ao enviar, você concorda com o contato para fins de retorno.</small>
+                    </form>
+                    <div class="card">
+                        <h3>Como posso ajudar?</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Criação e evolução de sistemas PHP/SQL</li>
+                            <li>Integração de módulos (PDV, estoque, financeiro)</li>
+                            <li>Refatoração e desempenho</li>
+                            <li>Relatórios e automações</li>
+                        </ul>
+                        <div class="cta">
+                            <a class="btn btn-ghost" href="#projetos"><i class="ri-folder-line"></i> Ver projetos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px">
+                <a class="pill" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> Email</a>
+                <a class="pill" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank"
+                    rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
+                <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank"
+                    rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+            </div>
+            <div>© <span id="year"></span> João Pedro — Feito com ❤️ e muito café.</div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- CONTATO -->
-    <section id="contato">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="ri-chat-1-line"></i> Contato</h2>
-          <span class="muted">Retorno rápido por e-mail ou WhatsApp</span>
-        </div>
-        <div class="grid reveal" style="grid-template-columns:1fr .9fr">
-          <form class="card" action="https://formspree.io/f/xeoqrjka" method="POST">
-            <div class="row">
-              <div>
-                <label for="nome">Nome</label>
-                <input id="nome" name="nome" placeholder="Seu nome" required>
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" type="email" name="email" placeholder="voce@exemplo.com" required>
-              </div>
-            </div>
-            <div style="margin-top:12px">
-              <label for="mensagem">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" placeholder="Fale sobre sua necessidade"></textarea>
-            </div>
-            <div class="cta" style="margin-top:14px">
-              <button class="btn btn-primary" type="submit"><i class="ri-send-plane-2-line"></i> Enviar</button>
-              <a class="btn btn-ghost" href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
-            </div>
-            <small class="muted">Ao enviar, você concorda com o contato para fins de retorno.</small>
-          </form>
-          <div class="card">
-            <h3>Como posso ajudar?</h3>
-            <ul class="muted" style="margin-left:18px">
-              <li>Criação e evolução de sistemas PHP/SQL</li>
-              <li>Integração de módulos (PDV, estoque, financeiro)</li>
-              <li>Refatoração e desempenho</li>
-              <li>Relatórios e automações</li>
-            </ul>
-            <div class="cta">
-              <a class="btn btn-ghost" href="#projetos"><i class="ri-folder-line"></i> Ver projetos</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    <script>
+        // ano do rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-  <footer>
-    <div class="container">
-      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px">
-        <a class="pill" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> Email</a>
-        <a class="pill" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
-        <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
-      </div>
-      <div>© <span id="year"></span> João Pedro — Feito com ❤️ em PHP, SQL e café.</div>
-    </div>
-  </footer>
+        // menu mobile
+        const header = document.querySelector('header .nav');
+        document.querySelector('.menu-btn')?.addEventListener('click', () => {
+            header.classList.toggle('open');
+        });
 
-  <script>
-    // ano do rodapé
-    document.getElementById('year').textContent = new Date().getFullYear();
+        // reveal on scroll
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+        }, { threshold: .12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // menu mobile
-    const header = document.querySelector('header .nav');
-    document.querySelector('.menu-btn')?.addEventListener('click', () => {
-      header.classList.toggle('open');
-    });
-
-    // reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
-    }, {threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // acessibilidade: fechar menu ao clicar num link
-    document.querySelectorAll('header a[href^="#"]').forEach(a => {
-      a.addEventListener('click', () => header.classList.remove('open'));
-    });
-  </script>
-
-  <!--
-    🔧 Como usar:
-    1) Crie uma pasta "assets" e coloque seu PDF de currículo como assets/CVJoao.pdf
-    2) Suba tudo no GitHub Pages, Vercel, Netlify ou no seu servidor PHP.
-    3) Troque os links do GitHub/LinkedIn/WhatsApp se necessário.
-    4) Substitua as imagens de capa dos projetos por prints reais do ProControl/PDV.
-  -->
+        // acessibilidade: fechar menu ao clicar num link
+        document.querySelectorAll('header a[href^="#"]').forEach(a => {
+            a.addEventListener('click', () => header.classList.remove('open'));
+        });
+    </script>
 </body>
-</html>
+
+</html
