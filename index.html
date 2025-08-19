@@ -450,25 +450,33 @@
         }
 
         /* responsive */
+        /* Responsivo tablets e celulares */
         @media (max-width: 960px) {
             .hero-grid {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
+                /* hero em coluna */
             }
 
             .skills {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
+                /* skills uma por linha */
             }
 
             .projects .project-card {
-                grid-column: span 12
+                grid-column: span 12;
+                /* cards ocupam toda largura */
             }
 
             form .row {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
+                /* inputs 100% */
             }
 
             .nav ul {
-                display: none
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
             }
 
             .menu-btn {
@@ -479,7 +487,7 @@
                 background: transparent;
                 color: var(--text);
                 padding: .5rem .8rem;
-                border-radius: 10px
+                border-radius: 10px;
             }
 
             .nav.open ul {
@@ -488,12 +496,42 @@
                 top: 64px;
                 left: 0;
                 right: 0;
-                padding: 14px;
                 background: rgba(11, 12, 16, .95);
                 backdrop-filter: blur(10px);
-                border-bottom: 1px solid rgba(255, 255, 255, .06)
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+                flex-direction: column;
+                align-items: center;
+                z-index: 999;
+            }
+
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .5rem;
             }
         }
+
+        /* Responsivo celulares pequenos */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                /* stats um embaixo do outro */
+            }
+
+            .project-body ul {
+                padding-left: 1rem;
+            }
+        }
+
 
         /* reveal animations */
         .reveal {
@@ -658,7 +696,8 @@
                                 <li>PDV integrado</li>
                             </ul>
                             <div class="project-actions">
-                                <a class="btn btn-ghost" href="Site/index.html" aria-disabled="true" target="_blank"><i class="ri-eye-line"></i> Ver sobre </a>
+                                <a class="btn btn-ghost" href="Site/index.html" aria-disabled="true" target="_blank"><i
+                                        class="ri-eye-line"></i> Ver sobre </a>
                                 <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar
                                     sobre</a>
                             </div>
