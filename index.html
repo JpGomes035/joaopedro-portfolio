@@ -544,6 +544,84 @@
             opacity: 1;
             transform: none
         }
+
+        /* --- MELHORIAS DE EFEITO E INTERAÇÃO --- */
+
+        /* Efeito sutil de brilho cibernético nos botões principais */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.8s;
+            opacity: 0;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        /* Transição suave nas seções ao rolar (scroll reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Efeito neon leve nos títulos */
+        h1,
+        h2 {
+            text-shadow: 0 0 10px rgba(77, 163, 255, 0.4);
+        }
+
+        /* Efeito flutuação para cards */
+        .project-card:hover,
+        .skill-card:hover,
+        .card:hover {
+            transform: translateY(-5px) scale(1.01);
+            transition: transform .3s ease, box-shadow .3s ease;
+            box-shadow: 0 15px 35px rgba(77, 163, 255, 0.15);
+        }
+
+        /* Fundo dinâmico suave (animação leve para parecer um painel vivo) */
+        body {
+            background: radial-gradient(1000px 600px at 70% -10%, rgba(77, 163, 255, .08), transparent 60%),
+                radial-gradient(800px 400px at 0% 0%, rgba(156, 107, 255, .06), transparent 60%),
+                var(--bg);
+            animation: bgmove 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgmove {
+            from {
+                background-position: 0% 0%, 100% 50%, 0 0;
+            }
+
+            to {
+                background-position: 100% 50%, 0% 100%, 0 0;
+            }
+        }
+
+        /* Ícones com efeito de brilho ao passar o mouse */
+        i:hover {
+            color: var(--brand);
+            filter: drop-shadow(0 0 6px var(--brand));
+            transition: .3s;
+        }
     </style>
 </head>
 
@@ -814,7 +892,8 @@
                 </div>
                 <div class="grid reveal" style="grid-template-columns:1.2fr .8fr">
                     <div class="card">
-                        <p>Sou João Pedro Gomes, desenvolvedor Full-Stack com experiência em PHP, Java e banco de dados SQL.
+                        <p>Sou João Pedro Gomes, desenvolvedor Full-Stack com experiência em PHP, Java e banco de dados
+                            SQL.
                             Apaixonado por tecnologia, crio soluções que impulsionam empresas a crescer.
                             Minha trajetória inclui suporte técnico e atuação como Analista em Suporte Computacional,
                             até chegar ao desenvolvimento de sistemas de gestão (ERP), PDV e módulos integrados de forma
@@ -906,7 +985,7 @@
                 <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank"
                     rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
             </div>
-            <div>© <span id="year"></span> João Pedro — Feito com ❤️ e muito café.</div>
+            <div>© <span id="year"></span> João Pedro.</div>
         </div>
     </footer>
 
@@ -952,6 +1031,15 @@
                 alert('Falha ao enviar o e-mail. Tente novamente.');
             });
         });
+    </script>
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('show');
+            });
+        });
+        reveals.forEach(r => observer.observe(r));
     </script>
 
 </body>
