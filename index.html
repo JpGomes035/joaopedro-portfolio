@@ -1,714 +1,1104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>João Pedro Gomes da Silva — Desenvolvedor Full-Stack</title>
-  <meta name="description" content="João Pedro Gomes da Silva — Desenvolvedor Full-Stack (PHP, MySQL, Java, JS). Sistemas ERP, PDV, estoque, financeiro, integrações." />
-  <meta name="author" content="João Pedro Gomes da Silva" />
-  <meta property="og:title" content="João Pedro | Desenvolvedor Full-Stack" />
-  <meta property="og:description" content="Desenvolvedor Full-Stack: ERP, PDV, estoque, financeiro, integrações. Veja projetos e entre em contato." />
-  <meta property="og:type" content="website" />
-  <!-- favicon: coloque monitor.png na raiz ou ajuste o caminho -->
-  <link rel="icon" href="monitor.png" type="image/png" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Remixicon -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-
-  <!-- Tailwind (CDN) -->
-  <script>
-    // Tailwind config: adiciona cores brand
-    tailwindConfig = {
-      theme: {
-        extend: {
-          colors: {
-            brand: '#4da3ff',
-            brand2: '#9c6bff',
-            panel: '#0f1115'
-          },
-          boxShadow: {
-            'panel-lg': '0 10px 30px rgba(0,0,0,0.35)'
-          },
-          borderRadius: {
-            'xl': '18px'
-          }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>João Pedro | Desenvolvedor Full-Stack</title>
+    <meta name="description"
+        content="Portfólio de João Pedro – Desenvolvedor PHP/SQL. Sistemas web, ProControl, PDV, estoque, financeiro e mais." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="monitor.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0c10;
+            /* fundo principal */
+            --panel: #111217;
+            /* cartões */
+            --muted: #a9a9b3;
+            /* textos secundários */
+            --text: #f2f3f5;
+            /* textos principais */
+            --brand: #4da3ff;
+            /* destaque primário (azul) */
+            --brand-2: #9c6bff;
+            /* destaque gradiente (roxo) */
+            --ok: #3ed598;
+            /* verde para detalhes */
+            --danger: #ff6b6b;
+            /* vermelho sutil */
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius: 18px;
+            --radius-sm: 12px;
+            --maxw: 1120px;
         }
-      }
-    }
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        * {
+            box-sizing: border-box
+        }
 
-  <style>
-    /* base tweaks */
-    :root {
-      --bg-dark: #0b0c10;
-      --panel-dark: #111217;
-      --muted: #a9a9b3;
-      --text: #f2f3f5;
-      --ok: #3ed598;
-    }
+        html {
+            scroll-behavior: smooth
+        }
 
-    /* Light-mode overrides */
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg-dark: #f7fbff;
-        --panel-dark: #ffffff;
-        --muted: #5b6b80;
-        --text: #0b1220;
-      }
-    }
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            /* Fundo dinâmico suave (animação leve para parecer um painel vivo) */
+            background: radial-gradient(1000px 600px at 70% -10%, rgba(77, 163, 255, .08), transparent 60%),
+                radial-gradient(800px 400px at 0% 0%, rgba(156, 107, 255, .06), transparent 60%),
+                var(--bg);
+            animation: bgmove 20s ease-in-out infinite alternate;
+            color: var(--text);
+        }
 
-    html { scroll-behavior: smooth; }
+        @keyframes bgmove {
+            from {
+                background-position: 0% 0%, 100% 50%, 0 0;
+            }
 
-    /* small global polish for fonts */
-    body {
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      background: radial-gradient(1000px 600px at 70% -10%, rgba(77,163,255,0.06), transparent 60%),
-                  radial-gradient(800px 400px at 0% 0%, rgba(156,107,255,0.04), transparent 60%),
-                  var(--bg-dark);
-      color: var(--text);
-      min-height: 100vh;
-    }
+            to {
+                background-position: 100% 50%, 0% 100%, 0 0;
+            }
+        }
 
-    /* glass navbar */
-    .glass {
-      background: linear-gradient(180deg, rgba(16,18,22,0.55), rgba(16,18,22,0.35));
-      backdrop-filter: blur(8px) saturate(120%);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    /* light-mode glass tweak */
-    @media (prefers-color-scheme: light) {
-      .glass {
-        background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.6));
-      }
-    }
+        a {
+            color: inherit;
+            text-decoration: none
+        }
 
-    /* hero typing cursor */
-    .typing-cursor {
-      display:inline-block;
-      width:2px;
-      height:1.2em;
-      margin-left:6px;
-      background:var(--text);
-      animation: blink 1s steps(2,end) infinite;
-      vertical-align:middle;
-    }
-    @keyframes blink { 50% { opacity: 0 } }
+        img {
+            max-width: 100%;
+            display: block
+        }
 
-    /* soft neon for headings */
-    h1,h2 { text-shadow: 0 0 10px rgba(77,163,255,0.12); }
+        /* util */
+        .container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 20px
+        }
 
-    /* style for meter bars (non-tailwind part) */
-    .meter-bg { background: rgba(255,255,255,0.03); border-radius:999px; height:10px; overflow:hidden; }
-    .meter-fill { height:100%; border-radius:999px; background: linear-gradient(90deg, #4da3ff, #9c6bff); width:0%; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .9rem 1.2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: .25s;
+            backdrop-filter: saturate(140%);
+            border: 0; /* Adicionado para botões primários não terem borda padrão */
+            cursor: pointer;
+        }
 
-    /* small utility for image placeholder */
-    .avatar-placeholder { width:120px;height:120px;border-radius:999px;border:4px solid rgba(77,163,255,0.12);background:linear-gradient(135deg,#0f1724,#111827);display:grid;place-items:center;font-family:'JetBrains Mono', monospace;color:rgba(255,255,255,0.7); }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-    /* make project cards hover lift smoother */
-    .card-hover { transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s; }
-    .card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 40px rgba(13, 71, 161, 0.18); }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(77, 163, 255, .25);
+        }
 
-    /* ensure footer small */
-    footer { color:var(--muted); }
+        /* Efeito sutil de brilho cibernético nos botões principais */
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.8s;
+            opacity: 0;
+            z-index: -1;
+        }
 
-    /* small responsive tweaks for very small screens */
-    @media (max-width:420px) {
-      .avatar-placeholder { width:96px;height:96px; }
-    }
-  </style>
+        .btn-primary:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+
+        .btn-ghost {
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .02);
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(255, 255, 255, .25);
+            transform: translateY(-2px)
+        }
+
+        .pill {
+            display: inline-flex;
+            gap: .5rem;
+            align-items: center;
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: var(--muted);
+            font-size: .86rem;
+        }
+
+        /* header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 12, 16, .6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: relative; /* Para o menu flutuante em mobile */
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            z-index: 51; /* Mantém a marca acima do menu mobile */
+        }
+
+        .brand .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow)
+        }
+
+        .brand strong {
+            font-weight: 800;
+            letter-spacing: .2px
+        }
+
+        .nav a {
+            color: var(--muted)
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            padding: 0;
+            margin: 0
+        }
+
+        .nav a:hover {
+            color: var(--text)
+        }
+
+        .menu-btn {
+            display: none
+        }
+
+        /* hero */
+        .hero {
+            padding: 72px 0 40px
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .9fr;
+            gap: 32px;
+            align-items: center
+        }
+
+        .hero-card {
+            background: linear-gradient(160deg, rgba(77, 163, 255, .08), rgba(156, 107, 255, .06));
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow)
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin: 0
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-top: 10px
+        }
+
+        .cta {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 22px
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            text-align: center
+        }
+
+        .stat strong {
+            font-size: 1.2rem
+        }
+
+        .hero-figure {
+            position: relative
+        }
+
+        .hero-figure .card {
+            position: relative;
+            border-radius: 20px;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            padding: 18px;
+            box-shadow: var(--shadow)
+        }
+
+        .hero-figure .browser-dots {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%
+        }
+
+        .dot.red {
+            background: #ff6b6b
+        }
+
+        .dot.yellow {
+            background: #ffd166
+        }
+
+        .dot.green {
+            background: #3ed598
+        }
+
+        .hero-figure .screen {
+            height: 260px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .01));
+            display: grid;
+            place-items: center;
+            color: var(--muted)
+        }
+
+        /* sections */
+        section {
+            padding: 64px 0;
+            border-top: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.6rem
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px
+        }
+
+        /* skills */
+        .skills {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .skill-card {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px
+        }
+
+        .skill-left {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .skill-left i {
+            font-size: 22px
+        }
+
+        .meter {
+            height: 8px;
+            background: rgba(255, 255, 255, .06);
+            border-radius: 999px;
+            overflow: hidden;
+            flex: 1
+        }
+
+        .meter>span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand), var(--brand-2));
+            transition: width 1s ease-out; /* Adiciona transição para o efeito da barra */
+        }
+
+        /* projects */
+        .projects {
+            grid-template-columns: repeat(12, 1fr)
+        }
+
+        .project-card {
+            grid-column: span 6;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: .25s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .35)
+        }
+
+        .project-cover {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(77, 163, 255, .22), rgba(156, 107, 255, .18)), url('https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop') center/cover;
+            /* Placeholder padrão */
+        }
+
+        .project-body {
+            padding: 18px
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0
+        }
+
+        .badge {
+            font-size: .78rem;
+            color: #d9e7ff;
+            background: rgba(77, 163, 255, .16);
+            border: 1px solid rgba(77, 163, 255, .35);
+            padding: .25rem .55rem;
+            border-radius: 999px
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px
+        }
+
+        /* timeline */
+        .timeline {
+            border-left: 2px dashed rgba(255, 255, 255, .12);
+            padding-left: 18px
+        }
+
+        .tl-item {
+            margin: 18px 0
+        }
+
+        .tl-item h3 {
+            margin: .2rem 0 .2rem
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        /* cards generic */
+        .card {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            transition: transform .3s ease, box-shadow .3s ease; /* Adicionado transição de card para generalizar */
+        }
+        
+        /* Efeito flutuação para cards, exceto o principal do Hero, que já tem sombra diferente */
+        .project-card:hover,
+        .skill-card:hover,
+        .card:hover:not(.hero-card) {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(77, 163, 255, 0.15);
+        }
+
+        /* contact */
+        form .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: #0c0e14;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 12px;
+            color: var(--text);
+            font: inherit;
+            transition: border-color .3s; /* Adiciona transição no foco */
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--brand);
+        }
+
+        label {
+            display: block; /* Para labels ocuparem a linha */
+            font-size: .92rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+        
+        /* footer */
+        footer {
+            padding: 36px 0;
+            color: var(--muted);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, .06)
+        }
+        
+        /* Efeito neon leve nos títulos */
+        h1,
+        h2 {
+            text-shadow: 0 0 10px rgba(77, 163, 255, 0.4);
+        }
+
+        /* Ícones com efeito de brilho ao passar o mouse */
+        i:hover {
+            color: var(--brand);
+            filter: drop-shadow(0 0 6px var(--brand));
+            transition: .3s;
+        }
+
+        /* responsive */
+        @media (max-width: 960px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .projects .project-card {
+                grid-column: span 12;
+            }
+            
+            /* Ajuste de grids em colunas (Experiência e Formação/Contato) */
+            .grid[style*="grid-template-columns:1.2fr .8fr"],
+            .grid[style*="grid-template-columns:1fr .9fr"],
+            .grid[style*="grid-template-columns:repeat(2,1fr)"] {
+                grid-template-columns: 1fr !important; /* Força coluna única em mobile para grids de 2 colunas */
+            }
+
+            form .row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .menu-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: .4rem;
+                border: 1px solid rgba(255, 255, 255, .12);
+                background: transparent;
+                color: var(--text);
+                padding: .5rem .8rem;
+                border-radius: 10px;
+            }
+
+            .nav.open ul {
+                display: flex;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(11, 12, 16, .95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+                flex-direction: column;
+                align-items: center;
+                z-index: 999;
+            }
+
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .5rem;
+            }
+            
+            /* Melhoria na ordem do Hero em mobile */
+            .hero-grid {
+                display: flex;
+                flex-direction: column-reverse; /* Coloca a Figura (Preview) embaixo do Cartão de Texto no mobile */
+            }
+        }
+
+        /* Responsivo celulares pequenos */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .project-body ul {
+                padding-left: 1rem;
+            }
+        }
+
+
+        /* reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Feedback do formulário */
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-success {
+            background-color: rgba(62, 213, 152, 0.2); /* var(--ok) com transparência */
+            border: 1px solid var(--ok);
+            color: var(--ok);
+        }
+
+        .form-error {
+            background-color: rgba(255, 107, 107, 0.2); /* var(--danger) com transparência */
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+    </style>
 </head>
 
-<body class="antialiased">
-  <!-- NAVBAR -->
-  <header class="w-full fixed top-0 left-0 z-50">
-    <div class="glass border-b border-white/6">
-      <div class="max-w-6xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
-        <a href="#top" class="flex items-center gap-3" aria-label="Ir para o topo">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand to-brand2 shadow-panel-lg flex items-center justify-center text-black">
-            <!-- logo mark -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M3 12h18M12 3v18" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="font-extrabold text-sm md:text-base">João Pedro</div>
-            <div class="text-xs text-white/60 -mt-0.5">Dev Full-Stack</div>
-          </div>
-        </a>
-
-        <!-- MENU (desktop) -->
-        <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
-          <a class="hover:text-white" href="#sobre">Sobre</a>
-          <a class="hover:text-white" href="#habilidades">Habilidades</a>
-          <a class="hover:text-white" href="#projetos">Projetos</a>
-          <a class="hover:text-white" href="#experiencia">Experiência</a>
-          <a class="hover:text-white" href="#formacao">Formação</a>
-          <a class="hover:text-white" href="#contato">Contato</a>
-          <a class="ml-2 px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-xs flex items-center gap-2" href="assets/CVJoao.pdf" download><i class="ri-download-2-line"></i> CV</a>
-        </nav>
-
-        <!-- mobile toggle -->
-        <div class="md:hidden flex items-center">
-          <button id="btn-menu" class="p-2 rounded-md bg-white/3 hover:bg-white/5" aria-label="Abrir menu">
-            <i class="ri-menu-3-line text-lg"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- mobile menu -->
-      <div id="mobile-menu" class="md:hidden max-w-6xl mx-auto px-5 pb-4" style="display:none;">
-        <div class="mt-2 flex flex-col gap-2 text-sm">
-          <a href="#sobre" class="block py-2 px-3 rounded-md hover:bg-white/3">Sobre</a>
-          <a href="#habilidades" class="block py-2 px-3 rounded-md hover:bg-white/3">Habilidades</a>
-          <a href="#projetos" class="block py-2 px-3 rounded-md hover:bg-white/3">Projetos</a>
-          <a href="#experiencia" class="block py-2 px-3 rounded-md hover:bg-white/3">Experiência</a>
-          <a href="#formacao" class="block py-2 px-3 rounded-md hover:bg-white/3">Formação</a>
-          <a href="#contato" class="block py-2 px-3 rounded-md hover:bg-white/3">Contato</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- MAIN -->
-  <main id="top" class="pt-20">
-    <section class="max-w-6xl mx-auto px-5 md:px-8 py-12">
-      <div class="grid md:grid-cols-12 gap-8 items-center">
-        <!-- hero left -->
-        <div class="md:col-span-7">
-          <div class="bg-gradient-to-br from-white/3 to-white/2 border border-white/6 rounded-xl p-8 shadow-panel-lg">
-            <p class="text-sm text-white/60">Olá, eu sou</p>
-            <h1 class="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">João Pedro Gomes da Silva</h1>
-
-            <div class="mt-3 flex items-center gap-2">
-              <div class="text-lg md:text-2xl font-medium text-white/90">
-                <span id="typed-text" class="inline-block"></span>
-                <span class="typing-cursor" aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <p class="mt-4 text-white/70 max-w-xl">
-              Desenvolvedor Full-Stack focado em sistemas web robustos — ERP, PDV, controle de estoque, financeiro e integrações.
-              Proativo, detalhista e autodidata. Crio soluções para tornar processos complexos em fluxos simples e confiáveis.
-            </p>
-
-            <div class="mt-6 flex flex-wrap gap-3">
-              <a href="assets/CVJoao.pdf" download class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand to-brand2 text-black font-semibold shadow-sm">
-                <i class="ri-download-2-line"></i> Baixar Currículo
-              </a>
-              <a href="#projetos" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/6 text-sm">Ver Projetos</a>
-              <a href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Vim%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/6">
-                <i class="ri-whatsapp-line" style="color: #34d399"></i> WhatsApp
-              </a>
-            </div>
-
-            <div class="mt-6 grid grid-cols-3 gap-3">
-              <div class="p-3 rounded-lg bg-white/3 text-center">
-                <div class="text-sm font-bold">ERP</div>
-                <div class="text-xs text-white/60">ProControl</div>
-              </div>
-              <div class="p-3 rounded-lg bg-white/3 text-center">
-                <div class="text-sm font-bold">PDV</div>
-                <div class="text-xs text-white/60">Módulo integrado</div>
-              </div>
-              <div class="p-3 rounded-lg bg-white/3 text-center">
-                <div class="text-sm font-bold">+10</div>
-                <div class="text-xs text-white/60">Funcionalidades chave</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- hero right (preview) -->
-        <div class="md:col-span-5">
-          <div class="rounded-xl bg-panel-dark border border-white/6 p-4 shadow-panel-lg">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="w-3 h-3 rounded-full bg-red-500"></span>
-              <span class="w-3 h-3 rounded-full bg-yellow-300"></span>
-              <span class="w-3 h-3 rounded-full bg-green-400"></span>
-            </div>
-
-            <div class="rounded-lg p-4 bg-gradient-to-br from-white/3 to-white/6">
-              <div class="flex flex-col gap-2">
-                <div class="px-3 py-2 rounded bg-panel-dark border border-white/6">E-commerce • Estoque</div>
-                <div class="px-3 py-2 rounded bg-panel-dark border border-white/6">Pedidos • Financeiro</div>
-                <div class="px-3 py-2 rounded bg-panel-dark border border-white/6">PDV • XML</div>
-                <div class="px-3 py-2 rounded bg-panel-dark border border-white/6">Agendamento • E-mails</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE -->
-    <section id="sobre" class="max-w-6xl mx-auto px-5 md:px-8 py-8">
-      <div class="grid md:grid-cols-3 gap-6 items-start">
-        <div class="md:col-span-2">
-          <div class="rounded-xl bg-panel-dark border border-white/6 p-6 card-hover">
-            <h2 class="text-2xl font-bold mb-2"><i class="ri-user-3-line"></i> Sobre Mim</h2>
-            <p class="text-white/70">
-              Sou <strong>João Pedro Gomes,</strong> desenvolvedor <strong>Full-Stack</strong> com experiência em <strong>PHP</strong>, <strong>Java</strong> e
-              banco de dados <strong>SQL</strong>. Minha trajetória inclui suporte técnico e análise, até chegar ao desenvolvimento de sistemas de gestão, PDV e módulos integrados.
-              Gosto de resolver problemas, automatizar processos e construir interfaces limpas e responsivas.
-            </p>
-
-            <div class="mt-4 flex gap-3">
-              <a class="inline-flex gap-2 items-center px-4 py-2 rounded-full bg-gradient-to-r from-brand to-brand2 text-black font-semibold" href="#contato"><i class="ri-send-plane-fill"></i> Vamos conversar</a>
-              <a class="inline-flex gap-2 items-center px-4 py-2 rounded-full border border-white/6" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a" target="_blank" rel="noopener"><i class="ri-linkedin-box-line"></i> LinkedIn</a>
-              <a class="inline-flex gap-2 items-center px-4 py-2 rounded-full border border-white/6" href="https://github.com/JpGomes035" target="_blank" rel="noopener"><i class="ri-github-line"></i> GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <aside class="rounded-xl bg-panel-dark border border-white/6 p-6">
-          <h3 class="font-semibold mb-3">Contato Rápido</h3>
-          <div class="flex flex-col gap-2">
-            <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> contat.joao10@gmail.com</a>
-            <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="tel:+5535984687649"><i class="ri-phone-line"></i> (35) 98468-7649</a>
-            <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
-            <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a" target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- HABILIDADES -->
-    <section id="habilidades" class="max-w-6xl mx-auto px-5 md:px-8 py-8">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold"><i class="ri-magic-line"></i> Habilidades</h2>
-        <span class="text-sm text-white/60">Stack principal e ferramentas</span>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-4">
-        <!-- skill card -->
-        <div class="space-y-3">
-          <div class="p-4 rounded-xl bg-panel-dark border border-white/6 card-hover flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <i class="ri-code-s-slash-line text-xl"></i>
-              <div>
-                <div class="font-semibold">PHP</div>
-                <div class="text-xs text-white/60">Back-end e integrações</div>
-              </div>
-            </div>
-            <div class="w-1/2 md:w-2/5">
-              <div class="meter-bg">
-                <div class="meter-fill" style="width:85%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-panel-dark border border-white/6 card-hover flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <i class="ri-database-2-line text-xl"></i>
-              <div>
-                <div class="font-semibold">MySQL / SQL</div>
-                <div class="text-xs text-white/60">Modelagem e queries</div>
-              </div>
-            </div>
-            <div class="w-1/2 md:w-2/5">
-              <div class="meter-bg">
-                <div class="meter-fill" style="width:85%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-panel-dark border border-white/6 card-hover flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <i class="ri-javascript-line text-xl"></i>
-              <div>
-                <div class="font-semibold">JavaScript</div>
-                <div class="text-xs text-white/60">Front-end & interações</div>
-              </div>
-            </div>
-            <div class="w-1/2 md:w-2/5">
-              <div class="meter-bg">
-                <div class="meter-fill" style="width:70%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-3">
-          <div class="p-4 rounded-xl bg-panel-dark border border-white/6 card-hover flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <i class="ri-html5-line text-xl"></i>
-              <div>
-                <div class="font-semibold">HTML5 & CSS3</div>
-                <div class="text-xs text-white/60">Layouts responsivos</div>
-              </div>
-            </div>
-            <div class="w-1/2 md:w-2/5">
-              <div class="meter-bg">
-                <div class="meter-fill" style="width:80%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-panel-dark border border-white/6 card-hover flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <i class="ri-git-branch-line text-xl"></i>
-              <div>
-                <div class="font-semibold">Git / Docker</div>
-                <div class="text-xs text-white/60">Versionamento & containers</div>
-              </div>
-            </div>
-            <div class="w-1/2 md:w-2/5">
-              <div class="meter-bg">
-                <div class="meter-fill" style="width:65%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-panel-dark border border-white/6 card-hover flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <i class="ri-java-line text-xl"></i>
-              <div>
-                <div class="font-semibold">Java</div>
-                <div class="text-xs text-white/60">Backend & microservices</div>
-              </div>
-            </div>
-            <div class="w-1/2 md:w-2/5">
-              <div class="meter-bg">
-                <div class="meter-fill" style="width:75%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS -->
-    <section id="projetos" class="max-w-6xl mx-auto px-5 md:px-8 py-8">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold"><i class="ri-rocket-line"></i> Projetos</h2>
-        <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="#contato"><i class="ri-send-plane-2-line"></i> Disponível para projetos</a>
-      </div>
-
-      <div class="grid md:grid-cols-12 gap-6">
-        <!-- ProControl -->
-        <article class="md:col-span-6 bg-panel-dark border border-white/6 rounded-xl overflow-hidden card-hover">
-          <div class="h-40 bg-[url('home.png')] bg-cover bg-center"></div>
-          <div class="p-5">
-            <h3 class="font-semibold">ProControl – Sistema de Gestão</h3>
-            <p class="text-white/60 mt-2">Sistema ERP completo desenvolvido em PHP com SQL. Módulos: PDV, estoque, financeiro, pedidos, relatórios e e-commerce integrado.</p>
-
-            <div class="flex flex-wrap gap-2 mt-3">
-              <span class="text-xs px-2 py-1 rounded bg-[rgba(77,163,255,0.12)] border border-[rgba(77,163,255,0.18)]">PHP</span>
-              <span class="text-xs px-2 py-1 rounded bg-[rgba(77,163,255,0.12)]">MySQL</span>
-              <span class="text-xs px-2 py-1 rounded bg-[rgba(77,163,255,0.12)]">Bootstrap</span>
-            </div>
-
-            <ul class="text-white/60 mt-3 ml-4 list-disc">
-              <li>Controle de estoque, compras e vendas</li>
-              <li>Gestão financeira com integração de boletos</li>
-              <li>Relatórios detalhados e exportação</li>
+<body>
+    <header>
+        <div class="container nav" id="top">
+            <a class="brand" href="#top" aria-label="Ir para o topo">
+                <span class="logo" aria-hidden="true"></span>
+                <strong>João Pedro</strong>
+                <span class="pill"><i class="ri-code-s-slash-line"></i> Dev Full-Stack</span>
+            </a>
+            <button class="menu-btn" aria-expanded="false" aria-controls="menu"><i class="ri-menu-3-line"></i>
+                Menu</button>
+            <ul id="menu" role="menu" aria-label="Navegação principal">
+                <li role="menuitem"><a href="#sobre">Sobre</a></li>
+                <li role="menuitem"><a href="#habilidades">Habilidades</a></li>
+                <li role="menuitem"><a href="#projetos">Projetos</a></li>
+                <li role="menuitem"><a href="#experiencia">Experiência</a></li>
+                <li role="menuitem"><a href="#formacao">Formação</a></li>
+                <li role="menuitem"><a href="#contato">Contato</a></li>
             </ul>
+        </div>
+    </header>
 
-            <div class="mt-4 flex gap-3">
-              <a class="px-3 py-2 rounded-full border border-white/6 text-sm" href="Site/index.html" target="_blank" rel="noopener"><i class="ri-eye-line"></i> Ver sobre</a>
-              <a class="px-3 py-2 rounded-full bg-gradient-to-r from-brand to-brand2 text-black font-semibold" href="#contato"><i class="ri-chat-1-line"></i> Falar</a>
+    <main>
+        <section class="hero container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-card reveal">
+                        <h1>Dev Full-Stack <br /> focado em sistemas web robustos</h1>
+                        <p class="subtitle">Experiência com ERP, PDV, estoque, financeiro, relatórios, E-commerce e
+                            integrações.
+                            Proativo, atento a detalhes, criatividade e autodidata com habilidades para resolução de
+                            problemas.</p>
+                        <div class="cta">
+                            <a class="btn btn-primary" href="assets/CVJoao.pdf" download
+                                aria-label="Baixar Currículo de João Pedro">
+                                <i class="ri-download-2-line"></i> Baixar Currículo
+                            </a>
+                            <a class="btn btn-ghost" href="#projetos" aria-label="Ver seção de projetos"><i
+                                    class="ri-rocket-2-line"></i> Ver Projetos</a>
+                            <a class="btn btn-ghost"
+                                href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Vim%20pelo%20seu%20portf%C3%B3lio."
+                                target="_blank" rel="noopener" aria-label="Falar com João Pedro pelo WhatsApp">
+                                <i class="ri-whatsapp-line" style="color:var(--ok)"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                        <div class="stats" role="group" aria-label="Estatísticas Principais">
+                            <div class="stat"><strong>ERP</strong>
+                                <div class="muted">ProControl</div>
+                            </div>
+                            <div class="stat"><strong>PDV</strong>
+                                <div class="muted">Módulo integrado</div>
+                            </div>
+                            <div class="stat"><strong>+10</strong>
+                                <div class="muted">Funcionalidades chave</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-figure reveal" role="presentation">
+                    <div class="card">
+                        <div class="browser-dots"><span class="dot red" role="presentation"></span><span class="dot yellow"
+                                role="presentation"></span><span class="dot green" role="presentation"></span></div>
+                        <div class="screen">
+                            <div>
+                                <div class="pill" style="justify-content:center;margin-bottom:10px"><i
+                                        class="ri-dashboard-2-line"></i> Preview UI</div>
+                                <div style="display:grid;gap:8px">
+                                    <div class="card" style="padding:10px">E-commerce • Estoque</div>
+                                    <div class="card" style="padding:10px">Pedidos • Financeiro</div>
+                                    <div class="card" style="padding:10px">PDV • XML</div>
+                                    <div class="card" style="padding:10px">Agendamento • E-mails</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </article>
+        </section>
 
-        <!-- PDV -->
-        <article class="md:col-span-6 bg-panel-dark border border-white/6 rounded-xl overflow-hidden card-hover">
-          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center"></div>
-          <div class="p-5">
-            <h3 class="font-semibold">PDV – Ponto de Venda (módulo)</h3>
-            <p class="text-white/60 mt-2">Módulo independente e integrado ao ProControl, com foco em performance e usabilidade de frente de caixa.</p>
-
-            <div class="flex flex-wrap gap-2 mt-3">
-              <span class="text-xs px-2 py-1 rounded bg-[rgba(77,163,255,0.12)]">PHP</span>
-              <span class="text-xs px-2 py-1 rounded bg-[rgba(77,163,255,0.12)]">MySQL</span>
+        <section id="sobre">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2><i class="ri-user-3-line"></i> Sobre Mim</h2>
+                </div>
+                <div class="grid reveal" style="grid-template-columns:1.2fr .8fr">
+                    <div class="card">
+                        <p>Sou João Pedro Gomes, desenvolvedor Full-Stack com experiência em PHP, Java e
+                            banco de dados SQL.
+                            Apaixonado por tecnologia, crio soluções que impulsionam empresas a crescer.
+                            Minha trajetória inclui suporte técnico e atuação como Analista em Suporte Computacional,
+                            até chegar ao desenvolvimento de sistemas de gestão (ERP), PDV e módulos integrados
+                            de forma
+                            robusta e segura.
+                            Tenho prazer em aprender, resolver problemas e transformar processos complexos em soluções
+                            simples. Meu foco é construir interfaces limpas, responsivas e objetivas, que tornam tarefas
+                            antes demoradas muito mais rápidas e eficientes.
+                        <div class="cta" style="margin-top:8px">
+                            <a class="btn btn-primary" href="#contato"><i class="ri-send-plane-fill"></i> Vamos
+                                conversar</a>
+                            <a class="btn btn-ghost" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
+                                target="_blank" rel="noopener"><i class="ri-linkedin-box-line"></i> LinkedIn</a>
+                            <a class="btn btn-ghost" href="https://github.com/JpGomes035" target="_blank"
+                                rel="noopener"><i class="ri-github-line"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="card" role="region" aria-label="Informações de Contato Rápido">
+                        <h3>Contato Rápido</h3>
+                        <div class="grid" style="grid-template-columns:1fr">
+                            <a class="pill" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i>
+                                contat.joao10@gmail.com</a>
+                            <a class="pill" href="tel:+5535984687649"><i class="ri-phone-line"></i> (35) 98468-7649</a>
+                            <a class="pill" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank"
+                                rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
+                            <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
+                                target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <ul class="text-white/60 mt-3 ml-4 list-disc">
-              <li>Busca rápida de produtos e atalhos (F1…)</li>
-              <li>Emissão de comprovantes</li>
-              <li>Integração com estoque e financeiro</li>
-            </ul>
-
-            <div class="mt-4">
-              <a class="px-3 py-2 rounded-full bg-gradient-to-r from-brand to-brand2 text-black font-semibold" href="#contato"><i class="ri-chat-1-line"></i> Falar</a>
+        <section id="habilidades">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2><i class="ri-magic-line"></i> Habilidades</h2>
+                    <span class="muted">Stack principal e ferramentas</span>
+                </div>
+                <div class="grid skills reveal" role="list">
+                    <div class="skill-card" role="listitem">
+                        <div class="skill-left"><i class="ri-code-s-slash-line"></i><strong>PHP</strong></div>
+                        <div class="meter" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                            aria-label="Nível de PHP 85%"><span style="width:85%"></span></div>
+                    </div>
+                    <div class="skill-card" role="listitem">
+                        <div class="skill-left"><i class="ri-database-2-line"></i><strong>MySQL / SQL</strong></div>
+                        <div class="meter" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                            aria-label="Nível de MySQL / SQL 85%"><span style="width:85%"></span></div>
+                    </div>
+                    <div class="skill-card" role="listitem">
+                        <div class="skill-left"><i class="ri-javascript-line"></i><strong>JavaScript</strong></div>
+                        <div class="meter" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                            aria-label="Nível de JavaScript 70%"><span style="width:70%"></span></div>
+                    </div>
+                    <div class="skill-card" role="listitem">
+                        <div class="skill-left"><i class="ri-html5-line"></i><strong>HTML5 & CSS3</strong></div>
+                        <div class="meter" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                            aria-label="Nível de HTML5 & CSS3 80%"><span style="width:80%"></span></div>
+                    </div>
+                    <div class="skill-card" role="listitem">
+                        <div class="skill-left"><i class="ri-git-branch-line"></i><strong>Git / Docker</strong></div>
+                        <div class="meter" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            aria-label="Nível de Git / Docker 65%"><span style="width:65%"></span></div>
+                    </div>
+                    <div class="skill-card" role="listitem">
+                        <div class="skill-left"><i class="ri-java-line"></i><strong>Java</strong>
+                        </div>
+                        <div class="meter" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                            aria-label="Nível de Java 75%"><span style="width:75%"></span></div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </article>
-      </div>
-    </section>
+        </section>
 
-    <!-- EXPERIÊNCIA -->
-    <section id="experiencia" class="max-w-6xl mx-auto px-5 md:px-8 py-8">
-      <h2 class="text-2xl font-bold mb-4"><i class="ri-briefcase-4-line"></i> Experiência</h2>
+        <section id="projetos">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2><i class="ri-rocket-line"></i> Projetos</h2>
+                    <a class="pill" href="#contato" aria-label="Disponível para novos projetos, ir para contato"><i
+                            class="ri-send-plane-2-line"></i> Disponível para projetos</a>
+                </div>
+                <div class="grid projects reveal">
+                    <article class="project-card" role="region" aria-label="Projeto ProControl">
+                        <div class="project-cover" style="background-image:linear-gradient(135deg, rgba(77, 163, 255, .22), rgba(156, 107, 255, .18)), url('home.png');
+                            background-size:cover;
+                            background-position:center;" role="img" aria-label="Dashboard do sistema ProControl">
+                        </div>
+                        <div class="project-body">
+                            <h3>ProControl – Sistema de Gestão</h3>
+                            <p class="muted">Sistema ERP completo desenvolvido em PHP com SQL, pensado para empresas de
+                                diversos portes. Possui módulos robustos: PDV, estoque, financeiro, pedidos,
+                                comprovantes, relatórios em excel e e-commerce integrado.</p>
+                            <div class="badges">
+                                <span class="badge">PHP</span><span class="badge">MySQL</span><span
+                                    class="badge">Bootstrap</span><span class="badge">JavaScript</span><span
+                                    class="badge">Relatórios Excel</span>
+                            </div>
+                            <ul class="muted" style="margin:8px 0 0 18px">
+                                <li>Controle de estoque, compras e vendas</li>
+                                <li>Gestão financeira c/ alertas e integração de boletos</li>
+                                <li>Envio de e-mails com confirmações automáticas</li>
+                                <li>Relatórios detalhados e exportação</li>
+                                <li>E-commerce integrado ao catálogo</li>
+                                <li>PDV integrado</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="btn btn-ghost" href="Site/index.html" target="_blank" rel="noopener"
+                                    aria-label="Ver mais sobre o ProControl">
+                                    <i class="ri-eye-line"></i> Ver sobre
+                                </a>
+                                <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar
+                                    sobre</a>
+                            </div>
+                        </div>
+                    </article>
 
-      <div class="timeline border-l border-white/10 pl-6 space-y-6">
-        <div class="relative">
-          <div class="absolute -left-3 top-1 w-6 h-6 rounded-full bg-gradient-to-br from-brand to-brand2 border-2 border-black"></div>
-          <div class="bg-panel-dark border border-white/6 rounded-xl p-4">
-            <h3 class="font-semibold">GF Innovation – Itajubá/MG <span class="inline-block ml-2 px-2 py-1 text-xs rounded bg-white/6">Desenvolvedor Full-Stack</span></h3>
-            <p class="text-white/60 text-sm">2025 — Atuação em melhorias de projetos utilizando Java e Postgres, organização e entrega de demandas.</p>
-          </div>
-        </div>
-
-        <div class="relative">
-          <div class="absolute -left-3 top-1 w-6 h-6 rounded-full bg-gradient-to-br from-brand to-brand2 border-2 border-black"></div>
-          <div class="bg-panel-dark border border-white/6 rounded-xl p-4">
-            <h3 class="font-semibold">TCI Sistemas – Itajubá/MG <span class="inline-block ml-2 px-2 py-1 text-xs rounded bg-white/6">Analista em Suporte Computacional</span></h3>
-            <p class="text-white/60 text-sm">2022 – 2024 — Atendimento a clientes, treinamentos, apoio em organização de dados, criação de banco Postgres.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMAÇÃO -->
-    <section id="formacao" class="max-w-6xl mx-auto px-5 md:px-8 py-8">
-      <h2 class="text-2xl font-bold mb-4"><i class="ri-graduation-cap-line"></i> Formação & Certificações</h2>
-
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-panel-dark border border-white/6 rounded-xl p-5">
-          <h3 class="font-semibold">Formação</h3>
-          <ul class="text-white/60 ml-4 list-disc mt-2">
-            <li>Sistemas de Informação – UNOPAR (em andamento)</li>
-            <li>Análise e Desenvolvimento de Sistemas – SENAI Itajubá (2022)</li>
-            <li>Ensino Médio Completo</li>
-          </ul>
-        </div>
-
-        <div class="bg-panel-dark border border-white/6 rounded-xl p-5">
-          <h3 class="font-semibold">Certificações</h3>
-          <ul class="text-white/60 ml-4 list-disc mt-2">
-            <li>Introdução à Programação – Fundação Bradesco</li>
-            <li>Lógica de Programação – Fundação Bradesco</li>
-            <li>ITIL – SENAI</li>
-            <li>Fundos de Investimento, Compliance – AMBIMA</li>
-            <li>Inglês: Incrementando o Vocabulário</li>
-          </ul>
-        </div>
-
-        <div class="bg-panel-dark border border-white/6 rounded-xl p-5">
-          <h3 class="font-semibold">Idiomas</h3>
-          <ul class="text-white/60 ml-4 list-disc mt-2">
-            <li>Português – Nativo</li>
-            <li>Inglês – Leitura técnica</li>
-          </ul>
-        </div>
-
-        <div class="bg-panel-dark border border-white/6 rounded-xl p-5">
-          <h3 class="font-semibold">Soft Skills</h3>
-          <ul class="text-white/60 ml-4 list-disc mt-2">
-            <li>Proatividade e foco em solução de problemas</li>
-            <li>Atenção aos detalhes e organização</li>
-            <li>Trabalho em equipe e comunicação</li>
-            <li>Criatividade e autodidata</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato" class="max-w-6xl mx-auto px-5 md:px-8 py-8">
-      <div class="grid md:grid-cols-2 gap-6">
-        <form id="contactForm" action="https://formspree.io/f/mgvzqnaw" method="POST" class="bg-panel-dark border border-white/6 rounded-xl p-6 space-y-4">
-          <h2 class="text-xl font-semibold">Contato</h2>
-          <p class="text-white/60">Retorno rápido por e-mail ou WhatsApp — prefira enviar uma breve descrição do projeto.</p>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div>
-              <label class="text-xs text-white/60 mb-1 block" for="nome">Nome</label>
-              <input id="nome" name="nome" required autocomplete="name" class="w-full px-3 py-2 rounded bg-black/10 border border-white/6 focus:outline-none" placeholder="Seu nome" />
+                    <article class="project-card" role="region" aria-label="Módulo PDV">
+                        <div class="project-cover"
+                            style="background-image:linear-gradient(135deg,rgba(62,213,152,.22),rgba(77,163,255,.18)),url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop');"
+                            role="img" aria-label="Interface do Ponto de Venda (PDV)"></div>
+                        <div class="project-body">
+                            <h3>PDV – Ponto de Venda (módulo)</h3>
+                            <p class="muted">Módulo desenvolvido como projeto independente e integrado ao ProControl.
+                                Focado em performance e usabilidade para frente de caixa.</p>
+                            <div class="badges">
+                                <span class="badge">PHP</span><span class="badge">MySQL</span><span
+                                    class="badge">Teclado Rápido</span><span class="badge">Comprovantes</span>
+                            </div>
+                            <ul class="muted" style="margin:8px 0 0 18px">
+                                <li>Busca rápida de produtos e atalhos (F1…)</li>
+                                <li>Emissão de comprovantes personalizados</li>
+                                <li>Integração com estoque e financeiro</li>
+                                <li>Layout responsivo para PDV</li>
+                                <li>Abertura de caixas e fechamento para controle</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="#contato"><i class="ri-chat-1-line"></i> Falar
+                                    sobre</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div>
-              <label class="text-xs text-white/60 mb-1 block" for="email">Email</label>
-              <input id="email" type="email" name="email" required autocomplete="email" class="w-full px-3 py-2 rounded bg-black/10 border border-white/6 focus:outline-none" placeholder="voce@exemplo.com" />
+        </section>
+
+        <section id="experiencia">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2><i class="ri-briefcase-4-line"></i> Experiência</h2>
+                </div>
+                <div class="timeline reveal">
+                    <div class="tl-item" role="article" aria-label="Experiência como Desenvolvedor Full-Stack">
+                        <h3>GF Innovation – Itajubá/MG <span class="pill" style="margin-left:.4rem"><i
+                                    class="ri-code-s-slash-line"></i> Desenvolvedor Full-Stack</span></h3>
+                        <div class="muted">2025</div>
+                        <p>Atuação em melhorias dos projetos utilizando Java e Postgres, organização de tarefas,
+                            reuniões, atenção a detalhes e cumprimento de prazos.</p>
+                    </div>
+                    <div class="tl-item" role="article" aria-label="Experiência como Analista em Suporte Computacional">
+                        <h3>TCI Sistemas – Itajubá/MG <span class="pill" style="margin-left:.4rem"><i
+                                    class="ri-customer-service-2-line"></i> Analista em Suporte Computacional</span>
+                        </h3>
+                        <div class="muted">2022 – 2024</div>
+                        <p>Atendimento a clientes (WhatsApp, chat e presencial), treinamentos, apoio na organização de
+                            dados e documentos, criação de banco de dados Postgres, com foco em resolução de
+                            problemas.
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div>
-            <label class="text-xs text-white/60 mb-1 block" for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" required class="w-full px-3 py-2 rounded bg-black/10 border border-white/6 focus:outline-none" placeholder="Fale sobre sua necessidade" rows="5"></textarea>
-          </div>
+        <section id="formacao">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2><i class="ri-graduation-cap-line"></i> Formação & Certificações</h2>
+                </div>
+                <div class="grid formation-grid reveal" style="grid-template-columns:repeat(2,1fr)">
+                    <div class="card" role="region" aria-label="Informações de Formação Acadêmica">
+                        <h3>Formação</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Sistemas de Informação – UNOPAR (em andamento)</li>
+                            <li>Análise e Desenvolvimento de Sistemas – SENAI Itajubá (2022)</li>
+                            <li>Ensino Médio Completo</li>
+                        </ul>
+                    </div>
+                    <div class="card" role="region" aria-label="Lista de Certificações">
+                        <h3>Certificações</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Introdução à Programação – Fundação Bradesco</li>
+                            <li>Lógica de Programação – Fundação Bradesco</li>
+                            <li>ITIL – SENAI</li>
+                            <li>Fundos de Investimento, Compliance, Perfil do Investidor – AMBIMA</li>
+                            <li>Inglês: Incrementando o vocabulário</li>
+                        </ul>
+                    </div>
+                    <div class="card" role="region" aria-label="Lista de Idiomas">
+                        <h3>Idiomas</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Português – Nativo</li>
+                            <li>Inglês – Leitura técnica</li>
+                        </ul>
+                    </div>
+                    <div class="card" role="region" aria-label="Lista de Soft Skills">
+                        <h3>Soft Skills</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Proatividade e foco em solução de problemas</li>
+                            <li>Atenção aos detalhes e organização</li>
+                            <li>Trabalho em equipe e comunicação</li>
+                            <li>Criatividade e Autodidata</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-          <div class="flex gap-3">
-            <button id="submit-button" type="submit" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand to-brand2 text-black font-semibold">
-              <i class="ri-send-plane-2-line"></i> Enviar
-            </button>
-            <a class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/6" href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener"><i class="ri-whatsapp-line" style="color:#34d399"></i> WhatsApp</a>
-          </div>
+        <section id="contato">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2><i class="ri-chat-1-line"></i> Contato</h2>
+                    <span class="muted">Retorno rápido por e-mail ou WhatsApp</span>
+                </div>
+                <div class="grid contact-grid reveal" style="grid-template-columns:1fr .9fr">
+                    <form class="card" action="https://formspree.io/f/mgvzqnaw" method="POST" id="contactForm"
+                        aria-label="Formulário de Contato">
+                        <div class="row">
+                            <div>
+                                <label for="nome">Nome</label>
+                                <input id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
+                            </div>
+                            <div>
+                                <label for="email">Email</label>
+                                <input id="email" type="email" name="email" placeholder="voce@exemplo.com" required
+                                    autocomplete="email">
+                            </div>
+                        </div>
+                        <div style="margin-top:12px">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Fale sobre sua necessidade"
+                                required></textarea>
+                        </div>
+                        <div class="cta" style="margin-top:14px">
+                            <button class="btn btn-primary" type="submit" id="submit-button"><i
+                                    class="ri-send-plane-2-line"></i>
+                                Enviar</button>
+                            <a class="btn btn-ghost"
+                                href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Gostaria%20de%20um%20or%C3%A7amento."
+                                target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
+                        </div>
+                        <small class="muted">Ao enviar, você concorda com o contato para fins de retorno.</small>
+                        <div id="form-status" class="form-message" style="display: none;"></div>
+                    </form>
+                    <div class="card" role="region" aria-label="Serviços Oferecidos">
+                        <h3>Como posso ajudar?</h3>
+                        <ul class="muted" style="margin-left:18px">
+                            <li>Criação e evolução de sistemas PHP/SQL/Java</li>
+                            <li>Integração de módulos (PDV, estoque, financeiro, E-commerce)</li>
+                            <li>Refatoração e desempenho</li>
+                            <li>Relatórios e automações</li>
+                        </ul>
+                        <div class="cta">
+                            <a class="btn btn-ghost" href="#projetos"><i class="ri-folder-line"></i> Ver projetos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-          <div id="form-status" class="hidden text-sm p-3 rounded"></div>
-        </form>
-
-        <div class="bg-panel-dark border border-white/6 rounded-xl p-6 space-y-4">
-          <h3 class="font-semibold">Como posso ajudar?</h3>
-          <ul class="text-white/60 ml-4 list-disc">
-            <li>Criação e evolução de sistemas PHP/SQL/Java</li>
-            <li>Integração de módulos (PDV, estoque, financeiro, E-commerce)</li>
-            <li>Refatoração e melhorias de desempenho</li>
-            <li>Relatórios e automações</li>
-          </ul>
-
-          <div class="mt-3">
-            <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/6" href="#projetos"><i class="ri-folder-line"></i> Ver projetos</a>
-          </div>
-
-          <div class="mt-4">
-            <h4 class="font-medium">Contato Rápido</h4>
-            <address class="not-italic mt-2 flex flex-col gap-2">
-              <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> contat.joao10@gmail.com</a>
-              <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="tel:+5535984687649"><i class="ri-phone-line"></i> (35) 98468-7649</a>
-              <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
-              <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a" target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
-              <a class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/3" href="https://github.com/JpGomes035" target="_blank" rel="noopener"><i class="ri-github-line"></i> GitHub</a>
+    <footer>
+        <div class="container">
+            <address
+                style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-style:normal;">
+                <a class="pill" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> Email</a>
+                <a class="pill" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank"
+                    rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
+                <a class="pill" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank"
+                    rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
             </address>
-          </div>
+            <div>© <span id="year"></span> João Pedro. Desenvolvido com <i class="ri-heart-line" aria-hidden="true"></i> e código.</div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-  </main>
+    <script>
+        // ano do rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- FOOTER -->
-  <footer class="mt-12 py-6">
-    <div class="max-w-6xl mx-auto px-5 md:px-8 text-center">
-      <div class="flex items-center justify-center gap-4 mb-3 flex-wrap">
-        <a class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/3" href="mailto:contat.joao10@gmail.com"><i class="ri-mail-line"></i> Email</a>
-        <a class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/3" href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a>
-        <a class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/3" href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a" target="_blank" rel="noopener"><i class="ri-linkedin-fill"></i> LinkedIn</a>
-      </div>
+        // menu mobile
+        const headerNav = document.querySelector('header .nav');
+        const menuBtn = document.querySelector('.menu-btn');
+        const menuLinks = document.querySelectorAll('header a[href^="#"]');
 
-      <div class="text-sm text-white/60">© <span id="year"></span> João Pedro Gomes da Silva. Desenvolvido com <i class="ri-heart-line"></i> e código.</div>
-    </div>
-  </footer>
-
-  <!-- SCRIPTS -->
-  <script>
-    // footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // mobile menu toggle
-    const btnMenu = document.getElementById('btn-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-    btnMenu?.addEventListener('click', () => {
-      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-        mobileMenu.style.display = 'block';
-      } else {
-        mobileMenu.style.display = 'none';
-      }
-    });
-
-    // close mobile menu when clicking anchor
-    document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.style.display = 'none'));
-
-    // typing effect (simple, configurable)
-    const phrases = [
-      'Desenvolvedor Full-Stack',
-      'PHP • MySQL • Java',
-      'ERP • PDV • Integrações',
-      'Automação • Relatórios • APIs'
-    ];
-    const typeEl = document.getElementById('typed-text');
-    let p = 0, l = 0, forward = true;
-    const typingSpeed = 60;
-    const pauseBetween = 1200;
-
-    function typeLoop() {
-      const str = phrases[p];
-      if (forward) {
-        l++;
-        typeEl.textContent = str.substring(0, l);
-        if (l === str.length) {
-          forward = false;
-          setTimeout(typeLoop, pauseBetween);
-        } else {
-          setTimeout(typeLoop, typingSpeed);
-        }
-      } else {
-        l--;
-        typeEl.textContent = str.substring(0, l);
-        if (l === 0) {
-          forward = true;
-          p = (p + 1) % phrases.length;
-          setTimeout(typeLoop, 200);
-        } else {
-          setTimeout(typeLoop, typingSpeed / 2);
-        }
-      }
-    }
-    typeLoop();
-
-    // GSAP reveals with IntersectionObserver
-    const elements = document.querySelectorAll('section, .card-hover, .meter-fill, .project-card, .timeline, .hero-figure, .avatar-placeholder');
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          gsap.fromTo(entry.target, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.06 });
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    elements.forEach(el => io.observe(el));
-
-    // animate meter fills after visible
-    document.querySelectorAll('.meter-fill').forEach(el => {
-      const parent = el.closest('.meter-bg');
-      if (!parent) return;
-      const ob = new IntersectionObserver((entries, ob2) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            gsap.to(el, { width: el.style.width || '80%', duration: 1.2, ease: 'power3.out' });
-            ob2.unobserve(parent);
-          }
+        menuBtn?.addEventListener('click', () => {
+            const isExpanded = headerNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', isExpanded);
         });
-      }, { threshold: 0.2 });
-      ob.observe(parent);
-    });
 
-    // Contact form AJAX feedback (Formspree)
-    const contactForm = document.getElementById('contactForm');
-    const statusDiv = document.getElementById('form-status');
-    contactForm?.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const btn = document.getElementById('submit-button');
-      const formData = new FormData(contactForm);
+        // fechar menu ao clicar num link
+        menuLinks.forEach(a => {
+            a.addEventListener('click', () => {
+                if (headerNav.classList.contains('open')) {
+                    headerNav.classList.remove('open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
 
-      btn.disabled = true;
-      btn.textContent = 'Enviando...';
+        // reveal on scroll - Função unificada e otimizada
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('show');
+                    // Opcional: Desobservar depois de mostrar para otimizar
+                    io.unobserve(e.target); 
+                }
+            });
+        }, { threshold: .12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-      fetch(contactForm.action, {
-        method: contactForm.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(res => {
-        btn.disabled = false;
-        btn.textContent = 'Enviar';
-        if (res.ok) {
-          statusDiv.className = 'p-3 rounded text-sm bg-green-900/30 border border-green-500 text-green-300';
-          statusDiv.textContent = 'E-mail enviado com sucesso! Retornarei em breve.';
-          statusDiv.style.display = 'block';
-          contactForm.reset();
-        } else {
-          statusDiv.className = 'p-3 rounded text-sm bg-red-900/30 border border-red-500 text-red-300';
-          statusDiv.textContent = 'Falha ao enviar. Tente novamente ou use o WhatsApp.';
-          statusDiv.style.display = 'block';
-        }
-      }).catch(() => {
-        btn.disabled = false;
-        btn.textContent = 'Enviar';
-        statusDiv.className = 'p-3 rounded text-sm bg-red-900/30 border border-red-500 text-red-300';
-        statusDiv.textContent = 'Erro de conexão. Use o WhatsApp para contato.';
-        statusDiv.style.display = 'block';
-      });
-    });
-  </script>
+
+        // Formulário de Contato com Feedback
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const statusDiv = document.getElementById('form-status');
+            const submitBtn = document.getElementById('submit-button');
+            const data = new FormData(form);
+
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
+
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                submitBtn.textContent = 'Enviar';
+                submitBtn.disabled = false;
+
+                if (response.ok) {
+                    statusDiv.textContent = 'E-mail enviado com sucesso! Retornarei em breve.';
+                    statusDiv.classList.remove('form-error');
+                    statusDiv.classList.add('form-success');
+                    form.reset();
+                } else {
+                    statusDiv.textContent = 'Falha ao enviar o e-mail. Tente novamente ou use o WhatsApp.';
+                    statusDiv.classList.remove('form-success');
+                    statusDiv.classList.add('form-error');
+                }
+                statusDiv.style.display = 'block';
+            }).catch(error => {
+                submitBtn.textContent = 'Enviar';
+                submitBtn.disabled = false;
+                statusDiv.textContent = 'Erro de conexão. Por favor, use o WhatsApp.';
+                statusDiv.classList.remove('form-success');
+                statusDiv.classList.add('form-error');
+                statusDiv.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
+
