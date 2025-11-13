@@ -688,6 +688,121 @@
         border: 1px solid var(--danger);
         color: var(--danger);
       }
+
+      /* ============================
+   Responsividade — Ajustado
+   ============================ */
+
+      /* Tablets e celulares maiores */
+      @media (max-width: 960px) {
+        .hero-grid {
+          grid-template-columns: 1fr !important;
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 24px;
+        }
+
+        /* Grids padrões para duas colunas */
+        .grid,
+        .skills {
+          grid-template-columns: 1fr !important;
+        }
+
+        /* Força conversão da seção Sobre para 1 coluna */
+        #sobre .grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        /* Seção experiência e formação */
+        #experiencia .grid,
+        #formacao .grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        /* Projetos */
+        .projects {
+          grid-template-columns: 1fr !important;
+        }
+
+        .projects .project-card {
+          grid-column: span 12 !important;
+        }
+
+        /* Menu mobile */
+        .menu-btn {
+          display: inline-flex;
+        }
+
+        .nav ul {
+          display: none !important;
+        }
+
+        .nav.open ul {
+          display: flex !important;
+        }
+
+        /* Espaçamento e padding */
+        .card {
+          padding: 14px !important;
+        }
+
+        .hero-card {
+          padding: 22px !important;
+        }
+      }
+
+      /* Celulares pequenos */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.55rem !important;
+        }
+
+        .cta {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .stat {
+          text-align: center;
+        }
+
+        .stats {
+          grid-template-columns: 1fr !important;
+        }
+
+        .project-body ul {
+          padding-left: 1rem;
+        }
+
+        .hero-figure .screen {
+          height: 200px !important;
+        }
+
+        .pill {
+          font-size: 0.78rem !important;
+        }
+
+        input,
+        textarea {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Corrige o menu mobile não clicável (bug comum) */
+      .menu-btn {
+        z-index: 9999;
+      }
+
+      .nav.open {
+        position: relative;
+      }
+
+      .nav.open ul {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+      }
     </style>
   </head>
 
