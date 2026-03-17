@@ -1,46 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>João Pedro | Desenvolvedor Back-End</title>
+    <title>João Pedro Gomes | Desenvolvedor Full-Stack</title>
     <meta
       name="description"
-      content="Portfólio de João Pedro – Desenvolvedor PHP/SQL. Sistemas web, ProControl, PDV, estoque, financeiro e mais."
+      content="Portfólio de João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End. Experiência com Python, Flask, PostgreSQL, PHP, JavaScript, SQL, ERPs e sistemas de gestão como o IJA System."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="icon" href="monitor.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+
     <style>
       :root {
-        --bg: #0b0c10;
-        /* fundo principal */
-        --panel: #111217;
-        /* cartões */
-        --muted: #a9a9b3;
-        /* textos secundários */
-        --text: #f2f3f5;
-        /* textos principais */
-        --brand: #4da3ff;
-        /* destaque primário (azul) */
-        --brand-2: #9c6bff;
-        /* destaque gradiente (roxo) */
-        --ok: #3ed598;
-        /* verde para detalhes */
-        --danger: #ff6b6b;
-        /* vermelho sutil */
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-        --radius: 18px;
-        --radius-sm: 12px;
-        --maxw: 1120px;
+        --bg: #07111f;
+        --bg-soft: #0d1a2d;
+        --panel: rgba(11, 25, 43, 0.88);
+        --panel-strong: #11223b;
+        --text: #eef4ff;
+        --muted: #a7b6cc;
+        --line: rgba(255, 255, 255, 0.08);
+        --brand: #49b3ff;
+        --brand-strong: #1e8fff;
+        --accent: #2dd4bf;
+        --accent-soft: rgba(45, 212, 191, 0.14);
+        --warning: #f7b955;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+        --radius: 22px;
+        --radius-sm: 16px;
+        --maxw: 1160px;
       }
 
       * {
@@ -53,32 +50,24 @@
 
       body {
         margin: 0;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
-          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        /* Fundo dinâmico suave (animação leve para parecer um painel vivo) */
-        background: radial-gradient(
-            1000px 600px at 70% -10%,
-            rgba(77, 163, 255, 0.08),
-            transparent 60%
-          ),
-          radial-gradient(
-            800px 400px at 0% 0%,
-            rgba(156, 107, 255, 0.06),
-            transparent 60%
-          ),
-          var(--bg);
-        animation: bgmove 20s ease-in-out infinite alternate;
         color: var(--text);
+        font-family: Manrope, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(73, 179, 255, 0.18), transparent 30%),
+          radial-gradient(circle at top right, rgba(45, 212, 191, 0.12), transparent 26%),
+          linear-gradient(180deg, #07111f 0%, #09172a 100%);
       }
 
-      @keyframes bgmove {
-        from {
-          background-position: 0% 0%, 100% 50%, 0 0;
-        }
-
-        to {
-          background-position: 100% 50%, 0% 100%, 0 0;
-        }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent 75%);
       }
 
       a {
@@ -87,225 +76,245 @@
       }
 
       img {
-        max-width: 100%;
         display: block;
+        max-width: 100%;
       }
 
-      /* util */
       .container {
         max-width: var(--maxw);
         margin: 0 auto;
         padding: 0 20px;
       }
 
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 0.82rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
       .btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 0.6rem;
-        padding: 0.9rem 1.2rem;
+        padding: 0.95rem 1.25rem;
         border-radius: 999px;
-        font-weight: 600;
-        transition: 0.25s;
-        backdrop-filter: saturate(140%);
-        border: 0; /* Adicionado para botões primários não terem borda padrão */
+        font-weight: 700;
+        border: 0;
         cursor: pointer;
+        transition: 0.25s ease;
       }
 
       .btn-primary {
-        background: linear-gradient(135deg, var(--brand), var(--brand-2));
-        color: #0a0a0a;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
+        color: #04111f;
+        background: linear-gradient(135deg, var(--brand), var(--accent));
+        box-shadow: 0 12px 30px rgba(73, 179, 255, 0.22);
       }
 
       .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(77, 163, 255, 0.25);
-      }
-
-      /* Efeito sutil de brilho cibernético nos botões principais */
-      .btn-primary::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-          120deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transform: rotate(45deg);
-        transition: 0.8s;
-        opacity: 0;
-        z-index: -1;
-      }
-
-      .btn-primary:hover::before {
-        opacity: 1;
-        transform: rotate(45deg) translate(50%, 50%);
+        box-shadow: 0 18px 34px rgba(73, 179, 255, 0.28);
       }
 
       .btn-ghost {
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        background: rgba(255, 255, 255, 0.02);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid var(--line);
       }
 
       .btn-ghost:hover {
-        border-color: rgba(255, 255, 255, 0.25);
         transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.05);
       }
 
-      .pill {
-        display: inline-flex;
-        gap: 0.5rem;
-        align-items: center;
-        padding: 0.35rem 0.7rem;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+      .muted {
         color: var(--muted);
-        font-size: 0.86rem;
       }
 
-      /* header */
+      .section-title {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-family: Sora, sans-serif;
+        font-size: 1.7rem;
+        letter-spacing: -0.02em;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+      }
+
       header {
         position: sticky;
         top: 0;
         z-index: 50;
-        background: rgba(11, 12, 16, 0.6);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(7, 17, 31, 0.72);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
       }
 
       .nav {
+        height: 72px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 64px;
-        position: relative; /* Para o menu flutuante em mobile */
+        position: relative;
       }
 
       .brand {
         display: flex;
         align-items: center;
-        gap: 0.8rem;
-        z-index: 51; /* Mantém a marca acima do menu mobile */
+        gap: 0.9rem;
       }
 
-      .brand .logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, var(--brand), var(--brand-2));
-        box-shadow: var(--shadow);
+      .logo {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--brand), var(--accent));
+        color: #03111d;
+        font-size: 1.15rem;
+        font-weight: 800;
+        box-shadow: 0 12px 26px rgba(73, 179, 255, 0.25);
       }
 
       .brand strong {
-        font-weight: 800;
-        letter-spacing: 0.2px;
-      }
-
-      .nav a {
-        color: var(--muted);
+        font-family: Sora, sans-serif;
+        font-size: 1rem;
       }
 
       .nav ul {
-        list-style: none;
         display: flex;
+        list-style: none;
         gap: 1.2rem;
         padding: 0;
         margin: 0;
       }
 
-      .nav a:hover {
+      .nav ul a {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .nav ul a:hover {
         color: var(--text);
       }
 
       .menu-btn {
         display: none;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.65rem 0.9rem;
       }
 
-      /* hero */
+      section {
+        padding: 72px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
       .hero {
-        padding: 72px 0 40px;
+        padding: 82px 0 48px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.3fr 0.9fr;
-        gap: 32px;
+        grid-template-columns: 1.2fr 0.88fr;
+        gap: 26px;
         align-items: center;
       }
 
       .hero-card {
-        background: linear-gradient(
-          160deg,
-          rgba(77, 163, 255, 0.08),
-          rgba(156, 107, 255, 0.06)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 32px;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
+        padding: 34px;
       }
 
-      h1 {
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        line-height: 1.1;
+      .hero-card h1 {
         margin: 0;
+        font-family: Sora, sans-serif;
+        font-size: clamp(2rem, 5vw, 3.35rem);
+        line-height: 1.06;
+        letter-spacing: -0.03em;
       }
 
-      .subtitle {
+      .hero-card p {
+        margin: 14px 0 0;
         color: var(--muted);
-        margin-top: 10px;
+        font-size: 1.04rem;
+        line-height: 1.78;
+      }
+
+      .hero-kicker {
+        margin-bottom: 14px;
       }
 
       .cta {
-        margin-top: 20px;
         display: flex;
-        gap: 12px;
         flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
       }
 
       .stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
-        margin-top: 22px;
+        margin-top: 24px;
       }
 
       .stat {
         padding: 16px;
         border-radius: var(--radius-sm);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        text-align: center;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid var(--line);
       }
 
       .stat strong {
-        font-size: 1.2rem;
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 6px;
       }
 
-      .hero-figure {
-        position: relative;
-      }
-
-      .hero-figure .card {
-        position: relative;
-        border-radius: 20px;
-        background: var(--panel);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+      .hero-side {
         padding: 18px;
-        box-shadow: var(--shadow);
       }
 
-      .hero-figure .browser-dots {
+      .mini-browser {
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      }
+
+      .mini-topbar {
         display: flex;
-        gap: 6px;
-        margin-bottom: 12px;
+        gap: 8px;
+        padding: 14px;
+        border-bottom: 1px solid var(--line);
       }
 
       .dot {
@@ -314,494 +323,353 @@
         border-radius: 50%;
       }
 
-      .dot.red {
-        background: #ff6b6b;
+      .dot.red { background: #ff6b6b; }
+      .dot.yellow { background: #f7b955; }
+      .dot.green { background: #2dd4bf; }
+
+      .mini-screen {
+        padding: 20px;
+        min-height: 320px;
       }
 
-      .dot.yellow {
-        background: #ffd166;
+      .ui-stack {
+        display: grid;
+        gap: 12px;
       }
 
-      .dot.green {
-        background: #3ed598;
-      }
-
-      .hero-figure .screen {
-        height: 260px;
+      .ui-item {
+        padding: 14px;
         border-radius: 14px;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.06),
-          rgba(255, 255, 255, 0.01)
-        );
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--line);
+      }
+
+      .ui-item strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1.18fr 0.82fr;
+      }
+
+      .about-card,
+      .info-card,
+      .contact-card,
+      .help-card,
+      .formation-card {
+        padding: 24px;
+      }
+
+      .about-card p,
+      .timeline p,
+      .project-body p {
+        line-height: 1.78;
+      }
+
+      .contact-links {
         display: grid;
-        place-items: center;
-        color: var(--muted);
+        gap: 12px;
       }
 
-      /* sections */
-      section {
-        padding: 64px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .section-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 22px;
-      }
-
-      .section-title h2 {
-        margin: 0;
-        font-size: 1.6rem;
-      }
-
-      .grid {
-        display: grid;
-        gap: 16px;
-      }
-
-      /* skills */
       .skills {
         grid-template-columns: repeat(2, 1fr);
       }
 
       .skill-card {
-        background: var(--panel);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: var(--radius-sm);
-        padding: 16px;
+        padding: 16px 18px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 14px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
       }
 
       .skill-left {
         display: flex;
         align-items: center;
         gap: 12px;
+        min-width: 165px;
       }
 
       .skill-left i {
-        font-size: 22px;
+        font-size: 1.3rem;
+        color: var(--brand);
       }
 
       .meter {
-        height: 8px;
-        background: rgba(255, 255, 255, 0.06);
+        width: 100%;
+        height: 9px;
         border-radius: 999px;
         overflow: hidden;
-        flex: 1;
+        background: rgba(255, 255, 255, 0.06);
       }
 
-      .meter > span {
+      .meter span {
         display: block;
         height: 100%;
-        background: linear-gradient(90deg, var(--brand), var(--brand-2));
-        transition: width 1s ease-out; /* Adiciona transição para o efeito da barra */
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--brand), var(--accent));
       }
 
-      /* projects */
       .projects {
         grid-template-columns: repeat(12, 1fr);
       }
 
       .project-card {
         grid-column: span 6;
-        background: var(--panel);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: var(--radius);
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        transition: 0.25s;
-        cursor: pointer;
+        transition: 0.25s ease;
       }
 
-      .project-card:hover {
+      .project-card:hover,
+      .skill-card:hover,
+      .card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
       }
 
       .project-cover {
-        aspect-ratio: 16/9;
-        background: linear-gradient(
-            135deg,
-            rgba(77, 163, 255, 0.22),
-            rgba(156, 107, 255, 0.18)
-          ),
-          url("https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop")
-            center/cover;
-        /* Placeholder padrão */
+        aspect-ratio: 16 / 9;
+        background-size: cover;
+        background-position: center;
+        border-bottom: 1px solid var(--line);
       }
 
       .project-body {
-        padding: 18px;
+        padding: 22px;
+      }
+
+      .project-body h3 {
+        margin: 0 0 10px;
+        font-family: Sora, sans-serif;
       }
 
       .badges {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin: 10px 0;
+        margin: 14px 0;
       }
 
       .badge {
-        font-size: 0.78rem;
-        color: #d9e7ff;
-        background: rgba(77, 163, 255, 0.16);
-        border: 1px solid rgba(77, 163, 255, 0.35);
-        padding: 0.25rem 0.55rem;
+        padding: 0.34rem 0.62rem;
         border-radius: 999px;
+        font-size: 0.78rem;
+        color: #d8f6ff;
+        background: rgba(73, 179, 255, 0.12);
+        border: 1px solid rgba(73, 179, 255, 0.22);
       }
 
       .project-actions {
         display: flex;
         gap: 10px;
-        margin-top: 12px;
+        flex-wrap: wrap;
+        margin-top: 14px;
       }
 
-      /* timeline */
       .timeline {
-        border-left: 2px dashed rgba(255, 255, 255, 0.12);
+        border-left: 2px dashed rgba(255, 255, 255, 0.14);
         padding-left: 18px;
       }
 
       .tl-item {
-        margin: 18px 0;
+        position: relative;
+        margin: 0 0 28px;
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: -25px;
+        top: 7px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), var(--accent));
+        box-shadow: 0 0 0 6px rgba(73, 179, 255, 0.08);
       }
 
       .tl-item h3 {
-        margin: 0.2rem 0 0.2rem;
+        margin: 0 0 6px;
+        font-size: 1.08rem;
       }
 
-      .muted {
+      .formation-grid,
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .formation-card ul,
+      .help-card ul,
+      .project-body ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .formation-card li,
+      .help-card li,
+      .project-body li {
+        margin-bottom: 9px;
         color: var(--muted);
+        line-height: 1.65;
       }
 
-      /* cards generic */
-      .card {
-        background: var(--panel);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: var(--radius-sm);
-        padding: 18px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adicionado transição de card para generalizar */
-      }
-
-      /* Efeito flutuação para cards, exceto o principal do Hero, que já tem sombra diferente */
-      .project-card:hover,
-      .skill-card:hover,
-      .card:hover:not(.hero-card) {
-        transform: translateY(-5px) scale(1.01);
-        box-shadow: 0 15px 35px rgba(77, 163, 255, 0.15);
-      }
-
-      /* contact */
       form .row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
       }
 
+      label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
       input,
       textarea {
         width: 100%;
         padding: 12px 14px;
-        background: #0c0e14;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
         color: var(--text);
         font: inherit;
-        transition: border-color 0.3s; /* Adiciona transição no foco */
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(5, 13, 24, 0.72);
+        transition: 0.25s ease;
       }
 
       input:focus,
       textarea:focus {
         outline: none;
-        border-color: var(--brand);
-      }
-
-      label {
-        display: block; /* Para labels ocuparem a linha */
-        font-size: 0.92rem;
-        color: var(--muted);
-        margin-bottom: 4px;
+        border-color: rgba(73, 179, 255, 0.7);
+        box-shadow: 0 0 0 4px rgba(73, 179, 255, 0.12);
       }
 
       textarea {
-        min-height: 120px;
+        min-height: 124px;
         resize: vertical;
       }
 
-      /* footer */
+      .form-message {
+        display: none;
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 14px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .form-success {
+        background: rgba(45, 212, 191, 0.14);
+        color: #87f2e2;
+        border: 1px solid rgba(45, 212, 191, 0.35);
+      }
+
+      .form-error {
+        background: rgba(255, 107, 107, 0.14);
+        color: #ffb4b4;
+        border: 1px solid rgba(255, 107, 107, 0.35);
+      }
+
       footer {
         padding: 36px 0;
         color: var(--muted);
         text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-top: 1px solid var(--line);
       }
 
-      /* Efeito neon leve nos títulos */
-      h1,
-      h2 {
-        text-shadow: 0 0 10px rgba(77, 163, 255, 0.4);
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
       }
 
-      /* Ícones com efeito de brilho ao passar o mouse */
-      i:hover {
-        color: var(--brand);
-        filter: drop-shadow(0 0 6px var(--brand));
-        transition: 0.3s;
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
       }
 
-      /* responsive */
-      @media (max-width: 960px) {
-        .hero-grid {
-          grid-template-columns: 1fr;
-        }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
+      @media (max-width: 980px) {
+        .hero-grid,
+        .about-grid,
+        .formation-grid,
+        .contact-grid,
         .skills {
           grid-template-columns: 1fr;
         }
 
-        .projects .project-card {
-          grid-column: span 12;
+        .projects {
+          grid-template-columns: 1fr;
         }
 
-        /* Ajuste de grids em colunas (Experiência e Formação/Contato) */
-        .grid[style*="grid-template-columns:1.2fr .8fr"],
-        .grid[style*="grid-template-columns:1fr .9fr"],
-        .grid[style*="grid-template-columns:repeat(2,1fr)"] {
-          grid-template-columns: 1fr !important; /* Força coluna única em mobile para grids de 2 colunas */
+        .project-card {
+          grid-column: span 1;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .nav ul {
+          display: none;
+          position: absolute;
+          top: 72px;
+          left: 0;
+          right: 0;
+          padding: 14px 20px 20px;
+          flex-direction: column;
+          background: rgba(7, 17, 31, 0.96);
+          border-bottom: 1px solid var(--line);
+        }
+
+        .nav.open ul {
+          display: flex;
+        }
+
+        .menu-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .hero-card,
+        .about-card,
+        .info-card,
+        .contact-card,
+        .help-card,
+        .formation-card,
+        .project-body {
+          padding: 18px;
         }
 
         form .row {
           grid-template-columns: 1fr;
         }
 
-        .nav ul {
-          display: none;
-          flex-direction: column;
-          gap: 1rem;
-          padding: 1rem;
-        }
-
-        .menu-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          background: transparent;
-          color: var(--text);
-          padding: 0.5rem 0.8rem;
-          border-radius: 10px;
-        }
-
-        .nav.open ul {
-          display: flex;
-          position: absolute;
-          top: 64px;
-          left: 0;
-          right: 0;
-          background: rgba(11, 12, 16, 0.95);
-          backdrop-filter: blur(10px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-          flex-direction: column;
-          align-items: center;
-          z-index: 999;
-        }
-
-        .section-title {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.5rem;
-        }
-
-        /* Melhoria na ordem do Hero em mobile */
-        .hero-grid {
-          display: flex;
-          flex-direction: column-reverse; /* Coloca a Figura (Preview) embaixo do Cartão de Texto no mobile */
-        }
-      }
-
-      /* Responsivo celulares pequenos */
-      @media (max-width: 600px) {
-        h1 {
-          font-size: 1.6rem;
-        }
-
-        .cta {
+        .cta,
+        .project-actions {
           flex-direction: column;
           align-items: stretch;
         }
 
-        .stats {
-          grid-template-columns: 1fr;
+        .hero-card h1 {
+          font-size: 1.95rem;
         }
-
-        .project-body ul {
-          padding-left: 1rem;
-        }
-      }
-
-      /* reveal animations */
-      .reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-
-      .reveal.show {
-        opacity: 1;
-        transform: none;
-      }
-
-      /* Feedback do formulário */
-      .form-message {
-        margin-top: 15px;
-        padding: 10px;
-        border-radius: var(--radius-sm);
-        text-align: center;
-        font-weight: 600;
-      }
-
-      .form-success {
-        background-color: rgba(
-          62,
-          213,
-          152,
-          0.2
-        ); /* var(--ok) com transparência */
-        border: 1px solid var(--ok);
-        color: var(--ok);
-      }
-
-      .form-error {
-        background-color: rgba(
-          255,
-          107,
-          107,
-          0.2
-        ); /* var(--danger) com transparência */
-        border: 1px solid var(--danger);
-        color: var(--danger);
-      }
-
-      /* ============================
-   Responsividade — Ajustado
-   ============================ */
-
-      /* Tablets e celulares maiores */
-      @media (max-width: 960px) {
-        .hero-grid {
-          grid-template-columns: 1fr !important;
-          display: flex;
-          flex-direction: column-reverse;
-          gap: 24px;
-        }
-
-        /* Grids padrões para duas colunas */
-        .grid,
-        .skills {
-          grid-template-columns: 1fr !important;
-        }
-
-        /* Força conversão da seção Sobre para 1 coluna */
-        #sobre .grid {
-          grid-template-columns: 1fr !important;
-        }
-
-        /* Seção experiência e formação */
-        #experiencia .grid,
-        #formacao .grid {
-          grid-template-columns: 1fr !important;
-        }
-
-        /* Projetos */
-        .projects {
-          grid-template-columns: 1fr !important;
-        }
-
-        .projects .project-card {
-          grid-column: span 12 !important;
-        }
-
-        /* Menu mobile */
-        .menu-btn {
-          display: inline-flex;
-        }
-
-        .nav ul {
-          display: none !important;
-        }
-
-        .nav.open ul {
-          display: flex !important;
-        }
-
-        /* Espaçamento e padding */
-        .card {
-          padding: 14px !important;
-        }
-
-        .hero-card {
-          padding: 22px !important;
-        }
-      }
-
-      /* Celulares pequenos */
-      @media (max-width: 600px) {
-        h1 {
-          font-size: 1.55rem !important;
-        }
-
-        .cta {
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .stat {
-          text-align: center;
-        }
-
-        .stats {
-          grid-template-columns: 1fr !important;
-        }
-
-        .project-body ul {
-          padding-left: 1rem;
-        }
-
-        .hero-figure .screen {
-          height: 200px !important;
-        }
-
-        .pill {
-          font-size: 0.78rem !important;
-        }
-
-        input,
-        textarea {
-          font-size: 0.9rem;
-        }
-      }
-
-      /* Corrige o menu mobile não clicável (bug comum) */
-      .menu-btn {
-        z-index: 9999;
-      }
-
-      .nav.open {
-        position: relative;
-      }
-
-      .nav.open ul {
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
       }
     </style>
   </head>
@@ -810,22 +678,24 @@
     <header>
       <div class="container nav" id="top">
         <a class="brand" href="#top" aria-label="Ir para o topo">
-          <span class="logo" aria-hidden="true"></span>
-          <strong>João Pedro</strong>
-          <span class="pill"
-            ><i class="ri-code-s-slash-line"></i> Dev Back-End</span
-          >
+          <span class="logo"><i class="ri-code-s-slash-line"></i></span>
+          <div>
+            <strong>João Pedro Gomes</strong><br />
+            <span class="muted" style="font-size: 0.84rem">Full-Stack com foco em Back-End</span>
+          </div>
         </a>
+
         <button class="menu-btn" aria-expanded="false" aria-controls="menu">
           <i class="ri-menu-3-line"></i> Menu
         </button>
-        <ul id="menu" role="menu" aria-label="Navegação principal">
-          <li role="menuitem"><a href="#sobre">Sobre</a></li>
-          <li role="menuitem"><a href="#habilidades">Habilidades</a></li>
-          <li role="menuitem"><a href="#projetos">Projetos</a></li>
-          <li role="menuitem"><a href="#experiencia">Experiência</a></li>
-          <li role="menuitem"><a href="#formacao">Formação</a></li>
-          <li role="menuitem"><a href="#contato">Contato</a></li>
+
+        <ul id="menu" aria-label="Navegação principal">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#experiencia">Experiência</a></li>
+          <li><a href="#formacao">Formação</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
     </header>
@@ -833,93 +703,104 @@
     <main>
       <section class="hero container">
         <div class="hero-grid">
-          <div>
-            <div class="hero-card reveal">
-              <h1>
-                Dev Back-End <br />
-                especializado em sistemas web robustos
-              </h1>
-              <p class="subtitle">
-                Experiência no desenvolvimento de ERP, PDV, estoque, financeiro,
-                relatórios, e-commerce e integrações diversas. Profissional
-                proativo, detalhista e autodidata, com forte capacidade de
-                análise e resolução de problemas, focado em entregar soluções
-                estáveis e eficientes.
-              </p>
+          <div class="card hero-card reveal">
+            <div class="hero-kicker pill">
+              <i class="ri-flight-takeoff-line"></i>
+              Desenvolvimento de sistemas com foco em operação real
+            </div>
 
-              <div class="cta">
-                <a
-                  class="btn btn-primary"
-                  href="assets/CVJoao.pdf"
-                  download
-                  aria-label="Baixar Currículo de João Pedro"
-                >
-                  <i class="ri-download-2-line"></i> Baixar Currículo
-                </a>
-                <a
-                  class="btn btn-ghost"
-                  href="#projetos"
-                  aria-label="Ver seção de projetos"
-                  ><i class="ri-rocket-2-line"></i> Ver Projetos</a
-                >
-                <a
-                  class="btn btn-ghost"
-                  href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Vim%20pelo%20seu%20portf%C3%B3lio."
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Falar com João Pedro pelo WhatsApp"
-                >
-                  <i class="ri-whatsapp-line" style="color: var(--ok)"></i>
-                  WhatsApp
-                </a>
-              </div>
+            <h1>
+              Sistemas web robustos, organizados e voltados ao negócio
+            </h1>
 
-              <div
-                class="stats"
-                role="group"
-                aria-label="Estatísticas Principais"
+            <p>
+              Sou João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End,
+              atuando na criação e evolução de aplicações para gestão, automação
+              e controle operacional. Trabalho com Python, Flask, PostgreSQL,
+              PHP, JavaScript, SQL e Docker, sempre buscando unir performance,
+              clareza de código, segurança e valor prático para quem usa o sistema.
+            </p>
+
+            <p>
+              Atualmente participo do desenvolvimento do <strong>IJA System</strong>,
+              na <strong>IJA Drones</strong>, uma plataforma voltada ao controle
+              de solicitações de voos, equipes, pilotos, equipamentos,
+              checklists, anexos e relatórios operacionais.
+            </p>
+
+            <div class="cta">
+              <a
+                class="btn btn-primary"
+                href="assets/CVJoao.pdf"
+                download
+                aria-label="Baixar currículo"
               >
-                <div class="stat">
-                  <strong>ERP ProControl</strong>
-                  <div class="muted">Integração completa e personalizada</div>
-                </div>
+                <i class="ri-download-2-line"></i> Baixar Currículo
+              </a>
 
-                <div class="stat">
-                  <strong>PDV Integrado</strong>
-                  <div class="muted">Fluxo rápido entre loja e sistema</div>
-                </div>
+              <a class="btn btn-ghost" href="#projetos">
+                <i class="ri-rocket-2-line"></i> Ver Projetos
+              </a>
 
-                <div class="stat">
-                  <strong>+10 soluções</strong>
-                  <div class="muted">Automação, relatórios, estoque e mais</div>
-                </div>
+              <a
+                class="btn btn-ghost"
+                href="https://api.whatsapp.com/send?phone=5535984687649&text=Olá%20João!%20Vim%20pelo%20seu%20portfólio."
+                target="_blank"
+                rel="noopener"
+              >
+                <i class="ri-whatsapp-line" style="color: var(--accent)"></i>
+                WhatsApp
+              </a>
+            </div>
+
+            <div class="stats" aria-label="Resumo de destaques">
+              <div class="stat">
+                <strong>IJA System</strong>
+                <span class="muted">Gestão operacional de voos e processos internos</span>
+              </div>
+              <div class="stat">
+                <strong>ERP ProControl</strong>
+                <span class="muted">Estoque, financeiro, vendas, PDV e e-commerce</span>
+              </div>
+              <div class="stat">
+                <strong>Stack atual</strong>
+                <span class="muted">Python, Flask, PostgreSQL, PHP e JavaScript</span>
               </div>
             </div>
           </div>
 
-          <div class="hero-figure reveal" role="presentation">
-            <div class="card">
-              <div class="browser-dots">
-                <span class="dot red" role="presentation"></span>
-                <span class="dot yellow" role="presentation"></span>
-                <span class="dot green" role="presentation"></span>
+          <div class="card hero-side reveal">
+            <div class="mini-browser">
+              <div class="mini-topbar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
               </div>
-              <div class="screen">
-                <div>
-                  <div
-                    class="pill"
-                    style="justify-content: center; margin-bottom: 10px"
-                  >
-                    <i class="ri-dashboard-2-line"></i> Preview UI
+
+              <div class="mini-screen">
+                <div class="pill" style="margin-bottom: 14px">
+                  <i class="ri-dashboard-2-line"></i> Visão do meu trabalho atual
+                </div>
+
+                <div class="ui-stack">
+                  <div class="ui-item">
+                    <strong>IJA Drones</strong>
+                    <span class="muted">Desenvolvimento de sistema de gestão operacional</span>
                   </div>
-                  <div style="display: grid; gap: 8px">
-                    <div class="card" style="padding: 10px">
-                      E-commerce • Estoque
-                    </div>
-                    <div class="card" style="padding: 10px">
-                      Pedidos • Financeiro
-                    </div>
-                    <div class="card" style="padding: 10px">PDV • XML</div>
+
+                  <div class="ui-item">
+                    <strong>IJA System</strong>
+                    <span class="muted">Solicitações de voo, equipes, pilotos, checklists e relatórios</span>
+                  </div>
+
+                  <div class="ui-item">
+                    <strong>Back-End + Front-End</strong>
+                    <span class="muted">Python, Flask, PostgreSQL, HTML, Bootstrap e JavaScript</span>
+                  </div>
+
+                  <div class="ui-item">
+                    <strong>Experiência adicional</strong>
+                    <span class="muted">ERP, PDV, estoque, financeiro, relatórios e automação</span>
                   </div>
                 </div>
               </div>
@@ -933,69 +814,107 @@
           <div class="section-title reveal">
             <h2><i class="ri-user-3-line"></i> Sobre Mim</h2>
           </div>
-          <div class="grid reveal" style="grid-template-columns: 1.2fr 0.8fr">
-            <div class="card">
+
+          <div class="grid about-grid reveal">
+            <div class="card about-card">
               <p>
-                Sou João Pedro Gomes, desenvolvedor Back-End especializado em
-                PHP, POO e bancos SQL. Transformo necessidades de negócios em
-                soluções eficientes que ajudam empresas a crescer e operar com
-                mais agilidade. Minha experiência inclui suporte técnico,
-                análise computacional e o desenvolvimento de sistemas de gestão
-                (ERP), PDV e módulos integrados — sempre com foco em segurança,
-                desempenho e escalabilidade. Tenho facilidade em entender
-                problemas reais do usuário e convertê-los em ferramentas
-                simples, rápidas e intuitivas. Meu objetivo é entregar soluções
-                que reduzem retrabalho, automatizam processos e tornam a
-                operação diária muito mais prática.
+                Sou João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End,
+                apaixonado por criar sistemas que resolvem problemas reais e
+                ajudam empresas a trabalhar com mais organização, eficiência e
+                controle.
               </p>
 
-              <div class="cta" style="margin-top: 8px">
-                <a class="btn btn-primary" href="#contato"
-                  ><i class="ri-send-plane-fill"></i> Vamos conversar</a
-                >
+              <p>
+                Tenho experiência no desenvolvimento, manutenção e evolução de
+                sistemas web com <strong>Python, Flask, PHP, JavaScript, Git,
+                MySQL, PostgreSQL e Docker</strong>, atuando tanto na lógica de
+                negócio quanto na estrutura da aplicação e na entrega de interfaces
+                funcionais e consistentes.
+              </p>
+
+              <p>
+                Hoje, meu principal projeto é o <strong>IJA System</strong>,
+                desenvolvido na <strong>IJA Drones</strong>. A plataforma foi
+                construída para centralizar processos operacionais, organizar
+                solicitações de voos, dar suporte à gestão de equipes e pilotos,
+                acompanhar equipamentos e facilitar a geração de relatórios,
+                checklists e fluxos administrativos.
+              </p>
+
+              <p>
+                Também desenvolvi projetos próprios como o <strong>ProControl</strong>,
+                um sistema de gestão empresarial completo com módulos de estoque,
+                financeiro, compras, vendas, e-commerce, CRM, relatórios, alertas,
+                XMLs, chat interno e PDV integrado.
+              </p>
+
+              <div class="cta" style="margin-top: 10px">
+                <a class="btn btn-primary" href="#contato">
+                  <i class="ri-send-plane-fill"></i> Vamos conversar
+                </a>
+
                 <a
                   class="btn btn-ghost"
                   href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
                   target="_blank"
                   rel="noopener"
-                  ><i class="ri-linkedin-box-line"></i> LinkedIn</a
                 >
+                  <i class="ri-linkedin-box-line"></i> LinkedIn
+                </a>
+
                 <a
                   class="btn btn-ghost"
                   href="https://github.com/JpGomes035"
                   target="_blank"
                   rel="noopener"
-                  ><i class="ri-github-line"></i> GitHub</a
                 >
+                  <i class="ri-github-line"></i> GitHub
+                </a>
               </div>
             </div>
-            <div
-              class="card"
-              role="region"
-              aria-label="Informações de Contato Rápido"
-            >
-              <h3>Contato Rápido</h3>
-              <div class="grid" style="grid-template-columns: 1fr">
-                <a class="pill" href="mailto:contat.joao10@gmail.com"
-                  ><i class="ri-mail-line"></i> contat.joao10@gmail.com</a
-                >
-                <a class="pill" href="tel:+5535984687649"
-                  ><i class="ri-phone-line"></i> (35) 98468-7649</a
-                >
+
+            <div class="card info-card">
+              <h3 style="margin-top: 0">Contato Rápido</h3>
+              <div class="contact-links">
+                <a class="pill" href="mailto:contat.joao10@gmail.com">
+                  <i class="ri-mail-line"></i> contat.joao10@gmail.com
+                </a>
+                <a class="pill" href="tel:+5535984687649">
+                  <i class="ri-phone-line"></i> (35) 98468-7649
+                </a>
                 <a
                   class="pill"
                   href="https://api.whatsapp.com/send?phone=5535984687649"
                   target="_blank"
                   rel="noopener"
-                  ><i class="ri-whatsapp-line"></i> WhatsApp</a
                 >
+                  <i class="ri-whatsapp-line"></i> WhatsApp
+                </a>
                 <a
                   class="pill"
                   href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
                   target="_blank"
                   rel="noopener"
-                  ><i class="ri-linkedin-fill"></i> LinkedIn</a
                 >
+                  <i class="ri-linkedin-fill"></i> LinkedIn
+                </a>
+                <a
+                  class="pill"
+                  href="https://github.com/JpGomes035"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="ri-github-fill"></i> GitHub
+                </a>
+              </div>
+
+              <div style="margin-top: 22px">
+                <h3>Resumo profissional</h3>
+                <p class="muted" style="line-height: 1.75; margin-bottom: 0">
+                  Perfil proativo, detalhista e orientado à solução de problemas,
+                  com experiência em sistemas corporativos, automação de processos,
+                  ERP, gestão operacional e desenvolvimento web full-stack.
+                </p>
               </div>
             </div>
           </div>
@@ -1006,98 +925,72 @@
         <div class="container">
           <div class="section-title reveal">
             <h2><i class="ri-magic-line"></i> Habilidades</h2>
-            <span class="muted">Stack principal e ferramentas</span>
+            <span class="muted">Tecnologias e ferramentas que uso no dia a dia</span>
           </div>
-          <div class="grid skills reveal" role="list">
-            <div class="skill-card" role="listitem">
+
+          <div class="grid skills reveal">
+            <div class="skill-card">
               <div class="skill-left">
-                <i class="ri-code-s-slash-line"></i><strong>PHP</strong>
+                <i class="ri-terminal-box-line"></i>
+                <strong>Python / Flask</strong>
               </div>
-              <div
-                class="meter"
-                role="progressbar"
-                aria-valuenow="85"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-label="Nível de PHP 85%"
-              >
-                <span style="width: 85%"></span>
-              </div>
+              <div class="meter"><span style="width: 85%"></span></div>
             </div>
-            <div class="skill-card" role="listitem">
+
+            <div class="skill-card">
               <div class="skill-left">
-                <i class="ri-database-2-line"></i><strong>MySQL / SQL</strong>
+                <i class="ri-database-2-line"></i>
+                <strong>PostgreSQL / SQL</strong>
               </div>
-              <div
-                class="meter"
-                role="progressbar"
-                aria-valuenow="85"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-label="Nível de MySQL / SQL 85%"
-              >
-                <span style="width: 85%"></span>
-              </div>
+              <div class="meter"><span style="width: 85%"></span></div>
             </div>
-            <div class="skill-card" role="listitem">
+
+            <div class="skill-card">
               <div class="skill-left">
-                <i class="ri-javascript-line"></i><strong>JavaScript</strong>
+                <i class="ri-code-s-slash-line"></i>
+                <strong>PHP</strong>
               </div>
-              <div
-                class="meter"
-                role="progressbar"
-                aria-valuenow="70"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-label="Nível de JavaScript 70%"
-              >
-                <span style="width: 70%"></span>
-              </div>
+              <div class="meter"><span style="width: 82%"></span></div>
             </div>
-            <div class="skill-card" role="listitem">
+
+            <div class="skill-card">
               <div class="skill-left">
-                <i class="ri-html5-line"></i><strong>HTML5 & CSS3</strong>
+                <i class="ri-javascript-line"></i>
+                <strong>JavaScript / Bootstrap</strong>
               </div>
-              <div
-                class="meter"
-                role="progressbar"
-                aria-valuenow="80"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-label="Nível de HTML5 & CSS3 80%"
-              >
-                <span style="width: 80%"></span>
-              </div>
+              <div class="meter"><span style="width: 75%"></span></div>
             </div>
-            <div class="skill-card" role="listitem">
+
+            <div class="skill-card">
               <div class="skill-left">
-                <i class="ri-git-branch-line"></i><strong>Git / Docker</strong>
+                <i class="ri-layout-4-line"></i>
+                <strong>HTML5 / CSS3</strong>
               </div>
-              <div
-                class="meter"
-                role="progressbar"
-                aria-valuenow="65"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-label="Nível de Git / Docker 65%"
-              >
-                <span style="width: 65%"></span>
-              </div>
+              <div class="meter"><span style="width: 80%"></span></div>
             </div>
-            <div class="skill-card" role="listitem">
+
+            <div class="skill-card">
               <div class="skill-left">
-                <i class="ri-java-line"></i><strong>Java</strong>
+                <i class="ri-git-branch-line"></i>
+                <strong>Git / Docker</strong>
               </div>
-              <div
-                class="meter"
-                role="progressbar"
-                aria-valuenow="75"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-label="Nível de Java 75%"
-              >
-                <span style="width: 65%"></span>
+              <div class="meter"><span style="width: 70%"></span></div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-left">
+                <i class="ri-cpu-line"></i>
+                <strong>Java</strong>
               </div>
+              <div class="meter"><span style="width: 68%"></span></div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-left">
+                <i class="ri-file-chart-line"></i>
+                <strong>Relatórios / Exportações</strong>
+              </div>
+              <div class="meter"><span style="width: 78%"></span></div>
             </div>
           </div>
         </div>
@@ -1107,63 +1000,90 @@
         <div class="container">
           <div class="section-title reveal">
             <h2><i class="ri-rocket-line"></i> Projetos</h2>
-            <a
-              class="pill"
-              href="#contato"
-              aria-label="Disponível para novos projetos, ir para contato"
-            >
-              <i class="ri-send-plane-2-line"></i> Disponível para novos
-              projetos
-            </a>
+            <span class="pill">
+              <i class="ri-send-plane-2-line"></i> Disponível para novos projetos
+            </span>
           </div>
 
           <div class="grid projects reveal">
-            <!-- PROJETO 1 -->
-            <article
-              class="project-card"
-              role="region"
-              aria-label="Projeto ProControl"
-            >
+            <article class="card project-card">
               <div
                 class="project-cover"
                 style="
-                  background-image: linear-gradient(
-                      135deg,
-                      rgba(77, 163, 255, 0.22),
-                      rgba(156, 107, 255, 0.18)
-                    ),
-                    url('home.jpg');
-                  background-size: cover;
-                  background-position: center;
+                  background-image:
+                    linear-gradient(135deg, rgba(73, 179, 255, 0.24), rgba(45, 212, 191, 0.20)),
+                    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
                 "
-                role="img"
-                aria-label="Dashboard do sistema ProControl"
               ></div>
 
               <div class="project-body">
-                <h3>ProControl – Sistema de Gestão</h3>
+                <h3>IJA System - Gestão Operacional de Voos</h3>
                 <p class="muted">
-                  ERP completo desenvolvido em PHP e MySQL, projetado para
-                  empresas de diversos segmentos. Inclui módulos de PDV,
-                  estoque, financeiro, vendas, relatórios avançados e e-commerce
-                  integrado, oferecendo uma gestão centralizada e eficiente.
+                  Sistema web desenvolvido na IJA Drones para centralizar processos
+                  operacionais e administrativos ligados à rotina de voo e à gestão
+                  interna. O projeto reúne funcionalidades para solicitações,
+                  equipes, pilotos, veículos, drones, equipamentos, checklists,
+                  notificações, anexos e relatórios.
                 </p>
 
                 <div class="badges">
-                  <span class="badge">PHP</span
-                  ><span class="badge">MySQL</span>
-                  <span class="badge">Bootstrap</span
-                  ><span class="badge">JavaScript</span>
-                  <span class="badge">Relatórios Excel</span>
+                  <span class="badge">Python</span>
+                  <span class="badge">Flask</span>
+                  <span class="badge">PostgreSQL</span>
+                  <span class="badge">Bootstrap</span>
+                  <span class="badge">JavaScript</span>
+                  <span class="badge">PDF / Excel</span>
                 </div>
 
-                <ul class="muted" style="margin: 8px 0 0 18px">
-                  <li>Gestão de estoque, compras e vendas</li>
-                  <li>Controle financeiro com alertas automáticos</li>
-                  <li>Envio de e-mails transacionais</li>
-                  <li>Relatórios completos e exportação em Excel</li>
-                  <li>E-commerce conectado ao catálogo de produtos</li>
-                  <li>PDV integrado ao fluxo operacional</li>
+                <ul>
+                  <li>Controle de solicitações de voos e fluxo operacional</li>
+                  <li>Gestão de equipes, pilotos, veículos, drones e equipamentos</li>
+                  <li>Checklists semanais e acompanhamento de rotinas internas</li>
+                  <li>Controle de acesso por perfil e organização modular do sistema</li>
+                  <li>Relatórios, exportações e apoio à tomada de decisão</li>
+                </ul>
+
+                <div class="project-actions">
+                  <a class="btn btn-primary" href="#contato">
+                    <i class="ri-chat-1-line"></i> Falar sobre
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <div
+                class="project-cover"
+                style="
+                  background-image:
+                    linear-gradient(135deg, rgba(73, 179, 255, 0.20), rgba(247, 185, 85, 0.18)),
+                    url('home.jpg');
+                "
+              ></div>
+
+              <div class="project-body">
+                <h3>ProControl - Sistema de Gestão</h3>
+                <p class="muted">
+                  ERP completo desenvolvido em PHP e SQL para apoiar processos
+                  empresariais de forma integrada. O sistema reúne módulos de
+                  estoque, financeiro, compras, vendas, relatórios, CRM,
+                  e-commerce e rotinas administrativas.
+                </p>
+
+                <div class="badges">
+                  <span class="badge">PHP</span>
+                  <span class="badge">MySQL</span>
+                  <span class="badge">Bootstrap</span>
+                  <span class="badge">JavaScript</span>
+                  <span class="badge">ERP</span>
+                </div>
+
+                <ul>
+                  <li>Gestão de estoque, compras, vendas e financeiro</li>
+                  <li>Relatórios operacionais e exportações</li>
+                  <li>Estrutura integrada com e-commerce e CRM</li>
+                  <li>Automações para rotinas e alertas do negócio</li>
+                  <li>Base sólida para expansão de módulos internos</li>
                 </ul>
 
                 <div class="project-actions">
@@ -1172,7 +1092,6 @@
                     href="Site/index.html"
                     target="_blank"
                     rel="noopener"
-                    aria-label="Ver mais sobre o ProControl"
                   >
                     <i class="ri-eye-line"></i> Ver sobre
                   </a>
@@ -1183,49 +1102,37 @@
               </div>
             </article>
 
-            <!-- PROJETO 2 -->
-            <article
-              class="project-card"
-              role="region"
-              aria-label="Sistema de Chat"
-            >
+            <article class="card project-card">
               <div
                 class="project-cover"
                 style="
-                  background-image: linear-gradient(
-                      135deg,
-                      rgba(77, 163, 255, 0.22),
-                      rgba(156, 107, 255, 0.18)
-                    ),
+                  background-image:
+                    linear-gradient(135deg, rgba(45, 212, 191, 0.20), rgba(73, 179, 255, 0.16)),
                     url('imagem.png');
-                  background-size: cover;
-                  background-position: center;
                 "
-                role="img"
-                aria-label="Imagem Generic"
               ></div>
 
               <div class="project-body">
-                <h3>ProControl – Sistema de Chat</h3>
+                <h3>ProControl - Sistema de Chat Interno</h3>
                 <p class="muted">
-                  Sistema corporativo de comunicação interna com suporte a
-                  setores, conversas individuais, grupos e agenda de tarefas.
-                  Desenvolvido para melhorar a produtividade e organização
-                  dentro de empresas.
+                  Módulo de comunicação corporativa criado para melhorar a
+                  organização da rotina interna, com conversas por setor,
+                  grupos, tarefas e apoio à produtividade dos times.
                 </p>
 
                 <div class="badges">
-                  <span class="badge">PHP</span><span class="badge">MySQL</span>
-                  <span class="badge">Interface Moderna</span>
-                  <span class="badge">DarkMode</span
-                  ><span class="badge">Chat</span>
+                  <span class="badge">PHP</span>
+                  <span class="badge">MySQL</span>
+                  <span class="badge">Chat</span>
+                  <span class="badge">Permissões</span>
+                  <span class="badge">Produtividade</span>
                 </div>
 
-                <ul class="muted" style="margin: 8px 0 0 18px">
-                  <li>Chats em tempo real por setor ou grupo</li>
-                  <li>Sistema de agendamentos com notificações</li>
-                  <li>E-mails automáticos para confirmações</li>
-                  <li>Controle de permissões por usuário e nível</li>
+                <ul>
+                  <li>Conversas individuais e por grupos</li>
+                  <li>Organização por setores e perfis de acesso</li>
+                  <li>Notificações e apoio à agenda de tarefas</li>
+                  <li>Melhoria da comunicação interna nas empresas</li>
                 </ul>
 
                 <div class="project-actions">
@@ -1236,97 +1143,37 @@
               </div>
             </article>
 
-            <!-- PROJETO 3 -->
-            <article
-              class="project-card"
-              role="region"
-              aria-label="Sistema de Catálogo"
-            >
+            <article class="card project-card">
               <div
                 class="project-cover"
                 style="
-                  background-image: linear-gradient(
-                      135deg,
-                      rgba(77, 163, 255, 0.22),
-                      rgba(156, 107, 255, 0.18)
-                    ),
+                  background-image:
+                    linear-gradient(135deg, rgba(247, 185, 85, 0.20), rgba(73, 179, 255, 0.16)),
                     url('catalogo.jpg');
-                  background-size: cover;
-                  background-position: center;
                 "
-                role="img"
-                aria-label="Imagem Generic"
               ></div>
 
               <div class="project-body">
-                <h3>ProControl – Sistema de Catálogo</h3>
+                <h3>PDV Integrado ao ProControl</h3>
                 <p class="muted">
-                  Plataforma para gestão de catálogo com cadastro de produtos,
-                  promoções, imagens e atributos personalizados. Desenvolvida
-                  para empresas que precisam organizar e divulgar seus produtos
-                  com eficiência.
+                  Solução de frente de caixa conectada ao ERP, pensada para dar
+                  mais velocidade à operação, simplificar vendas e sincronizar
+                  informações com estoque e financeiro em tempo real.
                 </p>
 
                 <div class="badges">
-                  <span class="badge">PHP</span><span class="badge">MySQL</span>
-                  <span class="badge">Interface Moderna</span>
-                  <span class="badge">WhatsApp API</span>
-                  <span class="badge">Catálogo</span>
+                  <span class="badge">PHP</span>
+                  <span class="badge">MySQL</span>
+                  <span class="badge">PDV</span>
+                  <span class="badge">Estoque</span>
+                  <span class="badge">Financeiro</span>
                 </div>
 
-                <ul class="muted" style="margin: 8px 0 0 18px">
-                  <li>Pedidos via WhatsApp integrados ao sistema</li>
-                  <li>Controle de estoque por produto</li>
-                </ul>
-
-                <div class="project-actions">
-                  <a class="btn btn-primary" href="#contato">
-                    <i class="ri-chat-1-line"></i> Falar sobre
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJETO 4 -->
-            <article class="project-card" role="region" aria-label="Módulo PDV">
-              <div
-                class="project-cover"
-                style="
-                  background-image: linear-gradient(
-                      135deg,
-                      rgba(62, 213, 152, 0.22),
-                      rgba(77, 163, 255, 0.18)
-                    ),
-                    url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop');
-                "
-                role="img"
-                aria-label="Interface do Ponto de Venda (PDV)"
-              ></div>
-
-              <div class="project-body">
-                <h3>PDV – Ponto de Venda</h3>
-                <p class="muted">
-                  Módulo de frente de caixa integrado ao ProControl, projetado
-                  para operações rápidas no varejo. Focado em agilidade,
-                  precisão e simplificação do fluxo de vendas, estoque e
-                  financeiro.
-                </p>
-
-                <div class="badges">
-                  <span class="badge">PHP</span
-                  ><span class="badge">MySQL</span>
-                  <span class="badge">Teclado Rápido</span
-                  ><span class="badge">Comprovantes</span>
-                  <span class="badge">Controle de estoque</span>
-                  <span class="badge">Controle de caixa</span>
-                </div>
-
-                <ul class="muted" style="margin: 8px 0 0 18px">
-                  <li>Busca rápida de produtos com atalhos (F-teclas)</li>
-                  <li>Emissão de comprovantes personalizados</li>
-                  <li>Integração total com estoque e financeiro</li>
-                  <li>Layout responsivo otimizado para PDV</li>
-                  <li>Abertura e fechamento de caixa com controle de fluxo</li>
+                <ul>
+                  <li>Fluxo rápido de venda com integração ao ERP</li>
+                  <li>Atualização automática de estoque</li>
+                  <li>Integração direta ao financeiro</li>
+                  <li>Controle operacional mais simples e confiável</li>
                 </ul>
 
                 <div class="project-actions">
@@ -1345,44 +1192,59 @@
           <div class="section-title reveal">
             <h2><i class="ri-briefcase-4-line"></i> Experiência</h2>
           </div>
+
           <div class="timeline reveal">
-            <div
-              class="tl-item"
-              role="article"
-              aria-label="Experiência como Desenvolvedor Full-Stack"
-            >
+            <div class="tl-item">
               <h3>
-                GF Innovation – Itajubá/MG
-                <span class="pill" style="margin-left: 0.4rem"
-                  ><i class="ri-code-s-slash-line"></i> Desenvolvedor
-                  Full-Stack</span
-                >
+                IJA Drones
+                <span class="pill" style="margin-left: 0.5rem">
+                  <i class="ri-code-box-line"></i> Desenvolvedor de Software
+                </span>
+              </h3>
+              <div class="muted">Atual</div>
+              <p>
+                Atuação no desenvolvimento do <strong>IJA System</strong>, sistema
+                web de gestão operacional voltado ao controle de solicitações de
+                voos e à organização de processos internos. Trabalho com
+                <strong>Python, Flask e PostgreSQL</strong> no back-end, além de
+                <strong>HTML, Bootstrap e JavaScript</strong> no front-end,
+                contribuindo com novas funcionalidades, estruturação de módulos,
+                regras de negócio, relatórios, checklists e melhorias contínuas
+                na usabilidade e na eficiência da aplicação.
+              </p>
+            </div>
+
+            <div class="tl-item">
+              <h3>
+                GF Innovation - Itajubá/MG
+                <span class="pill" style="margin-left: 0.5rem">
+                  <i class="ri-code-s-slash-line"></i> Desenvolvedor Full-Stack
+                </span>
               </h3>
               <div class="muted">2025</div>
               <p>
-                Atuação em melhorias dos projetos utilizando Java e Postgres,
-                organização de tarefas, reuniões, atenção a detalhes e
-                cumprimento de prazos.
+                Participação em projetos full-stack e no desenvolvimento de
+                soluções personalizadas para demandas corporativas, com atuação
+                em manutenção evolutiva, organização de tarefas, qualidade técnica
+                e entrega de funcionalidades utilizando Java, PostgreSQL, Git,
+                Docker e tecnologias web.
               </p>
             </div>
-            <div
-              class="tl-item"
-              role="article"
-              aria-label="Experiência como Analista em Suporte Computacional"
-            >
+
+            <div class="tl-item">
               <h3>
-                TCI Sistemas – Itajubá/MG
-                <span class="pill" style="margin-left: 0.4rem"
-                  ><i class="ri-customer-service-2-line"></i> Analista em
-                  Suporte Computacional</span
-                >
+                TCI Sistemas - Itajubá/MG
+                <span class="pill" style="margin-left: 0.5rem">
+                  <i class="ri-customer-service-2-line"></i> Suporte Técnico e ERP
+                </span>
               </h3>
-              <div class="muted">2022 – 2024</div>
+              <div class="muted">2022 - 2024</div>
               <p>
-                Atendimento a clientes (WhatsApp, chat e presencial),
-                treinamentos, apoio na organização de dados e documentos,
-                criação de banco de dados Postgres, com foco em resolução de
-                problemas.
+                Experiência em suporte técnico, atendimento a clientes, treinamentos,
+                desenvolvimento e manutenção de ERP, além de apoio em banco de dados
+                e organização de processos internos. Essa vivência fortaleceu minha
+                visão prática sobre sistemas corporativos e resolução de problemas
+                em ambiente real de negócio.
               </p>
             </div>
           </div>
@@ -1392,55 +1254,44 @@
       <section id="formacao">
         <div class="container">
           <div class="section-title reveal">
-            <h2>
-              <i class="ri-graduation-cap-line"></i> Formação & Certificações
-            </h2>
+            <h2><i class="ri-graduation-cap-line"></i> Formação & Certificações</h2>
           </div>
-          <div
-            class="grid formation-grid reveal"
-            style="grid-template-columns: repeat(2, 1fr)"
-          >
-            <div
-              class="card"
-              role="region"
-              aria-label="Informações de Formação Acadêmica"
-            >
+
+          <div class="grid formation-grid reveal">
+            <div class="card formation-card">
               <h3>Formação</h3>
-              <ul class="muted" style="margin-left: 18px">
-                <li>Sistemas de Informação – UNOPAR (em andamento)</li>
-                <li>
-                  Análise e Desenvolvimento de Sistemas – SENAI Itajubá (2022)
-                </li>
-                <li>Ensino Médio Completo</li>
+              <ul>
+                <li>Sistemas de Informação - UNOPAR (em andamento)</li>
+                <li>Análise e Desenvolvimento de Sistemas - SENAI Itajubá</li>
+                <li>Base prática voltada ao desenvolvimento de software e banco de dados</li>
               </ul>
             </div>
-            <div class="card" role="region" aria-label="Lista de Certificações">
+
+            <div class="card formation-card">
               <h3>Certificações</h3>
-              <ul class="muted" style="margin-left: 18px">
-                <li>Introdução à Programação – Fundação Bradesco</li>
-                <li>Lógica de Programação – Fundação Bradesco</li>
-                <li>ITIL – SENAI</li>
-                <li>
-                  Fundos de Investimento, Compliance, Perfil do Investidor –
-                  AMBIMA
-                </li>
-                <li>Inglês: Incrementando o vocabulário</li>
+              <ul>
+                <li>Introdução à Programação - Fundação Bradesco</li>
+                <li>Lógica de Programação - Fundação Bradesco</li>
+                <li>ITIL - SENAI</li>
+                <li>Capacitações complementares em tecnologia e TI</li>
               </ul>
             </div>
-            <div class="card" role="region" aria-label="Lista de Idiomas">
+
+            <div class="card formation-card">
               <h3>Idiomas</h3>
-              <ul class="muted" style="margin-left: 18px">
-                <li>Português – Nativo</li>
-                <li>Inglês – Leitura técnica</li>
+              <ul>
+                <li>Português - Nativo</li>
+                <li>Inglês - Leitura técnica</li>
               </ul>
             </div>
-            <div class="card" role="region" aria-label="Lista de Soft Skills">
+
+            <div class="card formation-card">
               <h3>Soft Skills</h3>
-              <ul class="muted" style="margin-left: 18px">
+              <ul>
                 <li>Proatividade e foco em solução de problemas</li>
-                <li>Atenção aos detalhes e organização</li>
-                <li>Trabalho em equipe e comunicação</li>
-                <li>Criatividade e Autodidata</li>
+                <li>Organização, atenção aos detalhes e compromisso com entrega</li>
+                <li>Facilidade para aprender e evoluir rapidamente</li>
+                <li>Boa comunicação e colaboração em equipe</li>
               </ul>
             </div>
           </div>
@@ -1453,16 +1304,13 @@
             <h2><i class="ri-chat-1-line"></i> Contato</h2>
             <span class="muted">Retorno rápido por e-mail ou WhatsApp</span>
           </div>
-          <div
-            class="grid contact-grid reveal"
-            style="grid-template-columns: 1fr 0.9fr"
-          >
+
+          <div class="grid contact-grid reveal">
             <form
-              class="card"
+              class="card contact-card"
               action="https://formspree.io/f/mgvzqnaw"
               method="POST"
               id="contactForm"
-              aria-label="Formulário de Contato"
             >
               <div class="row">
                 <div>
@@ -1475,6 +1323,7 @@
                     autocomplete="name"
                   />
                 </div>
+
                 <div>
                   <label for="email">Email</label>
                   <input
@@ -1487,6 +1336,7 @@
                   />
                 </div>
               </div>
+
               <div style="margin-top: 12px">
                 <label for="mensagem">Mensagem</label>
                 <textarea
@@ -1496,46 +1346,39 @@
                   required
                 ></textarea>
               </div>
+
               <div class="cta" style="margin-top: 14px">
-                <button
-                  class="btn btn-primary"
-                  type="submit"
-                  id="submit-button"
-                >
+                <button class="btn btn-primary" type="submit" id="submit-button">
                   <i class="ri-send-plane-2-line"></i> Enviar
                 </button>
+
                 <a
                   class="btn btn-ghost"
-                  href="https://api.whatsapp.com/send?phone=5535984687649&text=Ol%C3%A1%20Jo%C3%A3o!%20Gostaria%20de%20um%20or%C3%A7amento."
+                  href="https://api.whatsapp.com/send?phone=5535984687649&text=Olá%20João!%20Gostaria%20de%20conversar%20sobre%20um%20projeto."
                   target="_blank"
                   rel="noopener"
-                  ><i class="ri-whatsapp-line"></i> WhatsApp</a
                 >
+                  <i class="ri-whatsapp-line"></i> WhatsApp
+                </a>
               </div>
-              <small class="muted"
-                >Ao enviar, você concorda com o contato para fins de
-                retorno.</small
-              >
-              <div
-                id="form-status"
-                class="form-message"
-                style="display: none"
-              ></div>
+
+              <small class="muted">
+                Ao enviar, você concorda com o contato para fins de retorno.
+              </small>
+
+              <div id="form-status" class="form-message"></div>
             </form>
-            <div class="card" role="region" aria-label="Serviços Oferecidos">
-              <h3>Como posso ajudar?</h3>
-              <ul class="muted" style="margin-left: 18px">
-                <li>Desenvolvimento de sistemas sob medida para sua empresa</li>
-                <li>
-                  Integração completa entre setores: vendas, estoque, financeiro
-                  e PDV
-                </li>
-                <li>Otimização e modernização do seu sistema atual</li>
-                <li>
-                  Relatórios automáticos e ferramentas que agilizam o seu dia a
-                  dia
-                </li>
+
+            <div class="card help-card">
+              <h3 style="margin-top: 0">Como posso ajudar?</h3>
+              <ul>
+                <li>Desenvolvimento de sistemas web sob medida</li>
+                <li>Back-end com Python, Flask, PHP e bancos relacionais</li>
+                <li>Automação de processos e organização de rotinas operacionais</li>
+                <li>ERPs, painéis administrativos, relatórios e módulos internos</li>
+                <li>Melhorias e modernização de sistemas já existentes</li>
               </ul>
+
               <div class="cta">
                 <a class="btn btn-ghost" href="#projetos">
                   <i class="ri-folder-line"></i> Ver projetos
@@ -1549,55 +1392,54 @@
 
     <footer>
       <div class="container">
-        <address
-          style="
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-            font-style: normal;
-          "
-        >
-          <a class="pill" href="mailto:contat.joao10@gmail.com"
-            ><i class="ri-mail-line"></i> Email</a
-          >
+        <div class="footer-links">
+          <a class="pill" href="mailto:contat.joao10@gmail.com">
+            <i class="ri-mail-line"></i> Email
+          </a>
           <a
             class="pill"
             href="https://api.whatsapp.com/send?phone=5535984687649"
             target="_blank"
             rel="noopener"
-            ><i class="ri-whatsapp-line"></i> WhatsApp</a
           >
+            <i class="ri-whatsapp-line"></i> WhatsApp
+          </a>
           <a
             class="pill"
             href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
             target="_blank"
             rel="noopener"
-            ><i class="ri-linkedin-fill"></i> LinkedIn</a
           >
-        </address>
-        <div>© <span id="year"></span> João Pedro.</div>
+            <i class="ri-linkedin-fill"></i> LinkedIn
+          </a>
+          <a
+            class="pill"
+            href="https://github.com/JpGomes035"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="ri-github-fill"></i> GitHub
+          </a>
+        </div>
+
+        <div>© <span id="year"></span> João Pedro Gomes.</div>
       </div>
     </footer>
 
     <script>
-      // ano do rodapé
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // menu mobile
       const headerNav = document.querySelector("header .nav");
       const menuBtn = document.querySelector(".menu-btn");
       const menuLinks = document.querySelectorAll('header a[href^="#"]');
 
       menuBtn?.addEventListener("click", () => {
         const isExpanded = headerNav.classList.toggle("open");
-        menuBtn.setAttribute("aria-expanded", isExpanded);
+        menuBtn.setAttribute("aria-expanded", String(isExpanded));
       });
 
-      // fechar menu ao clicar num link
-      menuLinks.forEach((a) => {
-        a.addEventListener("click", () => {
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
           if (headerNav.classList.contains("open")) {
             headerNav.classList.remove("open");
             menuBtn.setAttribute("aria-expanded", "false");
@@ -1605,33 +1447,32 @@
         });
       });
 
-      // reveal on scroll - Função unificada e otimizada
       const io = new IntersectionObserver(
         (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("show");
-              // Opcional: Desobservar depois de mostrar para otimizar
-              io.unobserve(e.target);
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              io.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.12 }
       );
+
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-      // Formulário de Contato com Feedback
       document
         .getElementById("contactForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
+
           const form = e.target;
           const statusDiv = document.getElementById("form-status");
           const submitBtn = document.getElementById("submit-button");
           const data = new FormData(form);
 
-          submitBtn.textContent = "Enviando...";
           submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Enviando...';
 
           fetch(form.action, {
             method: form.method,
@@ -1639,28 +1480,29 @@
             headers: { Accept: "application/json" },
           })
             .then((response) => {
-              submitBtn.textContent = "Enviar";
               submitBtn.disabled = false;
+              submitBtn.innerHTML = '<i class="ri-send-plane-2-line"></i> Enviar';
 
               if (response.ok) {
                 statusDiv.textContent =
-                  "E-mail enviado com sucesso! Retornarei em breve.";
+                  "Mensagem enviada com sucesso. Retornarei em breve.";
                 statusDiv.classList.remove("form-error");
                 statusDiv.classList.add("form-success");
                 form.reset();
               } else {
                 statusDiv.textContent =
-                  "Falha ao enviar o e-mail. Tente novamente ou use o WhatsApp.";
+                  "Não foi possível enviar agora. Tente novamente ou fale comigo pelo WhatsApp.";
                 statusDiv.classList.remove("form-success");
                 statusDiv.classList.add("form-error");
               }
+
               statusDiv.style.display = "block";
             })
-            .catch((error) => {
-              submitBtn.textContent = "Enviar";
+            .catch(() => {
               submitBtn.disabled = false;
+              submitBtn.innerHTML = '<i class="ri-send-plane-2-line"></i> Enviar';
               statusDiv.textContent =
-                "Erro de conexão. Por favor, use o WhatsApp.";
+                "Erro de conexão. Fale comigo pelo WhatsApp.";
               statusDiv.classList.remove("form-success");
               statusDiv.classList.add("form-error");
               statusDiv.style.display = "block";
