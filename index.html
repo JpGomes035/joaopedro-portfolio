@@ -9,11 +9,7 @@
       content="Portfólio de João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End, Python, Flask, PostgreSQL, PHP, JavaScript, sistemas de gestão, operações com drones, relatórios e automações."
     />
     <meta name="theme-color" content="#07090f" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231c4e80'/%3E%3Cpath d='M18 40V24h9c5 0 8 3 8 8s-3 8-8 8h-3v7h-6v-7zm6-5h3c2 0 3-1 3-3s-1-3-3-3h-3v6zm19 5V24h6v23h-6v-7h-5v-5h5z' fill='%23f7f4ec'/%3E%3C/svg%3E"
-      type="image/svg+xml"
-    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -331,15 +327,12 @@
       }
 
       .brand-mark {
-        width: 42px;
-        height: 42px;
-        display: grid;
-        place-items: center;
+        width: 40px;
+        height: 40px;
+        display: block;
+        object-fit: contain;
         border-radius: var(--radius);
-        color: #061017;
-        background: linear-gradient(135deg, var(--blue), var(--green));
-        font-weight: 900;
-        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.28);
+        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.1);
       }
 
       .brand strong {
@@ -1111,10 +1104,10 @@
     <header>
       <nav class="container nav" id="top" aria-label="Navegação principal">
         <a class="brand" href="#top" aria-label="Ir para o topo">
-          <span class="brand-mark">JP</span>
+          <img class="brand-mark" src="assets/favicon.svg" alt="" aria-hidden="true" />
           <span>
             <strong>João Pedro Gomes</strong>
-            <span>Full-Stack com foco em Back-End</span>
+            <span>Desenvolvedor Full-Stack</span>
           </span>
         </a>
 
