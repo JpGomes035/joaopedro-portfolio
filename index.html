@@ -6,13 +6,18 @@
     <title>João Pedro Gomes | Desenvolvedor Full-Stack</title>
     <meta
       name="description"
-      content="Portfólio de João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End. Experiência com Python, Flask, PostgreSQL, PHP, JavaScript, SQL, ERPs e sistemas de gestão como o IJA System."
+      content="Portfólio de João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End, Python, Flask, PostgreSQL, PHP, JavaScript, sistemas de gestão, operações com drones, relatórios e automações."
     />
-    <link rel="icon" href="monitor.png" type="image/x-icon" />
+    <meta name="theme-color" content="#07090f" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231c4e80'/%3E%3Cpath d='M18 40V24h9c5 0 8 3 8 8s-3 8-8 8h-3v7h-6v-7zm6-5h3c2 0 3-1 3-3s-1-3-3-3h-3v6zm19 5V24h6v23h-6v-7h-5v-5h5z' fill='%23f7f4ec'/%3E%3C/svg%3E"
+      type="image/svg+xml"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
@@ -22,26 +27,32 @@
 
     <style>
       :root {
-        --bg: #07111f;
-        --bg-soft: #0d1a2d;
-        --panel: rgba(11, 25, 43, 0.88);
-        --panel-strong: #11223b;
-        --text: #eef4ff;
-        --muted: #a7b6cc;
-        --line: rgba(255, 255, 255, 0.08);
-        --brand: #49b3ff;
-        --brand-strong: #1e8fff;
-        --accent: #2dd4bf;
-        --accent-soft: rgba(45, 212, 191, 0.14);
-        --warning: #f7b955;
-        --shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
-        --radius: 22px;
-        --radius-sm: 16px;
-        --maxw: 1160px;
+        --bg: #07090f;
+        --bg-2: #0d111a;
+        --ink: #f4f8ff;
+        --muted: #9aa8bf;
+        --line: rgba(255, 255, 255, 0.12);
+        --panel: rgba(14, 19, 29, 0.74);
+        --panel-solid: #111824;
+        --panel-soft: rgba(255, 255, 255, 0.055);
+        --blue: #38bdf8;
+        --blue-2: #60a5fa;
+        --green: #34d399;
+        --gold: #f5b84b;
+        --rose: #fb7185;
+        --dark: #080b12;
+        --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+        --radius: 8px;
+        --maxw: 1168px;
       }
 
       * {
         box-sizing: border-box;
+      }
+
+      ::selection {
+        color: #041016;
+        background: var(--green);
       }
 
       html {
@@ -50,24 +61,38 @@
 
       body {
         margin: 0;
-        color: var(--text);
-        font-family: Manrope, sans-serif;
+        color: var(--ink);
         background:
-          radial-gradient(circle at top left, rgba(73, 179, 255, 0.18), transparent 30%),
-          radial-gradient(circle at top right, rgba(45, 212, 191, 0.12), transparent 26%),
-          linear-gradient(180deg, #07111f 0%, #09172a 100%);
+          linear-gradient(135deg, rgba(56, 189, 248, 0.10), transparent 32%),
+          linear-gradient(225deg, rgba(52, 211, 153, 0.08), transparent 30%),
+          linear-gradient(180deg, #07090f 0%, #0d111a 42%, #07090f 100%);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        overflow-x: hidden;
       }
 
-      body::before {
+      body::before,
+      body::after {
         content: "";
         position: fixed;
         inset: 0;
         pointer-events: none;
+        z-index: 0;
+      }
+
+      body::before {
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-        background-size: 28px 28px;
-        mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent 75%);
+          linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.86), transparent 78%);
+        animation: grid-drift 18s linear infinite;
+      }
+
+      body::after {
+        background:
+          linear-gradient(115deg, transparent 0 38%, rgba(56, 189, 248, 0.08) 42%, transparent 47% 100%),
+          repeating-linear-gradient(100deg, transparent 0 16px, rgba(255, 255, 255, 0.018) 17px 18px);
+        opacity: 0.55;
       }
 
       a {
@@ -75,82 +100,167 @@
         text-decoration: none;
       }
 
+      header,
+      main,
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+
       img {
         display: block;
         max-width: 100%;
       }
 
-      .container {
-        max-width: var(--maxw);
-        margin: 0 auto;
-        padding: 0 20px;
+      button,
+      input,
+      textarea {
+        font: inherit;
       }
 
+      .container {
+        width: min(var(--maxw), calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .eyebrow,
+      .chip,
       .pill {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.42rem 0.82rem;
-        border: 1px solid var(--line);
+        gap: 0.45rem;
+        width: fit-content;
         border-radius: 999px;
-        color: var(--muted);
-        font-size: 0.86rem;
-        background: rgba(255, 255, 255, 0.03);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .eyebrow {
+        padding: 0.52rem 0.78rem;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(14px);
+      }
+
+      .chip,
+      .pill {
+        padding: 0.38rem 0.64rem;
+        color: #d9f7ff;
+        background: rgba(56, 189, 248, 0.12);
+        border: 1px solid rgba(56, 189, 248, 0.24);
+      }
+
+      .pill {
+        color: #d6e4f4;
+        background: rgba(255, 255, 255, 0.055);
+        border-color: var(--line);
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.6rem;
-        padding: 0.95rem 1.25rem;
-        border-radius: 999px;
-        font-weight: 700;
-        border: 0;
+        gap: 0.56rem;
+        min-height: 46px;
+        padding: 0.78rem 1rem;
+        border-radius: var(--radius);
+        border: 1px solid transparent;
+        font-weight: 800;
         cursor: pointer;
-        transition: 0.25s ease;
+        position: relative;
+        overflow: hidden;
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 0 34%, rgba(255, 255, 255, 0.24) 48%, transparent 62% 100%);
+        transform: translateX(-120%);
+        transition: transform 520ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .btn:hover::before {
+        transform: translateX(120%);
       }
 
       .btn-primary {
-        color: #04111f;
-        background: linear-gradient(135deg, var(--brand), var(--accent));
-        box-shadow: 0 12px 30px rgba(73, 179, 255, 0.22);
+        color: #041015;
+        background: linear-gradient(135deg, var(--blue), var(--green));
+        box-shadow: 0 14px 36px rgba(56, 189, 248, 0.24);
       }
 
       .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 18px 34px rgba(73, 179, 255, 0.28);
+        box-shadow: 0 20px 50px rgba(52, 211, 153, 0.23);
       }
 
       .btn-ghost {
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid var(--line);
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(12px);
       }
 
-      .btn-ghost:hover {
-        transform: translateY(-2px);
-        border-color: rgba(255, 255, 255, 0.18);
-        background: rgba(255, 255, 255, 0.05);
+      .btn-dark {
+        color: #fff;
+        background: var(--dark);
       }
 
       .muted {
         color: var(--muted);
       }
 
+      .section {
+        position: relative;
+        padding: 86px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .section.compact {
+        padding-top: 44px;
+      }
+
       .section-title {
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
         align-items: end;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 24px;
+        gap: 20px;
+        margin-bottom: 26px;
       }
 
       .section-title h2 {
         margin: 0;
         font-family: Sora, sans-serif;
-        font-size: 1.7rem;
-        letter-spacing: -0.02em;
+        font-size: clamp(1.55rem, 2.6vw, 2.2rem);
+        line-height: 1.14;
+        letter-spacing: 0;
+        color: var(--ink);
+      }
+
+      .section-title p {
+        max-width: 620px;
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.7;
       }
 
       .grid {
@@ -163,512 +273,835 @@
         border: 1px solid var(--line);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(18px);
+        position: relative;
+        overflow: hidden;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 35%);
+        opacity: 0.68;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(115deg, transparent 0 38%, rgba(56, 189, 248, 0.16) 48%, transparent 60% 100%);
+        opacity: 0;
+        transform: translateX(-35%);
+        transition: opacity 180ms ease, transform 520ms ease;
+      }
+
+      .card:hover::after {
+        opacity: 1;
+        transform: translateX(35%);
       }
 
       header {
         position: sticky;
         top: 0;
         z-index: 50;
-        background: rgba(7, 17, 31, 0.72);
-        backdrop-filter: blur(14px);
-        border-bottom: 1px solid var(--line);
+        background: rgba(7, 9, 15, 0.78);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(18px);
       }
 
       .nav {
-        height: 72px;
+        height: 68px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        position: relative;
+        gap: 18px;
       }
 
       .brand {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 0.9rem;
+        gap: 0.78rem;
+        min-width: 210px;
       }
 
-      .logo {
+      .brand-mark {
         width: 42px;
         height: 42px;
         display: grid;
         place-items: center;
-        border-radius: 14px;
-        background: linear-gradient(135deg, var(--brand), var(--accent));
-        color: #03111d;
-        font-size: 1.15rem;
-        font-weight: 800;
-        box-shadow: 0 12px 26px rgba(73, 179, 255, 0.25);
+        border-radius: var(--radius);
+        color: #061017;
+        background: linear-gradient(135deg, var(--blue), var(--green));
+        font-weight: 900;
+        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.28);
       }
 
       .brand strong {
+        display: block;
         font-family: Sora, sans-serif;
-        font-size: 1rem;
+        font-size: 0.98rem;
       }
 
-      .nav ul {
-        display: flex;
-        list-style: none;
-        gap: 1.2rem;
-        padding: 0;
-        margin: 0;
-      }
-
-      .nav ul a {
+      .brand span {
+        display: block;
         color: var(--muted);
-        font-weight: 600;
+        font-size: 0.82rem;
+        margin-top: 2px;
       }
 
-      .nav ul a:hover {
-        color: var(--text);
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.05rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 800;
+        position: relative;
+        transition: color 180ms ease;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -8px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--blue), var(--green), var(--gold));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--ink);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        transform: scaleX(1);
       }
 
       .menu-btn {
         display: none;
-        background: transparent;
-        color: var(--text);
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.08);
         border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 0.65rem 0.9rem;
-      }
-
-      section {
-        padding: 72px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: var(--radius);
+        padding: 0.65rem 0.8rem;
+        font-weight: 800;
       }
 
       .hero {
-        padding: 82px 0 48px;
-      }
-
-      .hero-grid {
+        position: relative;
+        min-height: calc(100svh - 68px);
         display: grid;
-        grid-template-columns: 1.2fr 0.88fr;
-        gap: 26px;
         align-items: center;
+        padding: 92px 0 68px;
+        color: #fff;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(7, 9, 15, 0.96) 0%, rgba(7, 9, 15, 0.76) 39%, rgba(7, 9, 15, 0.28) 100%),
+          linear-gradient(180deg, rgba(7, 9, 15, 0.2) 0%, rgba(7, 9, 15, 0.88) 100%),
+          url("assets/ija-system-hero.png") center / cover no-repeat,
+          #07090f;
       }
 
-      .hero-card {
-        padding: 34px;
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 58px 58px;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.72), transparent 64%);
+        animation: grid-drift 16s linear infinite;
       }
 
-      .hero-card h1 {
-        margin: 0;
-        font-family: Sora, sans-serif;
-        font-size: clamp(2rem, 5vw, 3.35rem);
-        line-height: 1.06;
-        letter-spacing: -0.03em;
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 210px;
+        background: linear-gradient(180deg, transparent, var(--bg));
+        pointer-events: none;
       }
 
-      .hero-card p {
-        margin: 14px 0 0;
-        color: var(--muted);
-        font-size: 1.04rem;
-        line-height: 1.78;
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 860px;
       }
 
-      .hero-kicker {
+      .hero-content::before {
+        content: "BUILD // SHIP // OPERATE";
+        display: block;
+        width: fit-content;
         margin-bottom: 14px;
+        color: rgba(255, 255, 255, 0.42);
+        font: 800 0.74rem/1 Sora, sans-serif;
+        letter-spacing: 0.18em;
       }
 
-      .cta {
+      .hero h1 {
+        max-width: 790px;
+        margin: 18px 0 0;
+        font-family: Sora, sans-serif;
+        font-size: clamp(2.6rem, 6.3vw, 5.45rem);
+        line-height: 1.02;
+        letter-spacing: 0;
+        text-wrap: balance;
+        text-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+      }
+
+      .hero-lead {
+        max-width: 720px;
+        margin: 20px 0 0;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: clamp(1.02rem, 1.7vw, 1.22rem);
+        line-height: 1.7;
+      }
+
+      .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 24px;
+        margin-top: 26px;
       }
 
-      .stats {
+      .hero-actions .btn-ghost {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.24);
+      }
+
+      .hero-meta {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
-        margin-top: 24px;
+        margin-top: 34px;
+        max-width: 850px;
       }
 
-      .stat {
-        padding: 16px;
-        border-radius: var(--radius-sm);
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid var(--line);
-      }
-
-      .stat strong {
-        display: block;
-        font-size: 1rem;
-        margin-bottom: 6px;
-      }
-
-      .hero-side {
+      .hero-stat {
+        min-height: 110px;
         padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.055)),
+          rgba(11, 16, 25, 0.64);
+        backdrop-filter: blur(18px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        transition: transform 180ms ease, border-color 180ms ease;
       }
 
-      .mini-browser {
-        border-radius: 18px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      .hero-stat:hover {
+        transform: translateY(-5px);
+        border-color: rgba(52, 211, 153, 0.36);
       }
 
-      .mini-topbar {
-        display: flex;
-        gap: 8px;
-        padding: 14px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-
-      .dot.red { background: #ff6b6b; }
-      .dot.yellow { background: #f7b955; }
-      .dot.green { background: #2dd4bf; }
-
-      .mini-screen {
-        padding: 20px;
-        min-height: 320px;
-      }
-
-      .ui-stack {
-        display: grid;
-        gap: 12px;
-      }
-
-      .ui-item {
-        padding: 14px;
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid var(--line);
-      }
-
-      .ui-item strong {
+      .hero-stat strong {
         display: block;
-        margin-bottom: 5px;
+        font-family: Sora, sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+
+      .hero-stat span {
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+
+      .proof-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .proof-card {
+        padding: 20px;
+        min-height: 138px;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .proof-card i {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        color: #061017;
+        background: linear-gradient(135deg, var(--blue), var(--green));
+        border-radius: var(--radius);
+        font-size: 1.5rem;
+      }
+
+      .proof-card:hover,
+      .skill-group:hover,
+      .project-card:hover,
+      .timeline-item:hover,
+      .content-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(56, 189, 248, 0.28);
+        background: rgba(18, 25, 38, 0.86);
+      }
+
+      .proof-card strong {
+        display: block;
+        margin: 14px 0 7px;
+        font-family: Sora, sans-serif;
+        font-size: 1.05rem;
+      }
+
+      .proof-card span {
+        color: var(--muted);
+        line-height: 1.55;
       }
 
       .about-grid {
-        grid-template-columns: 1.18fr 0.82fr;
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: start;
       }
 
-      .about-card,
-      .info-card,
-      .contact-card,
-      .help-card,
-      .formation-card {
-        padding: 24px;
+      .content-card {
+        padding: 26px;
       }
 
-      .about-card p,
-      .timeline p,
-      .project-body p {
-        line-height: 1.78;
+      .content-card h3 {
+        margin: 0 0 12px;
+        font-family: Sora, sans-serif;
+        font-size: 1.22rem;
       }
 
-      .contact-links {
+      .content-card p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .content-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .quick-list {
         display: grid;
         gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
       }
 
-      .skills {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .skill-card {
-        padding: 16px 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-      }
-
-      .skill-left {
-        display: flex;
-        align-items: center;
+      .quick-list li {
+        display: grid;
+        grid-template-columns: 34px 1fr;
         gap: 12px;
-        min-width: 165px;
+        align-items: start;
+        color: var(--muted);
+        line-height: 1.6;
       }
 
-      .skill-left i {
-        font-size: 1.3rem;
-        color: var(--brand);
+      .quick-list i {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        color: #051016;
+        background: linear-gradient(135deg, var(--green), var(--blue));
+        border-radius: var(--radius);
       }
 
-      .meter {
-        width: 100%;
-        height: 9px;
-        border-radius: 999px;
-        overflow: hidden;
+      .skills-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .skill-group {
+        padding: 20px;
+        min-height: 174px;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .skill-group h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin: 0 0 14px;
+        font-family: Sora, sans-serif;
+        font-size: 1rem;
+      }
+
+      .skill-group h3 i {
+        color: var(--blue);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        padding: 0.42rem 0.58rem;
+        border-radius: var(--radius);
+        color: #d8e7f7;
         background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        font-size: 0.84rem;
+        font-weight: 700;
       }
 
-      .meter span {
-        display: block;
-        height: 100%;
-        border-radius: 999px;
-        background: linear-gradient(90deg, var(--brand), var(--accent));
-      }
-
-      .projects {
+      .projects-grid {
         grid-template-columns: repeat(12, 1fr);
       }
 
       .project-card {
         grid-column: span 6;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
-        transition: 0.25s ease;
+        overflow: hidden;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
       }
 
-      .project-card:hover,
-      .skill-card:hover,
-      .card:hover {
-        transform: translateY(-4px);
+      .project-card.featured {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        border-color: rgba(56, 189, 248, 0.22);
       }
 
-      .project-cover {
-        aspect-ratio: 16 / 9;
-        background-size: cover;
+      .project-media {
+        min-height: 310px;
+        background:
+          linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(52, 211, 153, 0.12)),
+          url("assets/ija-system-hero.png") center / cover no-repeat;
+      }
+
+      .project-thumb {
+        min-height: 210px;
         background-position: center;
+        background-size: cover;
         border-bottom: 1px solid var(--line);
+        position: relative;
+      }
+
+      .project-thumb::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, transparent 35%, rgba(7, 9, 15, 0.72) 100%),
+          radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 42%);
       }
 
       .project-body {
-        padding: 22px;
+        padding: 24px;
       }
 
       .project-body h3 {
         margin: 0 0 10px;
         font-family: Sora, sans-serif;
+        font-size: 1.35rem;
+      }
+
+      .project-body p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .project-body ul,
+      .timeline,
+      .education-list {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .project-body li,
+      .education-list li {
+        position: relative;
+        padding-left: 20px;
+        margin: 0 0 10px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .project-body li::before,
+      .education-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.72em;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--green), var(--blue));
       }
 
       .badges {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin: 14px 0;
+        margin: 16px 0;
       }
 
-      .badge {
-        padding: 0.34rem 0.62rem;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        color: #d8f6ff;
-        background: rgba(73, 179, 255, 0.12);
-        border: 1px solid rgba(73, 179, 255, 0.22);
+      .system-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .project-actions {
+      .system-toolbar {
         display: flex;
-        gap: 10px;
         flex-wrap: wrap;
-        margin-top: 14px;
+        gap: 10px;
+        margin: -6px 0 22px;
+      }
+
+      .filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 38px;
+        padding: 0.48rem 0.72rem;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-2px);
+        color: var(--ink);
+        border-color: rgba(56, 189, 248, 0.28);
+      }
+
+      .filter-btn.active {
+        color: #041016;
+        background: linear-gradient(135deg, var(--blue), var(--green));
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .module-card {
+        padding: 20px;
+        transition: transform 180ms ease, opacity 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .module-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(245, 184, 75, 0.34);
+        background: rgba(18, 25, 38, 0.86);
+      }
+
+      .module-card[hidden] {
+        display: none;
+      }
+
+      .module-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin: 0 0 10px;
+        font-family: Sora, sans-serif;
+        font-size: 1.05rem;
+      }
+
+      .module-card h3 i {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        flex: 0 0 34px;
+        place-items: center;
+        color: #120d04;
+        background: linear-gradient(135deg, var(--gold), var(--green));
+        border-radius: var(--radius);
+      }
+
+      .module-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.68;
       }
 
       .timeline {
-        border-left: 2px dashed rgba(255, 255, 255, 0.14);
-        padding-left: 18px;
+        display: grid;
+        gap: 16px;
       }
 
-      .tl-item {
-        position: relative;
-        margin: 0 0 28px;
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 20px;
+        padding: 22px;
+        border-left: 3px solid rgba(52, 211, 153, 0.58);
       }
 
-      .tl-item::before {
-        content: "";
-        position: absolute;
-        left: -25px;
-        top: 7px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--brand), var(--accent));
-        box-shadow: 0 0 0 6px rgba(73, 179, 255, 0.08);
+      .timeline-date {
+        color: var(--green);
+        font-weight: 900;
       }
 
-      .tl-item h3 {
-        margin: 0 0 6px;
-        font-size: 1.08rem;
+      .timeline-item h3 {
+        margin: 0 0 8px;
+        font-family: Sora, sans-serif;
+        font-size: 1.1rem;
+      }
+
+      .timeline-item p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
       }
 
       .formation-grid,
       .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .formation-card ul,
-      .help-card ul,
-      .project-body ul {
-        margin: 0;
-        padding-left: 18px;
-      }
-
-      .formation-card li,
-      .help-card li,
-      .project-body li {
-        margin-bottom: 9px;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      form .row {
+      .contact-card form {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 14px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
       }
 
       label {
         display: block;
-        margin-bottom: 6px;
+        margin-bottom: 7px;
         color: var(--muted);
-        font-size: 0.92rem;
+        font-size: 0.9rem;
+        font-weight: 700;
       }
 
       input,
       textarea {
         width: 100%;
-        padding: 12px 14px;
-        color: var(--text);
-        font: inherit;
-        border-radius: 14px;
         border: 1px solid var(--line);
-        background: rgba(5, 13, 24, 0.72);
-        transition: 0.25s ease;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.065);
+        color: var(--ink);
+        padding: 0.84rem 0.9rem;
+        outline: none;
+        transition: border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      textarea {
+        min-height: 130px;
+        resize: vertical;
       }
 
       input:focus,
       textarea:focus {
-        outline: none;
-        border-color: rgba(73, 179, 255, 0.7);
-        box-shadow: 0 0 0 4px rgba(73, 179, 255, 0.12);
+        border-color: var(--blue-2);
+        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.13);
       }
 
-      textarea {
-        min-height: 124px;
-        resize: vertical;
+      .contact-links {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .contact-links a {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.78rem 0.9rem;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        color: var(--ink);
+        font-weight: 800;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .contact-links a:hover {
+        transform: translateX(4px);
+        border-color: rgba(56, 189, 248, 0.3);
+        background: rgba(56, 189, 248, 0.09);
       }
 
       .form-message {
         display: none;
-        margin-top: 15px;
         padding: 12px;
-        border-radius: 14px;
-        font-weight: 700;
-        text-align: center;
+        border-radius: var(--radius);
+        font-weight: 800;
       }
 
       .form-success {
-        background: rgba(45, 212, 191, 0.14);
-        color: #87f2e2;
-        border: 1px solid rgba(45, 212, 191, 0.35);
+        color: #bdf8de;
+        background: rgba(52, 211, 153, 0.13);
+        border: 1px solid rgba(52, 211, 153, 0.36);
       }
 
       .form-error {
-        background: rgba(255, 107, 107, 0.14);
-        color: #ffb4b4;
-        border: 1px solid rgba(255, 107, 107, 0.35);
+        color: #ffd1d8;
+        background: rgba(251, 113, 133, 0.13);
+        border: 1px solid rgba(251, 113, 133, 0.36);
       }
 
       footer {
-        padding: 36px 0;
+        padding: 34px 0;
         color: var(--muted);
-        text-align: center;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(7, 9, 15, 0.9);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
       }
 
       .footer-links {
         display: flex;
-        justify-content: center;
-        gap: 14px;
+        gap: 10px;
         flex-wrap: wrap;
-        margin-bottom: 10px;
       }
 
       .reveal {
         opacity: 0;
-        transform: translateY(28px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+        transform: translateY(24px) scale(0.985);
+        transition: opacity 700ms ease, transform 700ms ease;
       }
 
       .reveal.show {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+      }
+
+      @keyframes grid-drift {
+        from {
+          background-position: 0 0, 0 0;
+        }
+        to {
+          background-position: 42px 42px, 42px 42px;
+        }
       }
 
       @media (max-width: 980px) {
-        .hero-grid,
-        .about-grid,
-        .formation-grid,
-        .contact-grid,
-        .skills {
-          grid-template-columns: 1fr;
-        }
-
-        .projects {
-          grid-template-columns: 1fr;
-        }
-
-        .project-card {
-          grid-column: span 1;
-        }
-
-        .stats {
-          grid-template-columns: 1fr;
-        }
-
-        .nav ul {
-          display: none;
+        .nav-links {
           position: absolute;
-          top: 72px;
+          top: 68px;
           left: 0;
           right: 0;
-          padding: 14px 20px 20px;
+          display: none;
           flex-direction: column;
-          background: rgba(7, 17, 31, 0.96);
-          border-bottom: 1px solid var(--line);
+          align-items: stretch;
+          padding: 16px 20px 20px;
+          background: rgba(7, 9, 15, 0.98);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(18px);
         }
 
-        .nav.open ul {
+        .nav.open .nav-links {
           display: flex;
         }
 
         .menu-btn {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.45rem;
+        }
+
+        .section-title,
+        .about-grid,
+        .project-card.featured,
+        .formation-grid,
+        .contact-grid,
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+
+        .proof-grid,
+        .skills-grid,
+        .system-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .project-card {
+          grid-column: 1 / -1;
+        }
+
+        .project-media {
+          min-height: 260px;
         }
       }
 
       @media (max-width: 680px) {
-        .hero-card,
-        .about-card,
-        .info-card,
-        .contact-card,
-        .help-card,
-        .formation-card,
-        .project-body {
-          padding: 18px;
+        .container {
+          width: min(100% - 28px, var(--maxw));
         }
 
-        form .row {
+        .brand {
+          min-width: 0;
+        }
+
+        .brand strong {
+          font-size: 0.94rem;
+        }
+
+        .brand > span > span {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 74px 0 52px;
+          background-position: 58% center;
+        }
+
+        .hero-content::before {
+          font-size: 0.66rem;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.2rem, 13vw, 3.55rem);
+        }
+
+        .hero-meta,
+        .proof-grid,
+        .skills-grid,
+        .system-grid,
+        .form-row {
           grid-template-columns: 1fr;
         }
 
-        .cta,
-        .project-actions {
-          flex-direction: column;
+        .hero-actions {
           align-items: stretch;
+          flex-direction: column;
         }
 
-        .hero-card h1 {
-          font-size: 1.95rem;
+        .btn {
+          width: 100%;
+        }
+
+        .content-card,
+        .project-body,
+        .module-card,
+        .skill-group,
+        .proof-card,
+        .timeline-item {
+          padding: 18px;
         }
       }
     </style>
@@ -676,510 +1109,381 @@
 
   <body>
     <header>
-      <div class="container nav" id="top">
+      <nav class="container nav" id="top" aria-label="Navegação principal">
         <a class="brand" href="#top" aria-label="Ir para o topo">
-          <span class="logo"><i class="ri-code-s-slash-line"></i></span>
-          <div>
-            <strong>João Pedro Gomes</strong><br />
-            <span class="muted" style="font-size: 0.84rem">Full-Stack com foco em Back-End</span>
-          </div>
+          <span class="brand-mark">JP</span>
+          <span>
+            <strong>João Pedro Gomes</strong>
+            <span>Full-Stack com foco em Back-End</span>
+          </span>
         </a>
 
-        <button class="menu-btn" aria-expanded="false" aria-controls="menu">
-          <i class="ri-menu-3-line"></i> Menu
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
+          <i class="ri-menu-3-line"></i>
+          Menu
         </button>
 
-        <ul id="menu" aria-label="Navegação principal">
+        <ul class="nav-links" id="menu">
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#habilidades">Habilidades</a></li>
           <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#sistema">IJA System</a></li>
           <li><a href="#experiencia">Experiência</a></li>
-          <li><a href="#formacao">Formação</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-      </div>
+      </nav>
     </header>
 
     <main>
-      <section class="hero container">
-        <div class="hero-grid">
-          <div class="card hero-card reveal">
-            <div class="hero-kicker pill">
-              <i class="ri-flight-takeoff-line"></i>
-              Desenvolvimento de sistemas com foco em operação real
-            </div>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-content reveal">
+          <span class="eyebrow">
+            <i class="ri-flight-takeoff-line"></i>
+            Sistemas web para operação real, dados e gestão
+          </span>
 
-            <h1>
-              Sistemas web robustos, organizados e voltados ao negócio
-            </h1>
+          <h1 id="hero-title">Desenvolvo sistemas que tiram processos do improviso.</h1>
 
-            <p>
-              Sou João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End,
-              atuando na criação e evolução de aplicações para gestão, automação
-              e controle operacional. Trabalho com Python, Flask, PostgreSQL,
-              PHP, JavaScript, SQL e Docker, sempre buscando unir performance,
-              clareza de código, segurança e valor prático para quem usa o sistema.
-            </p>
+          <p class="hero-lead">
+            Sou João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End.
+            Trabalho com Python, Flask, PostgreSQL, PHP, JavaScript e integrações
+            para transformar rotinas operacionais em plataformas organizadas,
+            rastreáveis e úteis para o negócio.
+          </p>
 
-            <p>
-              Atualmente participo do desenvolvimento do <strong>IJA System</strong>,
-              na <strong>IJA Drones</strong>, uma plataforma voltada ao controle
-              de solicitações de voos, equipes, pilotos, equipamentos,
-              checklists, anexos e relatórios operacionais.
-            </p>
-
-            <div class="cta">
-              <a
-                class="btn btn-primary"
-                href="assets/CVJoao.pdf"
-                download
-                aria-label="Baixar currículo"
-              >
-                <i class="ri-download-2-line"></i> Baixar Currículo
-              </a>
-
-              <a class="btn btn-ghost" href="#projetos">
-                <i class="ri-rocket-2-line"></i> Ver Projetos
-              </a>
-
-              <a
-                class="btn btn-ghost"
-                href="https://api.whatsapp.com/send?phone=5535984687649&text=Olá%20João!%20Vim%20pelo%20seu%20portfólio."
-                target="_blank"
-                rel="noopener"
-              >
-                <i class="ri-whatsapp-line" style="color: var(--accent)"></i>
-                WhatsApp
-              </a>
-            </div>
-
-            <div class="stats" aria-label="Resumo de destaques">
-              <div class="stat">
-                <strong>IJA System</strong>
-                <span class="muted">Gestão operacional de voos e processos internos</span>
-              </div>
-              <div class="stat">
-                <strong>ERP ProControl</strong>
-                <span class="muted">Estoque, financeiro, vendas, PDV e e-commerce</span>
-              </div>
-              <div class="stat">
-                <strong>Stack atual</strong>
-                <span class="muted">Python, Flask, PostgreSQL, PHP e JavaScript</span>
-              </div>
-            </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="assets/CVJoao.pdf" download>
+              <i class="ri-download-2-line"></i>
+              Baixar currículo
+            </a>
+            <a class="btn btn-ghost" href="#projetos">
+              <i class="ri-folder-3-line"></i>
+              Ver projetos
+            </a>
+            <a
+              class="btn btn-ghost"
+              href="https://api.whatsapp.com/send?phone=5535984687649&text=Olá%20João!%20Vim%20pelo%20seu%20portfólio."
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="ri-whatsapp-line"></i>
+              WhatsApp
+            </a>
           </div>
 
-          <div class="card hero-side reveal">
-            <div class="mini-browser">
-              <div class="mini-topbar">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-
-              <div class="mini-screen">
-                <div class="pill" style="margin-bottom: 14px">
-                  <i class="ri-dashboard-2-line"></i> Visão do meu trabalho atual
-                </div>
-
-                <div class="ui-stack">
-                  <div class="ui-item">
-                    <strong>IJA Drones</strong>
-                    <span class="muted">Desenvolvimento de sistema de gestão operacional</span>
-                  </div>
-
-                  <div class="ui-item">
-                    <strong>IJA System</strong>
-                    <span class="muted">Solicitações de voo, equipes, pilotos, checklists e relatórios</span>
-                  </div>
-
-                  <div class="ui-item">
-                    <strong>Back-End + Front-End</strong>
-                    <span class="muted">Python, Flask, PostgreSQL, HTML, Bootstrap e JavaScript</span>
-                  </div>
-
-                  <div class="ui-item">
-                    <strong>Experiência adicional</strong>
-                    <span class="muted">ERP, PDV, estoque, financeiro, relatórios e automação</span>
-                  </div>
-                </div>
-              </div>
+          <div class="hero-meta" aria-label="Destaques profissionais">
+            <div class="hero-stat">
+              <strong>32 módulos</strong>
+              <span>Aplicação Flask modular com áreas de operação, agro, financeiro, mapas e relatórios.</span>
+            </div>
+            <div class="hero-stat">
+              <strong>125 telas</strong>
+              <span>Templates Jinja para fluxos administrativos, operacionais, piloto, UVIS e gestão.</span>
+            </div>
+            <div class="hero-stat">
+              <strong>Dados reais</strong>
+              <span>Importação de Excel/KML, exportação de relatórios, anexos, auditoria e controle de acesso.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="sobre">
+      <section class="section compact">
+        <div class="container grid proof-grid reveal">
+          <article class="card proof-card">
+            <i class="ri-database-2-line"></i>
+            <strong>Back-end estruturado</strong>
+            <span>Modelagem relacional, regras de negócio, serviços por domínio e migrations com Flask-SQLAlchemy.</span>
+          </article>
+          <article class="card proof-card">
+            <i class="ri-shield-check-line"></i>
+            <strong>Acesso e auditoria</strong>
+            <span>Perfis por tipo de usuário, escopo por prefeitura/região e registro de ações sensíveis.</span>
+          </article>
+          <article class="card proof-card">
+            <i class="ri-map-pin-line"></i>
+            <strong>Operação geográfica</strong>
+            <span>Geolocalização, Google Maps, rotas KML, logs DJI e relatórios ligados à operação com drones.</span>
+          </article>
+          <article class="card proof-card">
+            <i class="ri-file-chart-line"></i>
+            <strong>Relatórios e exportações</strong>
+            <span>Geração de PDF, Excel, dashboards, filtros avançados e indicadores para decisão.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="sobre">
         <div class="container">
           <div class="section-title reveal">
-            <h2><i class="ri-user-3-line"></i> Sobre Mim</h2>
+            <div>
+              <h2>Sobre Mim</h2>
+              <p>
+                Minha experiência veio de sistemas que precisam funcionar na rotina:
+                atendimento, ERP, operação em campo, controle financeiro, automação e gestão.
+              </p>
+            </div>
+            <span class="pill"><i class="ri-code-box-line"></i> Desde 2022 em tecnologia</span>
           </div>
 
-          <div class="grid about-grid reveal">
-            <div class="card about-card">
+          <div class="grid about-grid">
+            <article class="card content-card reveal">
+              <h3>Perfil profissional</h3>
               <p>
-                Sou João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End,
-                apaixonado por criar sistemas que resolvem problemas reais e
-                ajudam empresas a trabalhar com mais organização, eficiência e
-                controle.
+                Tenho uma base forte em desenvolvimento de sistemas corporativos,
+                principalmente no back-end, onde organizo regras de negócio, banco
+                de dados, autenticação, relatórios e integrações. Gosto de trabalhar
+                perto da operação para entender o problema real antes de codar a solução.
               </p>
-
               <p>
-                Tenho experiência no desenvolvimento, manutenção e evolução de
-                sistemas web com <strong>Python, Flask, PHP, JavaScript, Git,
-                MySQL, PostgreSQL e Docker</strong>, atuando tanto na lógica de
-                negócio quanto na estrutura da aplicação e na entrega de interfaces
-                funcionais e consistentes.
+                Atualmente atuo no desenvolvimento do IJA System, plataforma interna
+                da IJA Drones que centraliza solicitações de voo, ordens de serviço,
+                equipes, pilotos, equipamentos, checklists, relatórios, financeiro
+                agro, importação de logs DJI, mapas e rotinas administrativas.
               </p>
+            </article>
 
-              <p>
-                Hoje, meu principal projeto é o <strong>IJA System</strong>,
-                desenvolvido na <strong>IJA Drones</strong>. A plataforma foi
-                construída para centralizar processos operacionais, organizar
-                solicitações de voos, dar suporte à gestão de equipes e pilotos,
-                acompanhar equipamentos e facilitar a geração de relatórios,
-                checklists e fluxos administrativos.
-              </p>
-
-              <p>
-                Também desenvolvi projetos próprios como o <strong>ProControl</strong>,
-                um sistema de gestão empresarial completo com módulos de estoque,
-                financeiro, compras, vendas, e-commerce, CRM, relatórios, alertas,
-                XMLs, chat interno e PDV integrado.
-              </p>
-
-              <div class="cta" style="margin-top: 10px">
-                <a class="btn btn-primary" href="#contato">
-                  <i class="ri-send-plane-fill"></i> Vamos conversar
-                </a>
-
-                <a
-                  class="btn btn-ghost"
-                  href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="ri-linkedin-box-line"></i> LinkedIn
-                </a>
-
-                <a
-                  class="btn btn-ghost"
-                  href="https://github.com/JpGomes035"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="ri-github-line"></i> GitHub
-                </a>
-              </div>
-            </div>
-
-            <div class="card info-card">
-              <h3 style="margin-top: 0">Contato Rápido</h3>
-              <div class="contact-links">
-                <a class="pill" href="mailto:contat.joao10@gmail.com">
-                  <i class="ri-mail-line"></i> contat.joao10@gmail.com
-                </a>
-                <a class="pill" href="tel:+5535984687649">
-                  <i class="ri-phone-line"></i> (35) 98468-7649
-                </a>
-                <a
-                  class="pill"
-                  href="https://api.whatsapp.com/send?phone=5535984687649"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="ri-whatsapp-line"></i> WhatsApp
-                </a>
-                <a
-                  class="pill"
-                  href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="ri-linkedin-fill"></i> LinkedIn
-                </a>
-                <a
-                  class="pill"
-                  href="https://github.com/JpGomes035"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="ri-github-fill"></i> GitHub
-                </a>
-              </div>
-
-              <div style="margin-top: 22px">
-                <h3>Resumo profissional</h3>
-                <p class="muted" style="line-height: 1.75; margin-bottom: 0">
-                  Perfil proativo, detalhista e orientado à solução de problemas,
-                  com experiência em sistemas corporativos, automação de processos,
-                  ERP, gestão operacional e desenvolvimento web full-stack.
-                </p>
-              </div>
-            </div>
+            <aside class="card content-card reveal">
+              <h3>O que eu entrego</h3>
+              <ul class="quick-list">
+                <li>
+                  <i class="ri-settings-3-line"></i>
+                  <span>Transformo processos manuais em fluxos digitais com status, histórico e responsabilidades claras.</span>
+                </li>
+                <li>
+                  <i class="ri-lock-password-line"></i>
+                  <span>Implemento controle de acesso por perfil, escopo de dados e trilha de auditoria.</span>
+                </li>
+                <li>
+                  <i class="ri-bar-chart-box-line"></i>
+                  <span>Crio dashboards, filtros, relatórios PDF/Excel e indicadores para operação e gestão.</span>
+                </li>
+                <li>
+                  <i class="ri-tools-line"></i>
+                  <span>Faço manutenção evolutiva em sistemas existentes com foco em estabilidade e clareza.</span>
+                </li>
+              </ul>
+            </aside>
           </div>
         </div>
       </section>
 
-      <section id="habilidades">
+      <section class="section" id="habilidades">
         <div class="container">
           <div class="section-title reveal">
-            <h2><i class="ri-magic-line"></i> Habilidades</h2>
-            <span class="muted">Tecnologias e ferramentas que uso no dia a dia</span>
-          </div>
-
-          <div class="grid skills reveal">
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-terminal-box-line"></i>
-                <strong>Python / Flask</strong>
-              </div>
-              <div class="meter"><span style="width: 85%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-database-2-line"></i>
-                <strong>PostgreSQL / SQL</strong>
-              </div>
-              <div class="meter"><span style="width: 85%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-code-s-slash-line"></i>
-                <strong>PHP</strong>
-              </div>
-              <div class="meter"><span style="width: 82%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-javascript-line"></i>
-                <strong>JavaScript / Bootstrap</strong>
-              </div>
-              <div class="meter"><span style="width: 75%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-layout-4-line"></i>
-                <strong>HTML5 / CSS3</strong>
-              </div>
-              <div class="meter"><span style="width: 80%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-git-branch-line"></i>
-                <strong>Git / Docker</strong>
-              </div>
-              <div class="meter"><span style="width: 70%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-cpu-line"></i>
-                <strong>Java</strong>
-              </div>
-              <div class="meter"><span style="width: 68%"></span></div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-left">
-                <i class="ri-file-chart-line"></i>
-                <strong>Relatórios / Exportações</strong>
-              </div>
-              <div class="meter"><span style="width: 78%"></span></div>
+            <div>
+              <h2>Habilidades</h2>
+              <p>Stack e competências usadas em projetos reais de gestão, operação e automação.</p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="projetos">
-        <div class="container">
-          <div class="section-title reveal">
-            <h2><i class="ri-rocket-line"></i> Projetos</h2>
-            <span class="pill">
-              <i class="ri-send-plane-2-line"></i> Disponível para novos projetos
-            </span>
-          </div>
-
-          <div class="grid projects reveal">
-            <article class="card project-card">
-              <div
-                class="project-cover"
-                style="
-                  background-image:
-                    linear-gradient(135deg, rgba(73, 179, 255, 0.24), rgba(45, 212, 191, 0.20)),
-                    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
-                "
-              ></div>
-
-              <div class="project-body">
-                <h3>IJA System - Gestão Operacional de Voos</h3>
-                <p class="muted">
-                  Sistema web desenvolvido na IJA Drones para centralizar processos
-                  operacionais e administrativos ligados à rotina de voo e à gestão
-                  interna. O projeto reúne funcionalidades para solicitações,
-                  equipes, pilotos, veículos, drones, equipamentos, checklists,
-                  notificações, anexos e relatórios.
-                </p>
-
-                <div class="badges">
-                  <span class="badge">Python</span>
-                  <span class="badge">Flask</span>
-                  <span class="badge">PostgreSQL</span>
-                  <span class="badge">Bootstrap</span>
-                  <span class="badge">JavaScript</span>
-                  <span class="badge">PDF / Excel</span>
-                </div>
-
-                <ul>
-                  <li>Controle de solicitações de voos e fluxo operacional</li>
-                  <li>Gestão de equipes, pilotos, veículos, drones e equipamentos</li>
-                  <li>Checklists semanais e acompanhamento de rotinas internas</li>
-                  <li>Controle de acesso por perfil e organização modular do sistema</li>
-                  <li>Relatórios, exportações e apoio à tomada de decisão</li>
-                </ul>
-
-                <div class="project-actions">
-                  <a class="btn btn-primary" href="#contato">
-                    <i class="ri-chat-1-line"></i> Falar sobre
-                  </a>
-                </div>
+          <div class="grid skills-grid reveal">
+            <article class="card skill-group">
+              <h3><i class="ri-server-line"></i> Back-End</h3>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Flask</span>
+                <span class="tag">SQLAlchemy</span>
+                <span class="tag">Flask-Login</span>
+                <span class="tag">Flask-Migrate</span>
+                <span class="tag">PHP</span>
               </div>
             </article>
 
-            <article class="card project-card">
+            <article class="card skill-group">
+              <h3><i class="ri-database-line"></i> Dados</h3>
+              <div class="tags">
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">Migrations</span>
+                <span class="tag">Modelagem</span>
+                <span class="tag">Filtros</span>
+              </div>
+            </article>
+
+            <article class="card skill-group">
+              <h3><i class="ri-layout-4-line"></i> Front-End</h3>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Bootstrap</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Jinja2</span>
+                <span class="tag">UX operacional</span>
+              </div>
+            </article>
+
+            <article class="card skill-group">
+              <h3><i class="ri-plug-line"></i> Integrações</h3>
+              <div class="tags">
+                <span class="tag">Google Maps</span>
+                <span class="tag">OpenPyXL</span>
+                <span class="tag">WeasyPrint</span>
+                <span class="tag">APIs</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Git</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projetos">
+        <div class="container">
+          <div class="section-title reveal">
+            <div>
+              <h2>Projetos</h2>
+              <p>Projetos com foco em resolver rotina de empresa: gestão, operação, atendimento, venda e dados.</p>
+            </div>
+            <a class="pill" href="https://github.com/JpGomes035" target="_blank" rel="noopener">
+              <i class="ri-github-fill"></i>
+              GitHub
+            </a>
+          </div>
+
+          <div class="grid projects-grid">
+            <article class="card project-card featured reveal">
+              <div class="project-media" role="img" aria-label="Imagem conceitual de sistema de gestão de drones"></div>
+              <div class="project-body">
+                <span class="chip"><i class="ri-flight-takeoff-line"></i> Projeto principal atual</span>
+                <h3>IJA System - Plataforma de gestão operacional e agro</h3>
+                <p>
+                  Sistema web desenvolvido para centralizar processos da IJA Drones:
+                  solicitações de voo, ordens de serviço, equipe UVIS, pilotos,
+                  veículos, drones, checklists, anexos, mapas, relatórios, logs DJI,
+                  rotas KML, orçamentos, contratos e financeiro agro.
+                </p>
+                <div class="badges">
+                  <span class="tag">Python</span>
+                  <span class="tag">Flask</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">SQLAlchemy</span>
+                  <span class="tag">Jinja2</span>
+                  <span class="tag">Google Maps</span>
+                  <span class="tag">PDF / Excel</span>
+                </div>
+                <ul>
+                  <li>Controle de acesso para dev, admin, regional, prefeitura, UVIS, piloto e financeiro.</li>
+                  <li>Escopo de dados por prefeitura e região para proteger informações de cada operação.</li>
+                  <li>Dashboards, filtros por status/endereço/data, relatórios operacionais e exportações.</li>
+                  <li>Importação de logs DJI em Excel e rotas KML com prevenção de duplicidade por hash.</li>
+                  <li>Módulo agro com clientes, fornecedores, orçamento, contrato, OS, bancos, entradas, saídas e caixa diário.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="card project-card reveal">
               <div
-                class="project-cover"
+                class="project-thumb"
+                role="img"
+                aria-label="Interface do sistema ProControl"
                 style="
                   background-image:
-                    linear-gradient(135deg, rgba(73, 179, 255, 0.20), rgba(247, 185, 85, 0.18)),
+                    linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(52, 211, 153, 0.12)),
                     url('home.jpg');
                 "
               ></div>
-
               <div class="project-body">
+                <span class="chip"><i class="ri-store-2-line"></i> ERP</span>
                 <h3>ProControl - Sistema de Gestão</h3>
-                <p class="muted">
-                  ERP completo desenvolvido em PHP e SQL para apoiar processos
-                  empresariais de forma integrada. O sistema reúne módulos de
-                  estoque, financeiro, compras, vendas, relatórios, CRM,
-                  e-commerce e rotinas administrativas.
+                <p>
+                  ERP em PHP e SQL para apoiar rotinas empresariais como estoque,
+                  compras, vendas, financeiro, relatórios, CRM, e-commerce e
+                  processos administrativos.
                 </p>
-
                 <div class="badges">
-                  <span class="badge">PHP</span>
-                  <span class="badge">MySQL</span>
-                  <span class="badge">Bootstrap</span>
-                  <span class="badge">JavaScript</span>
-                  <span class="badge">ERP</span>
-                </div>
-
-                <ul>
-                  <li>Gestão de estoque, compras, vendas e financeiro</li>
-                  <li>Relatórios operacionais e exportações</li>
-                  <li>Estrutura integrada com e-commerce e CRM</li>
-                  <li>Automações para rotinas e alertas do negócio</li>
-                  <li>Base sólida para expansão de módulos internos</li>
-                </ul>
-
-                <div class="project-actions">
-                  <a
-                    class="btn btn-ghost"
-                    href="Site/index.html"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <i class="ri-eye-line"></i> Ver sobre
-                  </a>
-                  <a class="btn btn-primary" href="#contato">
-                    <i class="ri-chat-1-line"></i> Falar sobre
-                  </a>
+                  <span class="tag">PHP</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">Bootstrap</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">ERP</span>
                 </div>
               </div>
             </article>
 
-            <article class="card project-card">
+            <article class="card project-card reveal">
               <div
-                class="project-cover"
+                class="project-thumb"
+                role="img"
+                aria-label="Interface de comunicação interna corporativa"
                 style="
                   background-image:
-                    linear-gradient(135deg, rgba(45, 212, 191, 0.20), rgba(73, 179, 255, 0.16)),
+                    linear-gradient(135deg, rgba(52, 211, 153, 0.16), rgba(56, 189, 248, 0.12)),
                     url('imagem.png');
                 "
               ></div>
-
               <div class="project-body">
-                <h3>ProControl - Sistema de Chat Interno</h3>
-                <p class="muted">
-                  Módulo de comunicação corporativa criado para melhorar a
-                  organização da rotina interna, com conversas por setor,
-                  grupos, tarefas e apoio à produtividade dos times.
+                <span class="chip"><i class="ri-message-3-line"></i> Comunicação interna</span>
+                <h3>Chat Corporativo ProControl</h3>
+                <p>
+                  Módulo de comunicação corporativa para organizar conversas por
+                  usuários, grupos e setores, com apoio a tarefas e produtividade
+                  na rotina interna.
                 </p>
-
                 <div class="badges">
-                  <span class="badge">PHP</span>
-                  <span class="badge">MySQL</span>
-                  <span class="badge">Chat</span>
-                  <span class="badge">Permissões</span>
-                  <span class="badge">Produtividade</span>
-                </div>
-
-                <ul>
-                  <li>Conversas individuais e por grupos</li>
-                  <li>Organização por setores e perfis de acesso</li>
-                  <li>Notificações e apoio à agenda de tarefas</li>
-                  <li>Melhoria da comunicação interna nas empresas</li>
-                </ul>
-
-                <div class="project-actions">
-                  <a class="btn btn-primary" href="#contato">
-                    <i class="ri-chat-1-line"></i> Falar sobre
-                  </a>
+                  <span class="tag">PHP</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">Permissões</span>
+                  <span class="tag">Chat</span>
                 </div>
               </div>
             </article>
 
-            <article class="card project-card">
+            <article class="card project-card reveal">
               <div
-                class="project-cover"
+                class="project-thumb"
+                role="img"
+                aria-label="Tela de catálogo e venda integrada ao ERP"
                 style="
                   background-image:
-                    linear-gradient(135deg, rgba(247, 185, 85, 0.20), rgba(73, 179, 255, 0.16)),
+                    linear-gradient(135deg, rgba(245, 184, 75, 0.18), rgba(56, 189, 248, 0.12)),
                     url('catalogo.jpg');
                 "
               ></div>
-
               <div class="project-body">
+                <span class="chip"><i class="ri-cash-line"></i> Vendas</span>
                 <h3>PDV Integrado ao ProControl</h3>
-                <p class="muted">
-                  Solução de frente de caixa conectada ao ERP, pensada para dar
-                  mais velocidade à operação, simplificar vendas e sincronizar
-                  informações com estoque e financeiro em tempo real.
+                <p>
+                  Frente de caixa conectada ao ERP para acelerar vendas, sincronizar
+                  estoque, registrar movimentações financeiras e simplificar a
+                  operação do balcão.
                 </p>
-
                 <div class="badges">
-                  <span class="badge">PHP</span>
-                  <span class="badge">MySQL</span>
-                  <span class="badge">PDV</span>
-                  <span class="badge">Estoque</span>
-                  <span class="badge">Financeiro</span>
+                  <span class="tag">PHP</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">PDV</span>
+                  <span class="tag">Estoque</span>
+                  <span class="tag">Financeiro</span>
                 </div>
+              </div>
+            </article>
 
-                <ul>
-                  <li>Fluxo rápido de venda com integração ao ERP</li>
-                  <li>Atualização automática de estoque</li>
-                  <li>Integração direta ao financeiro</li>
-                  <li>Controle operacional mais simples e confiável</li>
-                </ul>
-
-                <div class="project-actions">
-                  <a class="btn btn-primary" href="#contato">
-                    <i class="ri-chat-1-line"></i> Falar sobre
-                  </a>
+            <article class="card project-card reveal">
+              <div
+                class="project-thumb"
+                role="img"
+                aria-label="Painel web com dados, relatórios e automações"
+                style="
+                  background-image:
+                    linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(251, 113, 133, 0.10)),
+                    url('homeww.png');
+                "
+              ></div>
+              <div class="project-body">
+                <span class="chip"><i class="ri-robot-2-line"></i> Automação</span>
+                <h3>Rotinas de relatórios, anexos e importação</h3>
+                <p>
+                  Implementações para reduzir trabalho manual: upload de arquivos,
+                  validações, importação de planilhas, geração de documentos,
+                  relatórios e organização de dados operacionais.
+                </p>
+                <div class="badges">
+                  <span class="tag">Python</span>
+                  <span class="tag">Excel</span>
+                  <span class="tag">PDF</span>
+                  <span class="tag">Validações</span>
+                  <span class="tag">Uploads</span>
                 </div>
               </div>
             </article>
@@ -1187,330 +1491,354 @@
         </div>
       </section>
 
-      <section id="experiencia">
+      <section class="section" id="sistema">
         <div class="container">
           <div class="section-title reveal">
-            <h2><i class="ri-briefcase-4-line"></i> Experiência</h2>
+            <div>
+              <h2>IJA System Atual</h2>
+              <p>
+                Uma visão resumida das áreas que fazem parte do sistema hoje,
+                com base nos módulos e serviços do repositório.
+              </p>
+            </div>
+          </div>
+
+          <div class="system-toolbar reveal" aria-label="Filtrar módulos do IJA System">
+            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">
+              <i class="ri-apps-2-line"></i> Todos
+            </button>
+            <button class="filter-btn" type="button" data-filter="operacao" aria-pressed="false">
+              <i class="ri-flight-takeoff-line"></i> Operação
+            </button>
+            <button class="filter-btn" type="button" data-filter="agro" aria-pressed="false">
+              <i class="ri-seedling-line"></i> Agro
+            </button>
+            <button class="filter-btn" type="button" data-filter="dados" aria-pressed="false">
+              <i class="ri-bar-chart-2-line"></i> Dados
+            </button>
+            <button class="filter-btn" type="button" data-filter="gestao" aria-pressed="false">
+              <i class="ri-settings-3-line"></i> Gestão
+            </button>
+          </div>
+
+          <div class="grid system-grid reveal">
+            <article class="card module-card" data-category="gestao dados">
+              <h3><i class="ri-dashboard-3-line"></i> Painéis administrativos</h3>
+              <p>Dashboard geral, solicitações, canceladas, histórico de OS, filtros por endereço, data, status, unidade, região e protocolo.</p>
+            </article>
+            <article class="card module-card" data-category="gestao operacao">
+              <h3><i class="ri-team-line"></i> UVIS e equipes</h3>
+              <p>Cadastro de UVIS, equipes, membros, acesso operacional, isolamento de dados por perfil, prefeitura e região.</p>
+            </article>
+            <article class="card module-card" data-category="operacao">
+              <h3><i class="ri-plane-line"></i> Pilotos e ordens de serviço</h3>
+              <p>Fluxos para piloto, OS, formulários de execução, dosagem, assinatura, fotos, vídeos, anexos e histórico.</p>
+            </article>
+            <article class="card module-card" data-category="operacao gestao">
+              <h3><i class="ri-car-line"></i> Frota e equipamentos</h3>
+              <p>Gestão de veículos, drones, baterias, checklists semanais, logs de km, abastecimento e manutenção.</p>
+            </article>
+            <article class="card module-card" data-category="agro operacao">
+              <h3><i class="ri-seedling-line"></i> Agro</h3>
+              <p>Clientes, fornecedores, pilotos agro, equipes, equipamentos, orçamentos, contratos, OS agro e RD de mapeamento.</p>
+            </article>
+            <article class="card module-card" data-category="agro dados">
+              <h3><i class="ri-bank-card-line"></i> Financeiro agro</h3>
+              <p>Contas a receber, contas a pagar, entradas, saídas, bancos, categorias, conciliação, caixa diário e relatórios gerais.</p>
+            </article>
+            <article class="card module-card" data-category="operacao dados">
+              <h3><i class="ri-map-2-line"></i> Mapas e dados DJI</h3>
+              <p>Importação de flight logs, KML de rotas, métricas de área, volume, duração, bateria, pilotos, aeronaves e equipes.</p>
+            </article>
+            <article class="card module-card" data-category="dados gestao">
+              <h3><i class="ri-file-excel-2-line"></i> Relatórios</h3>
+              <p>Exportações em Excel/PDF, relatórios de solicitações, coleta de imagens, logs DJI e documentos operacionais.</p>
+            </article>
+            <article class="card module-card" data-category="gestao">
+              <h3><i class="ri-shield-user-line"></i> Segurança e operação</h3>
+              <p>Autenticação, auditoria de mutações, backup, anexos, CEP/geocode, notificações, chatbot e painel dev.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experiencia">
+        <div class="container">
+          <div class="section-title reveal">
+            <div>
+              <h2>Experiência</h2>
+              <p>Vivência prática em suporte, ERP e desenvolvimento de sistemas web.</p>
+            </div>
           </div>
 
           <div class="timeline reveal">
-            <div class="tl-item">
-              <h3>
-                IJA Drones
-                <span class="pill" style="margin-left: 0.5rem">
-                  <i class="ri-code-box-line"></i> Desenvolvedor de Software
-                </span>
-              </h3>
-              <div class="muted">Atual</div>
-              <p>
-                Atuação no desenvolvimento do <strong>IJA System</strong>, sistema
-                web de gestão operacional voltado ao controle de solicitações de
-                voos e à organização de processos internos. Trabalho com
-                <strong>Python, Flask e PostgreSQL</strong> no back-end, além de
-                <strong>HTML, Bootstrap e JavaScript</strong> no front-end,
-                contribuindo com novas funcionalidades, estruturação de módulos,
-                regras de negócio, relatórios, checklists e melhorias contínuas
-                na usabilidade e na eficiência da aplicação.
-              </p>
-            </div>
+            <article class="card timeline-item">
+              <div class="timeline-date">Atual</div>
+              <div>
+                <h3>IJA Drones - Desenvolvedor de Software</h3>
+                <p>
+                  Desenvolvimento e evolução do IJA System com Python, Flask,
+                  PostgreSQL, Jinja2, Bootstrap e JavaScript. Atuação em módulos
+                  administrativos, operação de drones, equipes, checklists,
+                  relatórios, importações DJI/KML, financeiro agro, controle de
+                  acesso e melhorias de usabilidade.
+                </p>
+              </div>
+            </article>
 
-            <div class="tl-item">
-              <h3>
-                GF Innovation - Itajubá/MG
-                <span class="pill" style="margin-left: 0.5rem">
-                  <i class="ri-code-s-slash-line"></i> Desenvolvedor Full-Stack
-                </span>
-              </h3>
-              <div class="muted">2025</div>
-              <p>
-                Participação em projetos full-stack e no desenvolvimento de
-                soluções personalizadas para demandas corporativas, com atuação
-                em manutenção evolutiva, organização de tarefas, qualidade técnica
-                e entrega de funcionalidades utilizando Java, PostgreSQL, Git,
-                Docker e tecnologias web.
-              </p>
-            </div>
+            <article class="card timeline-item">
+              <div class="timeline-date">2025</div>
+              <div>
+                <h3>GF Innovation - Desenvolvedor Full-Stack</h3>
+                <p>
+                  Participação em projetos corporativos, manutenção evolutiva,
+                  organização de demandas, qualidade técnica e desenvolvimento
+                  com Java, PostgreSQL, Git, Docker e tecnologias web.
+                </p>
+              </div>
+            </article>
 
-            <div class="tl-item">
-              <h3>
-                TCI Sistemas - Itajubá/MG
-                <span class="pill" style="margin-left: 0.5rem">
-                  <i class="ri-customer-service-2-line"></i> Suporte Técnico e ERP
-                </span>
-              </h3>
-              <div class="muted">2022 - 2024</div>
-              <p>
-                Experiência em suporte técnico, atendimento a clientes, treinamentos,
-                desenvolvimento e manutenção de ERP, além de apoio em banco de dados
-                e organização de processos internos. Essa vivência fortaleceu minha
-                visão prática sobre sistemas corporativos e resolução de problemas
-                em ambiente real de negócio.
-              </p>
-            </div>
+            <article class="card timeline-item">
+              <div class="timeline-date">2022 - 2024</div>
+              <div>
+                <h3>TCI Sistemas - Suporte Técnico e ERP</h3>
+                <p>
+                  Atendimento a clientes, treinamentos, suporte técnico,
+                  manutenção de ERP, banco de dados e compreensão prática de
+                  problemas reais em sistemas de gestão.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="formacao">
+      <section class="section" id="formacao">
         <div class="container">
           <div class="section-title reveal">
-            <h2><i class="ri-graduation-cap-line"></i> Formação & Certificações</h2>
+            <div>
+              <h2>Formação e Certificações</h2>
+              <p>Base acadêmica e capacitações que sustentam a prática em desenvolvimento e operação.</p>
+            </div>
           </div>
 
           <div class="grid formation-grid reveal">
-            <div class="card formation-card">
+            <article class="card content-card">
               <h3>Formação</h3>
-              <ul>
-                <li>Sistemas de Informação - UNOPAR (em andamento)</li>
-                <li>Análise e Desenvolvimento de Sistemas - SENAI Itajubá</li>
-                <li>Base prática voltada ao desenvolvimento de software e banco de dados</li>
+              <ul class="education-list">
+                <li>Sistemas de Informação - UNOPAR, em andamento.</li>
+                <li>Análise e Desenvolvimento de Sistemas - SENAI Itajubá.</li>
+                <li>Base prática em desenvolvimento web, banco de dados e sistemas corporativos.</li>
               </ul>
-            </div>
+            </article>
 
-            <div class="card formation-card">
-              <h3>Certificações</h3>
-              <ul>
-                <li>Introdução à Programação - Fundação Bradesco</li>
-                <li>Lógica de Programação - Fundação Bradesco</li>
-                <li>ITIL - SENAI</li>
-                <li>Metodologia Lean</li>
-                <li>Pilotagem Profissional de Drones</li>
-                <li>Idiomas: Inglês – Incrementando o vocabulário</li>
-                <li>Capacitações complementares em tecnologia e TI</li>
+            <article class="card content-card">
+              <h3>Certificações e complementos</h3>
+              <ul class="education-list">
+                <li>Introdução à Programação e Lógica de Programação - Fundação Bradesco.</li>
+                <li>ITIL, Metodologia Lean e capacitações complementares em TI.</li>
+                <li>Pilotagem Profissional de Drones.</li>
+                <li>Inglês com foco em leitura técnica e ampliação de vocabulário.</li>
               </ul>
-            </div>
-
-            <div class="card formation-card">
-              <h3>Idiomas</h3>
-              <ul>
-                <li>Português - Nativo</li>
-                <li>Inglês - Leitura técnica</li>
-              </ul>
-            </div>
-
-            <div class="card formation-card">
-              <h3>Soft Skills</h3>
-              <ul>
-                <li>Proatividade e foco em solução de problemas</li>
-                <li>Organização, atenção aos detalhes e compromisso com entrega</li>
-                <li>Facilidade para aprender e evoluir rapidamente</li>
-                <li>Boa comunicação e colaboração em equipe</li>
-              </ul>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="contato">
+      <section class="section" id="contato">
         <div class="container">
           <div class="section-title reveal">
-            <h2><i class="ri-chat-1-line"></i> Contato</h2>
-            <span class="muted">Retorno rápido por e-mail ou WhatsApp</span>
+            <div>
+              <h2>Contato</h2>
+              <p>Aberto para conversar sobre desenvolvimento web, back-end, sistemas internos e automação de processos.</p>
+            </div>
           </div>
 
           <div class="grid contact-grid reveal">
-            <form
-              class="card contact-card"
-              action="https://formspree.io/f/mgvzqnaw"
-              method="POST"
-              id="contactForm"
-            >
-              <div class="row">
-                <div>
-                  <label for="nome">Nome</label>
-                  <input
-                    id="nome"
-                    name="nome"
-                    placeholder="Seu nome"
-                    required
-                    autocomplete="name"
-                  />
+            <article class="card content-card contact-card">
+              <h3>Enviar mensagem</h3>
+              <form action="https://formspree.io/f/mgvzqnaw" method="POST" id="contactForm">
+                <div class="form-row">
+                  <div>
+                    <label for="nome">Nome</label>
+                    <input id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required />
+                  </div>
+                  <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="voce@exemplo.com" autocomplete="email" required />
+                  </div>
                 </div>
-
                 <div>
-                  <label for="email">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="voce@exemplo.com"
-                    required
-                    autocomplete="email"
-                  />
+                  <label for="mensagem">Mensagem</label>
+                  <textarea id="mensagem" name="mensagem" placeholder="Me conte o que você precisa" required></textarea>
                 </div>
-              </div>
-
-              <div style="margin-top: 12px">
-                <label for="mensagem">Mensagem</label>
-                <textarea
-                  id="mensagem"
-                  name="mensagem"
-                  placeholder="Fale sobre sua necessidade"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="cta" style="margin-top: 14px">
                 <button class="btn btn-primary" type="submit" id="submit-button">
-                  <i class="ri-send-plane-2-line"></i> Enviar
+                  <i class="ri-send-plane-2-line"></i>
+                  Enviar
                 </button>
+                <div id="form-status" class="form-message" role="status" aria-live="polite"></div>
+              </form>
+            </article>
 
-                <a
-                  class="btn btn-ghost"
-                  href="https://api.whatsapp.com/send?phone=5535984687649&text=Olá%20João!%20Gostaria%20de%20conversar%20sobre%20um%20projeto."
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="ri-whatsapp-line"></i> WhatsApp
+            <aside class="card content-card">
+              <h3>Links rápidos</h3>
+              <p>
+                Prefere falar direto? Me chama pelo WhatsApp, LinkedIn ou e-mail.
+              </p>
+              <div class="contact-links">
+                <a href="mailto:contat.joao10@gmail.com">
+                  <i class="ri-mail-line"></i>
+                  contat.joao10@gmail.com
+                </a>
+                <a href="tel:+5535984687649">
+                  <i class="ri-phone-line"></i>
+                  +55 35 98468-7649
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener">
+                  <i class="ri-whatsapp-line"></i>
+                  WhatsApp
+                </a>
+                <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank" rel="noopener">
+                  <i class="ri-linkedin-fill"></i>
+                  LinkedIn
+                </a>
+                <a href="https://github.com/JpGomes035" target="_blank" rel="noopener">
+                  <i class="ri-github-fill"></i>
+                  GitHub
                 </a>
               </div>
-
-              <small class="muted">
-                Ao enviar, você concorda com o contato para fins de retorno.
-              </small>
-
-              <div id="form-status" class="form-message"></div>
-            </form>
-
-            <div class="card help-card">
-              <h3 style="margin-top: 0">Como posso ajudar?</h3>
-              <ul>
-                <li>Desenvolvimento de sistemas web sob medida</li>
-                <li>Back-end com Python, Flask, PHP e bancos relacionais</li>
-                <li>Automação de processos e organização de rotinas operacionais</li>
-                <li>ERPs, painéis administrativos, relatórios e módulos internos</li>
-                <li>Melhorias e modernização de sistemas já existentes</li>
-              </ul>
-
-              <div class="cta">
-                <a class="btn btn-ghost" href="#projetos">
-                  <i class="ri-folder-line"></i> Ver projetos
-                </a>
-              </div>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      <div class="container">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> João Pedro Gomes.</span>
         <div class="footer-links">
-          <a class="pill" href="mailto:contat.joao10@gmail.com">
-            <i class="ri-mail-line"></i> Email
-          </a>
-          <a
-            class="pill"
-            href="https://api.whatsapp.com/send?phone=5535984687649"
-            target="_blank"
-            rel="noopener"
-          >
-            <i class="ri-whatsapp-line"></i> WhatsApp
-          </a>
-          <a
-            class="pill"
-            href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
-            target="_blank"
-            rel="noopener"
-          >
-            <i class="ri-linkedin-fill"></i> LinkedIn
-          </a>
-          <a
-            class="pill"
-            href="https://github.com/JpGomes035"
-            target="_blank"
-            rel="noopener"
-          >
-            <i class="ri-github-fill"></i> GitHub
-          </a>
+          <a class="pill" href="assets/CVJoao.pdf" download><i class="ri-download-2-line"></i> CV</a>
         </div>
-
-        <div>© <span id="year"></span> João Pedro Gomes.</div>
       </div>
     </footer>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      const headerNav = document.querySelector("header .nav");
+      const nav = document.querySelector(".nav");
       const menuBtn = document.querySelector(".menu-btn");
-      const menuLinks = document.querySelectorAll('header a[href^="#"]');
+      const links = document.querySelectorAll(".nav-links a");
 
       menuBtn?.addEventListener("click", () => {
-        const isExpanded = headerNav.classList.toggle("open");
-        menuBtn.setAttribute("aria-expanded", String(isExpanded));
+        const expanded = nav.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", String(expanded));
       });
 
-      menuLinks.forEach((link) => {
+      links.forEach((link) => {
         link.addEventListener("click", () => {
-          if (headerNav.classList.contains("open")) {
-            headerNav.classList.remove("open");
-            menuBtn.setAttribute("aria-expanded", "false");
-          }
+          nav.classList.remove("open");
+          menuBtn?.setAttribute("aria-expanded", "false");
         });
       });
 
-      const io = new IntersectionObserver(
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const moduleCards = document.querySelectorAll(".module-card");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+
+          filterButtons.forEach((item) => {
+            const isActive = item === button;
+            item.classList.toggle("active", isActive);
+            item.setAttribute("aria-pressed", String(isActive));
+          });
+
+          moduleCards.forEach((card) => {
+            const categories = card.dataset.category?.split(" ") ?? [];
+            card.hidden = filter !== "all" && !categories.includes(filter);
+          });
+        });
+      });
+
+      const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("show");
-              io.unobserve(entry.target);
+              observer.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.12 }
       );
 
-      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      const revealItems = document.querySelectorAll(".reveal");
+      const revealVisibleItems = () => {
+        revealItems.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+            item.classList.add("show");
+          }
+        });
+      };
 
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+      revealItems.forEach((item) => observer.observe(item));
+      window.addEventListener("load", revealVisibleItems);
+      window.addEventListener("hashchange", () => requestAnimationFrame(revealVisibleItems));
+      setTimeout(revealVisibleItems, 120);
 
-          const form = e.target;
-          const statusDiv = document.getElementById("form-status");
-          const submitBtn = document.getElementById("submit-button");
-          const data = new FormData(form);
+      const sections = document.querySelectorAll("main section[id]");
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
 
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Enviando...';
+            links.forEach((link) => {
+              link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+            });
+          });
+        },
+        { rootMargin: "-42% 0px -50% 0px", threshold: 0.01 }
+      );
 
-          fetch(form.action, {
+      sections.forEach((section) => navObserver.observe(section));
+
+      const form = document.getElementById("contactForm");
+      const statusDiv = document.getElementById("form-status");
+      const submitBtn = document.getElementById("submit-button");
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Enviando...';
+
+        try {
+          const response = await fetch(form.action, {
             method: form.method,
             body: data,
             headers: { Accept: "application/json" },
-          })
-            .then((response) => {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = '<i class="ri-send-plane-2-line"></i> Enviar';
+          });
 
-              if (response.ok) {
-                statusDiv.textContent =
-                  "Mensagem enviada com sucesso. Retornarei em breve.";
-                statusDiv.classList.remove("form-error");
-                statusDiv.classList.add("form-success");
-                form.reset();
-              } else {
-                statusDiv.textContent =
-                  "Não foi possível enviar agora. Tente novamente ou fale comigo pelo WhatsApp.";
-                statusDiv.classList.remove("form-success");
-                statusDiv.classList.add("form-error");
-              }
-
-              statusDiv.style.display = "block";
-            })
-            .catch(() => {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = '<i class="ri-send-plane-2-line"></i> Enviar';
-              statusDiv.textContent =
-                "Erro de conexão. Fale comigo pelo WhatsApp.";
-              statusDiv.classList.remove("form-success");
-              statusDiv.classList.add("form-error");
-              statusDiv.style.display = "block";
-            });
-        });
+          if (response.ok) {
+            statusDiv.textContent = "Mensagem enviada com sucesso. Retornarei em breve.";
+            statusDiv.className = "form-message form-success";
+            form.reset();
+          } else {
+            statusDiv.textContent = "Não foi possível enviar agora. Me chame pelo WhatsApp ou e-mail.";
+            statusDiv.className = "form-message form-error";
+          }
+        } catch {
+          statusDiv.textContent = "Erro de conexão. Me chame pelo WhatsApp ou e-mail.";
+          statusDiv.className = "form-message form-error";
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="ri-send-plane-2-line"></i> Enviar';
+          statusDiv.style.display = "block";
+        }
+      });
     </script>
   </body>
 </html>
