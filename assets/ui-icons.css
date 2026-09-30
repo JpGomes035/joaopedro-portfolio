@@ -1,5 +1,7 @@
 /* Vector arrows avoid platform-dependent emoji rendering, especially on iOS. */
-svg.ui-arrow {
+svg.ui-arrow,
+svg.ui-asterisk,
+svg.ui-icon {
   display: inline-block;
   width: 1em;
   height: 1em;

@@ -489,9 +489,15 @@ h1 {
 }
 .feature li:before,
 .module-text li:before {
-  content: "✓";
+  content: "";
   position: absolute;
   left: 0;
+  top: 12px;
+  width: 5px;
+  height: 9px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
   color: var(--green);
   font-size: 11px;
 }
