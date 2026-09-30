@@ -1,0 +1,43 @@
+# Portfólio — João Pedro Gomes
+
+Portfólio estático em português, com apresentação profissional, projetos, trajetória, currículo e contato direto. O projeto principal é um mockup interativo do IJA System, inspirado na demonstração pública da [IJA Drones](https://ijadrones.com.br/).
+
+## Prévia local
+
+Na raiz deste repositório:
+
+```sh
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Abra http://127.0.0.1:4173. Não é necessário instalar dependências nem executar um build.
+
+## Arquivos
+
+- `index.html`: conteúdo principal, metadados, navegação e seções.
+- `assets/portfolio.css`: identidade visual, mockup e layouts responsivos.
+- `assets/portfolio.js`: menu mobile e ampliação de imagens.
+- `assets/ija-demo.css` e `assets/ija-demo.js`: visual e comportamento do mockup independente do IJA System.
+- `assets/ija-views.css` e `assets/ija-views.js`: relatórios com gráficos, calendário, usuários, inventário e gestão da frota.
+- `assets/ija-city.webp` e `assets/ija-agro.webp`: fundos da demonstração pública da IJA Drones, reutilizados na apresentação do projeto a pedido do usuário.
+- `assets/CVJoao.pdf`: currículo existente, mantido sem alterações.
+- `Site/index.html`, `Site/css/procontrol.css` e `Site/js/procontrol.js`: landing page do projeto pessoal ProControl, com módulos navegáveis, capturas originais ampliáveis, FAQ e contato. Arquivos antigos de CSS/JS e bibliotecas foram mantidos, mas não são carregados pela nova página.
+- `assets/registro-ija-system-inpi.pdf`: certificado fornecido pelo autor, preservado integralmente. O destaque do IJA System identifica a coautoria de João Pedro Gomes da Silva e Pedro Henrique Cruz Vilas Bôas e a titularidade da IJA Drones Brasil Ltda. – ME.
+
+As fontes Manrope e DM Sans são carregadas pelo Google Fonts, com alternativas locais em caso de indisponibilidade.
+
+## Demonstração IJA System
+
+O mockup é uma implementação independente em HTML/CSS/JavaScript. Os registros são fictícios e identificados como ilustrativos. Não há autenticação, chamadas à API, acesso ao banco de dados nem uso de credenciais do IJA System.
+
+É possível alternar UVIS/Agro, ampliar o painel, mudar o tema, recolher o menu, filtrar status, editar campos da solicitação, consultar histórico, agenda e indicadores e exportar um CSV. A versão UVIS apresenta cartões com resumo, dados técnicos e formulário; a versão Agro tem atalhos para Comercial, Operacional e Financeiro. Novos registros são fictícios e exclusões apenas movem solicitações para Canceladas, com restauração disponível. Anexos são selecionados localmente, sem ler o conteúdo ou enviar arquivos. As alterações existem apenas na memória da página e são reiniciadas ao recarregar.
+
+Referência visual e fundos: https://www.ijadrones.com.br/#plataforma. O link para o sistema oficial abre uma página separada; o mockup não usa iframe nem se conecta ao ambiente de produção.
+
+As telas detalhadas seguem também as capturas fornecidas pelo autor: relatórios com oito indicadores, gráfico de rosca e barras por região, filtros por mês/região e ampliação; agenda mensal e em lista, detalhes dos eventos e exportação; usuários editáveis com exclusão reversível; inventário de drones e baterias por situação; frota com equipes, quilometragem e alertas de revisão calculados. Há operações fictícias em agosto e setembro de 2026. Os gráficos usam CSS, sem dependências. Exportações são CSV, não arquivos Excel nativos. A rota do dia é uma sequência ilustrativa por horário, sem navegação geográfica.
+
+## Conteúdo e publicação
+
+O conteúdo profissional foi reaproveitado do portfólio existente. A descrição do IJA System foi atualizada a partir da documentação local do projeto e da referência pública da empresa, sem copiar dados operacionais privados. Revise as informações profissionais e o currículo ao atualizar sua trajetória.
+
+Este site pode ser servido por hospedagem estática usando a raiz do repositório. A implementação local não publica automaticamente no GitHub ou em outro serviço.

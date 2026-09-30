@@ -1,1837 +1,681 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>João Pedro Gomes | Desenvolvedor Full-Stack</title>
+    <meta name="theme-color" content="#121512" />
     <meta
       name="description"
-      content="Portfólio de João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End, Python, Flask, PostgreSQL, PHP, JavaScript, sistemas de gestão, operações com drones, relatórios e automações."
+      content="João Pedro Gomes — desenvolvedor full-stack. Sistemas de gestão, interfaces e automações que conectam tecnologia à operação real. Conheça o IJA System e meus projetos."
     />
-    <meta name="theme-color" content="#07090f" />
+    <meta
+      property="og:title"
+      content="João Pedro Gomes — Design & Desenvolvimento"
+    />
+    <meta
+      property="og:description"
+      content="Da primeira ideia ao sistema em operação. Conheça meus projetos de desenvolvimento full-stack e interfaces digitais."
+    />
+    <meta property="og:type" content="website" />
+    <title>João Pedro Gomes — Design & Desenvolvimento</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-
-    <style>
-      :root {
-        --bg: #07090f;
-        --bg-2: #0d111a;
-        --ink: #f4f8ff;
-        --muted: #9aa8bf;
-        --line: rgba(255, 255, 255, 0.12);
-        --panel: rgba(14, 19, 29, 0.74);
-        --panel-solid: #111824;
-        --panel-soft: rgba(255, 255, 255, 0.055);
-        --blue: #38bdf8;
-        --blue-2: #60a5fa;
-        --green: #34d399;
-        --gold: #f5b84b;
-        --rose: #fb7185;
-        --dark: #080b12;
-        --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
-        --radius: 8px;
-        --maxw: 1168px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      ::selection {
-        color: #041016;
-        background: var(--green);
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        color: var(--ink);
-        background:
-          linear-gradient(135deg, rgba(56, 189, 248, 0.10), transparent 32%),
-          linear-gradient(225deg, rgba(52, 211, 153, 0.08), transparent 30%),
-          linear-gradient(180deg, #07090f 0%, #0d111a 42%, #07090f 100%);
-        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        overflow-x: hidden;
-      }
-
-      body::before,
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      body::before {
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-        background-size: 42px 42px;
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.86), transparent 78%);
-        animation: grid-drift 18s linear infinite;
-      }
-
-      body::after {
-        background:
-          linear-gradient(115deg, transparent 0 38%, rgba(56, 189, 248, 0.08) 42%, transparent 47% 100%),
-          repeating-linear-gradient(100deg, transparent 0 16px, rgba(255, 255, 255, 0.018) 17px 18px);
-        opacity: 0.55;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      header,
-      main,
-      footer {
-        position: relative;
-        z-index: 1;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
-      button,
-      input,
-      textarea {
-        font: inherit;
-      }
-
-      .container {
-        width: min(var(--maxw), calc(100% - 40px));
-        margin: 0 auto;
-      }
-
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      .eyebrow,
-      .chip,
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        width: fit-content;
-        border-radius: 999px;
-        font-size: 0.84rem;
-        font-weight: 700;
-      }
-
-      .eyebrow {
-        padding: 0.52rem 0.78rem;
-        color: #fff;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-        backdrop-filter: blur(14px);
-      }
-
-      .chip,
-      .pill {
-        padding: 0.38rem 0.64rem;
-        color: #d9f7ff;
-        background: rgba(56, 189, 248, 0.12);
-        border: 1px solid rgba(56, 189, 248, 0.24);
-      }
-
-      .pill {
-        color: #d6e4f4;
-        background: rgba(255, 255, 255, 0.055);
-        border-color: var(--line);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.56rem;
-        min-height: 46px;
-        padding: 0.78rem 1rem;
-        border-radius: var(--radius);
-        border: 1px solid transparent;
-        font-weight: 800;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
-      }
-
-      .btn::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(110deg, transparent 0 34%, rgba(255, 255, 255, 0.24) 48%, transparent 62% 100%);
-        transform: translateX(-120%);
-        transition: transform 520ms ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-3px);
-      }
-
-      .btn:hover::before {
-        transform: translateX(120%);
-      }
-
-      .btn-primary {
-        color: #041015;
-        background: linear-gradient(135deg, var(--blue), var(--green));
-        box-shadow: 0 14px 36px rgba(56, 189, 248, 0.24);
-      }
-
-      .btn-primary:hover {
-        box-shadow: 0 20px 50px rgba(52, 211, 153, 0.23);
-      }
-
-      .btn-ghost {
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.07);
-        border-color: rgba(255, 255, 255, 0.16);
-        backdrop-filter: blur(12px);
-      }
-
-      .btn-dark {
-        color: #fff;
-        background: var(--dark);
-      }
-
-      .muted {
-        color: var(--muted);
-      }
-
-      .section {
-        position: relative;
-        padding: 86px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
-      }
-
-      .section.compact {
-        padding-top: 44px;
-      }
-
-      .section-title {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: end;
-        gap: 20px;
-        margin-bottom: 26px;
-      }
-
-      .section-title h2 {
-        margin: 0;
-        font-family: Sora, sans-serif;
-        font-size: clamp(1.55rem, 2.6vw, 2.2rem);
-        line-height: 1.14;
-        letter-spacing: 0;
-        color: var(--ink);
-      }
-
-      .section-title p {
-        max-width: 620px;
-        margin: 10px 0 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .grid {
-        display: grid;
-        gap: 18px;
-      }
-
-      .card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(18px);
-        position: relative;
-        overflow: hidden;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        pointer-events: none;
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 35%);
-        opacity: 0.68;
-      }
-
-      .card::after {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        border-radius: inherit;
-        pointer-events: none;
-        background: linear-gradient(115deg, transparent 0 38%, rgba(56, 189, 248, 0.16) 48%, transparent 60% 100%);
-        opacity: 0;
-        transform: translateX(-35%);
-        transition: opacity 180ms ease, transform 520ms ease;
-      }
-
-      .card:hover::after {
-        opacity: 1;
-        transform: translateX(35%);
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background: rgba(7, 9, 15, 0.78);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(18px);
-      }
-
-      .nav {
-        height: 68px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.78rem;
-        min-width: 210px;
-      }
-
-      .brand-mark {
-        width: 40px;
-        height: 40px;
-        display: block;
-        object-fit: contain;
-        border-radius: var(--radius);
-        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.1);
-      }
-
-      .brand strong {
-        display: block;
-        font-family: Sora, sans-serif;
-        font-size: 0.98rem;
-      }
-
-      .brand span {
-        display: block;
-        color: var(--muted);
-        font-size: 0.82rem;
-        margin-top: 2px;
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 1.05rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .nav-links a {
-        color: var(--muted);
-        font-size: 0.92rem;
-        font-weight: 800;
-        position: relative;
-        transition: color 180ms ease;
-      }
-
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -8px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--blue), var(--green), var(--gold));
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 180ms ease;
-      }
-
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--ink);
-      }
-
-      .nav-links a:hover::after,
-      .nav-links a.active::after {
-        transform: scaleX(1);
-      }
-
-      .menu-btn {
-        display: none;
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 0.65rem 0.8rem;
-        font-weight: 800;
-      }
-
-      .hero {
-        position: relative;
-        min-height: calc(100svh - 68px);
-        display: grid;
-        align-items: center;
-        padding: 92px 0 68px;
-        color: #fff;
-        overflow: hidden;
-        background:
-          linear-gradient(90deg, rgba(7, 9, 15, 0.96) 0%, rgba(7, 9, 15, 0.76) 39%, rgba(7, 9, 15, 0.28) 100%),
-          linear-gradient(180deg, rgba(7, 9, 15, 0.2) 0%, rgba(7, 9, 15, 0.88) 100%),
-          url("assets/ija-system-hero.png") center / cover no-repeat,
-          #07090f;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        background-size: 58px 58px;
-        mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.72), transparent 64%);
-        animation: grid-drift 16s linear infinite;
-      }
-
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: auto 0 0;
-        height: 210px;
-        background: linear-gradient(180deg, transparent, var(--bg));
-        pointer-events: none;
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 860px;
-      }
-
-      .hero-content::before {
-        content: "BUILD // SHIP // OPERATE";
-        display: block;
-        width: fit-content;
-        margin-bottom: 14px;
-        color: rgba(255, 255, 255, 0.42);
-        font: 800 0.74rem/1 Sora, sans-serif;
-        letter-spacing: 0.18em;
-      }
-
-      .hero h1 {
-        max-width: 790px;
-        margin: 18px 0 0;
-        font-family: Sora, sans-serif;
-        font-size: clamp(2.6rem, 6.3vw, 5.45rem);
-        line-height: 1.02;
-        letter-spacing: 0;
-        text-wrap: balance;
-        text-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
-      }
-
-      .hero-lead {
-        max-width: 720px;
-        margin: 20px 0 0;
-        color: rgba(255, 255, 255, 0.84);
-        font-size: clamp(1.02rem, 1.7vw, 1.22rem);
-        line-height: 1.7;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 26px;
-      }
-
-      .hero-actions .btn-ghost {
-        color: #fff;
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.24);
-      }
-
-      .hero-meta {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 34px;
-        max-width: 850px;
-      }
-
-      .hero-stat {
-        min-height: 110px;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: var(--radius);
-        background:
-          linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.055)),
-          rgba(11, 16, 25, 0.64);
-        backdrop-filter: blur(18px);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-        transition: transform 180ms ease, border-color 180ms ease;
-      }
-
-      .hero-stat:hover {
-        transform: translateY(-5px);
-        border-color: rgba(52, 211, 153, 0.36);
-      }
-
-      .hero-stat strong {
-        display: block;
-        font-family: Sora, sans-serif;
-        font-size: 1.2rem;
-        margin-bottom: 8px;
-      }
-
-      .hero-stat span {
-        color: rgba(255, 255, 255, 0.76);
-        font-size: 0.92rem;
-        line-height: 1.5;
-      }
-
-      .proof-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .proof-card {
-        padding: 20px;
-        min-height: 138px;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .proof-card i {
-        width: 42px;
-        height: 42px;
-        display: grid;
-        place-items: center;
-        color: #061017;
-        background: linear-gradient(135deg, var(--blue), var(--green));
-        border-radius: var(--radius);
-        font-size: 1.5rem;
-      }
-
-      .proof-card:hover,
-      .skill-group:hover,
-      .project-card:hover,
-      .timeline-item:hover,
-      .content-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(56, 189, 248, 0.28);
-        background: rgba(18, 25, 38, 0.86);
-      }
-
-      .proof-card strong {
-        display: block;
-        margin: 14px 0 7px;
-        font-family: Sora, sans-serif;
-        font-size: 1.05rem;
-      }
-
-      .proof-card span {
-        color: var(--muted);
-        line-height: 1.55;
-      }
-
-      .about-grid {
-        grid-template-columns: 1.08fr 0.92fr;
-        align-items: start;
-      }
-
-      .content-card {
-        padding: 26px;
-      }
-
-      .content-card h3 {
-        margin: 0 0 12px;
-        font-family: Sora, sans-serif;
-        font-size: 1.22rem;
-      }
-
-      .content-card p {
-        margin: 0 0 14px;
-        color: var(--muted);
-        line-height: 1.8;
-      }
-
-      .content-card p:last-child {
-        margin-bottom: 0;
-      }
-
-      .quick-list {
-        display: grid;
-        gap: 12px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .quick-list li {
-        display: grid;
-        grid-template-columns: 34px 1fr;
-        gap: 12px;
-        align-items: start;
-        color: var(--muted);
-        line-height: 1.6;
-      }
-
-      .quick-list i {
-        width: 34px;
-        height: 34px;
-        display: grid;
-        place-items: center;
-        color: #051016;
-        background: linear-gradient(135deg, var(--green), var(--blue));
-        border-radius: var(--radius);
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .skill-group {
-        padding: 20px;
-        min-height: 174px;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .skill-group h3 {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        margin: 0 0 14px;
-        font-family: Sora, sans-serif;
-        font-size: 1rem;
-      }
-
-      .skill-group h3 i {
-        color: var(--blue);
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .tag {
-        padding: 0.42rem 0.58rem;
-        border-radius: var(--radius);
-        color: #d8e7f7;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid var(--line);
-        font-size: 0.84rem;
-        font-weight: 700;
-      }
-
-      .projects-grid {
-        grid-template-columns: repeat(12, 1fr);
-      }
-
-      .project-card {
-        grid-column: span 6;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .project-card.featured {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 0.95fr 1.05fr;
-        border-color: rgba(56, 189, 248, 0.22);
-      }
-
-      .project-media {
-        min-height: 310px;
-        background:
-          linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(52, 211, 153, 0.12)),
-          url("assets/ija-system-hero.png") center / cover no-repeat;
-      }
-
-      .project-thumb {
-        min-height: 210px;
-        background-position: center;
-        background-size: cover;
-        border-bottom: 1px solid var(--line);
-        position: relative;
-      }
-
-      .project-thumb::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, transparent 35%, rgba(7, 9, 15, 0.72) 100%),
-          radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 42%);
-      }
-
-      .project-body {
-        padding: 24px;
-      }
-
-      .project-body h3 {
-        margin: 0 0 10px;
-        font-family: Sora, sans-serif;
-        font-size: 1.35rem;
-      }
-
-      .project-body p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .project-body ul,
-      .timeline,
-      .education-list {
-        margin: 16px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .project-body li,
-      .education-list li {
-        position: relative;
-        padding-left: 20px;
-        margin: 0 0 10px;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .project-body li::before,
-      .education-list li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.72em;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--green), var(--blue));
-      }
-
-      .badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 16px 0;
-      }
-
-      .system-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .system-toolbar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: -6px 0 22px;
-      }
-
-      .filter-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        min-height: 38px;
-        padding: 0.48rem 0.72rem;
-        color: var(--muted);
-        background: rgba(255, 255, 255, 0.055);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        font-weight: 800;
-        cursor: pointer;
-        transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
-      }
-
-      .filter-btn:hover {
-        transform: translateY(-2px);
-        color: var(--ink);
-        border-color: rgba(56, 189, 248, 0.28);
-      }
-
-      .filter-btn.active {
-        color: #041016;
-        background: linear-gradient(135deg, var(--blue), var(--green));
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .module-card {
-        padding: 20px;
-        transition: transform 180ms ease, opacity 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .module-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(245, 184, 75, 0.34);
-        background: rgba(18, 25, 38, 0.86);
-      }
-
-      .module-card[hidden] {
-        display: none;
-      }
-
-      .module-card h3 {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        margin: 0 0 10px;
-        font-family: Sora, sans-serif;
-        font-size: 1.05rem;
-      }
-
-      .module-card h3 i {
-        width: 34px;
-        height: 34px;
-        display: grid;
-        flex: 0 0 34px;
-        place-items: center;
-        color: #120d04;
-        background: linear-gradient(135deg, var(--gold), var(--green));
-        border-radius: var(--radius);
-      }
-
-      .module-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.68;
-      }
-
-      .timeline {
-        display: grid;
-        gap: 16px;
-      }
-
-      .timeline-item {
-        display: grid;
-        grid-template-columns: 180px 1fr;
-        gap: 20px;
-        padding: 22px;
-        border-left: 3px solid rgba(52, 211, 153, 0.58);
-      }
-
-      .timeline-date {
-        color: var(--green);
-        font-weight: 900;
-      }
-
-      .timeline-item h3 {
-        margin: 0 0 8px;
-        font-family: Sora, sans-serif;
-        font-size: 1.1rem;
-      }
-
-      .timeline-item p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.72;
-      }
-
-      .formation-grid,
-      .contact-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-card form {
-        display: grid;
-        gap: 14px;
-      }
-
-      .form-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 7px;
-        color: var(--muted);
-        font-size: 0.9rem;
-        font-weight: 700;
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.065);
-        color: var(--ink);
-        padding: 0.84rem 0.9rem;
-        outline: none;
-        transition: border-color 180ms ease, box-shadow 180ms ease;
-      }
-
-      textarea {
-        min-height: 130px;
-        resize: vertical;
-      }
-
-      input:focus,
-      textarea:focus {
-        border-color: var(--blue-2);
-        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.13);
-      }
-
-      .contact-links {
-        display: grid;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .contact-links a {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        padding: 0.78rem 0.9rem;
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid var(--line);
-        color: var(--ink);
-        font-weight: 800;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .contact-links a:hover {
-        transform: translateX(4px);
-        border-color: rgba(56, 189, 248, 0.3);
-        background: rgba(56, 189, 248, 0.09);
-      }
-
-      .form-message {
-        display: none;
-        padding: 12px;
-        border-radius: var(--radius);
-        font-weight: 800;
-      }
-
-      .form-success {
-        color: #bdf8de;
-        background: rgba(52, 211, 153, 0.13);
-        border: 1px solid rgba(52, 211, 153, 0.36);
-      }
-
-      .form-error {
-        color: #ffd1d8;
-        background: rgba(251, 113, 133, 0.13);
-        border: 1px solid rgba(251, 113, 133, 0.36);
-      }
-
-      footer {
-        padding: 34px 0;
-        color: var(--muted);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(7, 9, 15, 0.9);
-      }
-
-      .footer-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-
-      .footer-links {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(24px) scale(0.985);
-        transition: opacity 700ms ease, transform 700ms ease;
-      }
-
-      .reveal.show {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-      @keyframes grid-drift {
-        from {
-          background-position: 0 0, 0 0;
-        }
-        to {
-          background-position: 42px 42px, 42px 42px;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .nav-links {
-          position: absolute;
-          top: 68px;
-          left: 0;
-          right: 0;
-          display: none;
-          flex-direction: column;
-          align-items: stretch;
-          padding: 16px 20px 20px;
-          background: rgba(7, 9, 15, 0.98);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(18px);
-        }
-
-        .nav.open .nav-links {
-          display: flex;
-        }
-
-        .menu-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-        }
-
-        .section-title,
-        .about-grid,
-        .project-card.featured,
-        .formation-grid,
-        .contact-grid,
-        .timeline-item {
-          grid-template-columns: 1fr;
-        }
-
-        .proof-grid,
-        .skills-grid,
-        .system-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .project-card {
-          grid-column: 1 / -1;
-        }
-
-        .project-media {
-          min-height: 260px;
-        }
-      }
-
-      @media (max-width: 680px) {
-        .container {
-          width: min(100% - 28px, var(--maxw));
-        }
-
-        .brand {
-          min-width: 0;
-        }
-
-        .brand strong {
-          font-size: 0.94rem;
-        }
-
-        .brand > span > span {
-          display: none;
-        }
-
-        .hero {
-          min-height: auto;
-          padding: 74px 0 52px;
-          background-position: 58% center;
-        }
-
-        .hero-content::before {
-          font-size: 0.66rem;
-        }
-
-        .hero h1 {
-          font-size: clamp(2.2rem, 13vw, 3.55rem);
-        }
-
-        .hero-meta,
-        .proof-grid,
-        .skills-grid,
-        .system-grid,
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-actions {
-          align-items: stretch;
-          flex-direction: column;
-        }
-
-        .btn {
-          width: 100%;
-        }
-
-        .content-card,
-        .project-body,
-        .module-card,
-        .skill-group,
-        .proof-card,
-        .timeline-item {
-          padding: 18px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="assets/portfolio.css" />
+    <link rel="stylesheet" href="assets/ija-demo.css" />
+    <link rel="stylesheet" href="assets/ija-views.css" />
+    <script src="assets/ija-views.js" defer></script>
+    <script src="assets/ija-demo.js" defer></script>
+    <script src="assets/portfolio.js" defer></script>
   </head>
-
   <body>
-    <header>
-      <nav class="container nav" id="top" aria-label="Navegação principal">
-        <a class="brand" href="#top" aria-label="Ir para o topo">
-          <img class="brand-mark" src="assets/favicon.svg" alt="" aria-hidden="true" />
-          <span>
-            <strong>João Pedro Gomes</strong>
-            <span>Desenvolvedor Full-Stack</span>
-          </span>
-        </a>
-
-        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
-          <i class="ri-menu-3-line"></i>
-          Menu
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <nav class="container nav" aria-label="Navegação principal">
+        <a class="wordmark" href="#inicio" aria-label="João Pedro, início"
+          >jp<span>.</span
+          ><span class="wordmark-name"
+            >João Pedro Gomes<br /><small>DESIGN & DESENVOLVIMENTO</small></span
+          ></a
+        >
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          type="button"
+        >
+          Menu <span>☰</span>
         </button>
-
-        <ul class="nav-links" id="menu">
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#habilidades">Habilidades</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#sistema">IJA System</a></li>
-          <li><a href="#experiencia">Experiência</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
+        <div class="nav-links" id="nav-links">
+          <a href="#projetos">Projetos</a><a href="#sobre">Sobre mim</a
+          ><a href="#experiencia">Trajetória</a
+          ><a class="nav-contact" href="#contato"
+            >Vamos conversar <span>↗</span></a
+          >
+        </div>
       </nav>
     </header>
-
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero-content reveal">
-          <span class="eyebrow">
-            <i class="ri-flight-takeoff-line"></i>
-            Sistemas web para operação real, dados e gestão
-          </span>
-
-          <h1 id="hero-title">Desenvolvo sistemas que tiram processos do improviso.</h1>
-
-          <p class="hero-lead">
-            Sou João Pedro Gomes, Desenvolvedor Full-Stack com foco em Back-End.
-            Trabalho com Python, Flask, PostgreSQL, PHP, JavaScript e integrações
-            para transformar rotinas operacionais em plataformas organizadas,
-            rastreáveis e úteis para o negócio.
+    <main id="conteudo">
+      <section class="hero container" id="inicio">
+        <div class="hero-kicker">
+          <span class="status-dot"></span> DESENVOLVEDOR FULL-STACK
+          <span class="kicker-end">PORTFÓLIO / 2026</span>
+        </div>
+        <h1>
+          Boa ideia.<br />Bom design.<br /><span>Sistema de verdade.</span>
+        </h1>
+        <div class="hero-bottom">
+          <p>
+            Sou João Pedro Gomes. Conecto design, código e negócio para
+            transformar processos complexos em experiências simples de usar.
           </p>
-
           <div class="hero-actions">
-            <a class="btn btn-primary" href="assets/CVJoao.pdf" download>
-              <i class="ri-download-2-line"></i>
-              Baixar currículo
-            </a>
-            <a class="btn btn-ghost" href="#projetos">
-              <i class="ri-folder-3-line"></i>
-              Ver projetos
-            </a>
-            <a
-              class="btn btn-ghost"
-              href="https://api.whatsapp.com/send?phone=5535984687649&text=Olá%20João!%20Vim%20pelo%20seu%20portfólio."
-              target="_blank"
-              rel="noopener"
+            <a class="button button-lime" href="#projetos"
+              >Explore meus projetos <span>↘</span></a
+            ><a class="text-link" href="assets/CVJoao.pdf" download
+              >Baixar currículo <span>↓</span></a
             >
-              <i class="ri-whatsapp-line"></i>
-              WhatsApp
-            </a>
-          </div>
-
-          <div class="hero-meta" aria-label="Destaques profissionais">
-            <div class="hero-stat">
-              <strong>32 módulos</strong>
-              <span>Aplicação Flask modular com áreas de operação, agro, financeiro, mapas e relatórios.</span>
-            </div>
-            <div class="hero-stat">
-              <strong>125 telas</strong>
-              <span>Templates Jinja para fluxos administrativos, operacionais, piloto, UVIS e gestão.</span>
-            </div>
-            <div class="hero-stat">
-              <strong>Dados reais</strong>
-              <span>Importação de Excel/KML, exportação de relatórios, anexos, auditoria e controle de acesso.</span>
-            </div>
           </div>
         </div>
-      </section>
-
-      <section class="section compact">
-        <div class="container grid proof-grid reveal">
-          <article class="card proof-card">
-            <i class="ri-database-2-line"></i>
-            <strong>Back-end estruturado</strong>
-            <span>Modelagem relacional, regras de negócio, serviços por domínio e migrations com Flask-SQLAlchemy.</span>
-          </article>
-          <article class="card proof-card">
-            <i class="ri-shield-check-line"></i>
-            <strong>Acesso e auditoria</strong>
-            <span>Perfis por tipo de usuário, escopo por prefeitura/região e registro de ações sensíveis.</span>
-          </article>
-          <article class="card proof-card">
-            <i class="ri-map-pin-line"></i>
-            <strong>Operação geográfica</strong>
-            <span>Geolocalização, Google Maps, rotas KML, logs DJI e relatórios ligados à operação com drones.</span>
-          </article>
-          <article class="card proof-card">
-            <i class="ri-file-chart-line"></i>
-            <strong>Relatórios e exportações</strong>
-            <span>Geração de PDF, Excel, dashboards, filtros avançados e indicadores para decisão.</span>
-          </article>
+        <div class="hero-caption">
+          <span>INTERFACES COM PROPÓSITO. CÓDIGO COM CONTEXTO.</span
+          ><span>ROLE PARA EXPLORAR ↓</span>
         </div>
       </section>
-
-      <section class="section" id="sobre">
+      <section class="featured-section" id="projetos">
         <div class="container">
-          <div class="section-title reveal">
+          <div class="section-heading">
+            <span class="eyebrow">01 / PROJETOS SELECIONADOS</span
+            ><span class="subtle">Do problema real ao produto digital.</span>
+          </div>
+          <div class="project-heading">
             <div>
-              <h2>Sobre Mim</h2>
-              <p>
-                Minha experiência veio de sistemas que precisam funcionar na rotina:
-                atendimento, ERP, operação em campo, controle financeiro, automação e gestão.
-              </p>
+              <div class="project-label">
+                <span class="status-dot"></span> PROJETO EM EVOLUÇÃO · IJA
+                DRONES
+              </div>
+              <h2>
+                IJA System<span class="accent" aria-hidden="true">✳</span>
+              </h2>
             </div>
-            <span class="pill"><i class="ri-code-box-line"></i> Desde 2022 em tecnologia</span>
+            <a
+              class="round-link"
+              href="#case-ija"
+              aria-label="Conhecer o projeto IJA System"
+              >↗</a
+            >
           </div>
-
-          <div class="grid about-grid">
-            <article class="card content-card reveal">
-              <h3>Perfil profissional</h3>
-              <p>
-                Tenho uma base forte em desenvolvimento de sistemas corporativos,
-                principalmente no back-end, onde organizo regras de negócio, banco
-                de dados, autenticação, relatórios e integrações. Gosto de trabalhar
-                perto da operação para entender o problema real antes de codar a solução.
-              </p>
-              <p>
-                Atualmente atuo no desenvolvimento do IJA System, plataforma interna
-                da IJA Drones que centraliza solicitações de voo, ordens de serviço,
-                equipes, pilotos, equipamentos, checklists, relatórios, financeiro
-                agro, importação de logs DJI, mapas e rotinas administrativas.
-              </p>
-            </article>
-
-            <aside class="card content-card reveal">
-              <h3>O que eu entrego</h3>
-              <ul class="quick-list">
-                <li>
-                  <i class="ri-settings-3-line"></i>
-                  <span>Transformo processos manuais em fluxos digitais com status, histórico e responsabilidades claras.</span>
-                </li>
-                <li>
-                  <i class="ri-lock-password-line"></i>
-                  <span>Implemento controle de acesso por perfil, escopo de dados e trilha de auditoria.</span>
-                </li>
-                <li>
-                  <i class="ri-bar-chart-box-line"></i>
-                  <span>Crio dashboards, filtros, relatórios PDF/Excel e indicadores para operação e gestão.</span>
-                </li>
-                <li>
-                  <i class="ri-tools-line"></i>
-                  <span>Faço manutenção evolutiva em sistemas existentes com foco em estabilidade e clareza.</span>
-                </li>
-              </ul>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="habilidades">
-        <div class="container">
-          <div class="section-title reveal">
-            <div>
-              <h2>Habilidades</h2>
-              <p>Stack e competências usadas em projetos reais de gestão, operação e automação.</p>
+          <div class="project-intro">
+            <p>Uma operação complexa.<br />Uma experiência conectada.</p>
+            <div class="tags">
+              <span>Full-stack</span><span>Interface & usabilidade</span
+              ><span>Gestão operacional</span>
             </div>
           </div>
-
-          <div class="grid skills-grid reveal">
-            <article class="card skill-group">
-              <h3><i class="ri-server-line"></i> Back-End</h3>
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Flask</span>
-                <span class="tag">SQLAlchemy</span>
-                <span class="tag">Flask-Login</span>
-                <span class="tag">Flask-Migrate</span>
-                <span class="tag">PHP</span>
-              </div>
-            </article>
-
-            <article class="card skill-group">
-              <h3><i class="ri-database-line"></i> Dados</h3>
-              <div class="tags">
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">SQLite</span>
-                <span class="tag">MySQL</span>
-                <span class="tag">Migrations</span>
-                <span class="tag">Modelagem</span>
-                <span class="tag">Filtros</span>
-              </div>
-            </article>
-
-            <article class="card skill-group">
-              <h3><i class="ri-layout-4-line"></i> Front-End</h3>
-              <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Bootstrap</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Jinja2</span>
-                <span class="tag">UX operacional</span>
-              </div>
-            </article>
-
-            <article class="card skill-group">
-              <h3><i class="ri-plug-line"></i> Integrações</h3>
-              <div class="tags">
-                <span class="tag">Google Maps</span>
-                <span class="tag">OpenPyXL</span>
-                <span class="tag">WeasyPrint</span>
-                <span class="tag">APIs</span>
-                <span class="tag">Docker</span>
-                <span class="tag">Git</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="projetos">
-        <div class="container">
-          <div class="section-title reveal">
-            <div>
-              <h2>Projetos</h2>
-              <p>Projetos com foco em resolver rotina de empresa: gestão, operação, atendimento, venda e dados.</p>
-            </div>
-            <a class="pill" href="https://github.com/JpGomes035" target="_blank" rel="noopener">
-              <i class="ri-github-fill"></i>
-              GitHub
-            </a>
-          </div>
-
-          <div class="grid projects-grid">
-            <article class="card project-card featured reveal">
-              <div class="project-media" role="img" aria-label="Imagem conceitual de sistema de gestão de drones"></div>
-              <div class="project-body">
-                <span class="chip"><i class="ri-flight-takeoff-line"></i> Projeto principal atual</span>
-                <h3>IJA System - Plataforma de gestão operacional e agro</h3>
-                <p>
-                  Sistema web desenvolvido para centralizar processos da IJA Drones:
-                  solicitações de voo, ordens de serviço, equipe UVIS, pilotos,
-                  veículos, drones, checklists, anexos, mapas, relatórios, logs DJI,
-                  rotas KML, orçamentos, contratos e financeiro agro.
-                </p>
-                <div class="badges">
-                  <span class="tag">Python</span>
-                  <span class="tag">Flask</span>
-                  <span class="tag">PostgreSQL</span>
-                  <span class="tag">SQLAlchemy</span>
-                  <span class="tag">Jinja2</span>
-                  <span class="tag">Google Maps</span>
-                  <span class="tag">PDF / Excel</span>
-                </div>
-                <ul>
-                  <li>Controle de acesso para dev, admin, regional, prefeitura, UVIS, piloto e financeiro.</li>
-                  <li>Escopo de dados por prefeitura e região para proteger informações de cada operação.</li>
-                  <li>Dashboards, filtros por status/endereço/data, relatórios operacionais e exportações.</li>
-                  <li>Importação de logs DJI em Excel e rotas KML com prevenção de duplicidade por hash.</li>
-                  <li>Módulo agro com clientes, fornecedores, orçamento, contrato, OS, bancos, entradas, saídas e caixa diário.</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="card project-card reveal">
+          <div class="mockup-stage" id="mockup-ija" data-segment="uvis">
+            <div class="stage-heading">
+              <span><span class="live-dot"></span> EXPLORE A INTERFACE</span>
               <div
-                class="project-thumb"
-                role="img"
-                aria-label="Interface do sistema ProControl"
-                style="
-                  background-image:
-                    linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(52, 211, 153, 0.12)),
-                    url('home.jpg');
-                "
-              ></div>
-              <div class="project-body">
-                <span class="chip"><i class="ri-store-2-line"></i> ERP</span>
-                <h3>ProControl - Sistema de Gestão</h3>
-                <p>
-                  ERP em PHP e SQL para apoiar rotinas empresariais como estoque,
-                  compras, vendas, financeiro, relatórios, CRM, e-commerce e
-                  processos administrativos.
-                </p>
-                <div class="badges">
-                  <span class="tag">PHP</span>
-                  <span class="tag">MySQL</span>
-                  <span class="tag">Bootstrap</span>
-                  <span class="tag">JavaScript</span>
-                  <span class="tag">ERP</span>
-                </div>
+                class="segment-control"
+                role="group"
+                aria-label="Segmento da demonstração"
+              >
+                <button
+                  type="button"
+                  class="active"
+                  data-segment="uvis"
+                  aria-pressed="true"
+                >
+                  Prefeitura (UVIS)
+                </button>
+                <button type="button" data-segment="agro" aria-pressed="false">
+                  Agro
+                </button>
               </div>
-            </article>
-
-            <article class="card project-card reveal">
-              <div
-                class="project-thumb"
-                role="img"
-                aria-label="Interface de comunicação interna corporativa"
-                style="
-                  background-image:
-                    linear-gradient(135deg, rgba(52, 211, 153, 0.16), rgba(56, 189, 248, 0.12)),
-                    url('imagem.png');
-                "
-              ></div>
-              <div class="project-body">
-                <span class="chip"><i class="ri-message-3-line"></i> Comunicação interna</span>
-                <h3>Chat Corporativo ProControl</h3>
-                <p>
-                  Módulo de comunicação corporativa para organizar conversas por
-                  usuários, grupos e setores, com apoio a tarefas e produtividade
-                  na rotina interna.
-                </p>
-                <div class="badges">
-                  <span class="tag">PHP</span>
-                  <span class="tag">MySQL</span>
-                  <span class="tag">Permissões</span>
-                  <span class="tag">Chat</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project-card reveal">
-              <div
-                class="project-thumb"
-                role="img"
-                aria-label="Tela de catálogo e venda integrada ao ERP"
-                style="
-                  background-image:
-                    linear-gradient(135deg, rgba(245, 184, 75, 0.18), rgba(56, 189, 248, 0.12)),
-                    url('catalogo.jpg');
-                "
-              ></div>
-              <div class="project-body">
-                <span class="chip"><i class="ri-cash-line"></i> Vendas</span>
-                <h3>PDV Integrado ao ProControl</h3>
-                <p>
-                  Frente de caixa conectada ao ERP para acelerar vendas, sincronizar
-                  estoque, registrar movimentações financeiras e simplificar a
-                  operação do balcão.
-                </p>
-                <div class="badges">
-                  <span class="tag">PHP</span>
-                  <span class="tag">MySQL</span>
-                  <span class="tag">PDV</span>
-                  <span class="tag">Estoque</span>
-                  <span class="tag">Financeiro</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project-card reveal">
-              <div
-                class="project-thumb"
-                role="img"
-                aria-label="Painel web com dados, relatórios e automações"
-                style="
-                  background-image:
-                    linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(251, 113, 133, 0.10)),
-                    url('homeww.png');
-                "
-              ></div>
-              <div class="project-body">
-                <span class="chip"><i class="ri-robot-2-line"></i> Automação</span>
-                <h3>Rotinas de relatórios, anexos e importação</h3>
-                <p>
-                  Implementações para reduzir trabalho manual: upload de arquivos,
-                  validações, importação de planilhas, geração de documentos,
-                  relatórios e organização de dados operacionais.
-                </p>
-                <div class="badges">
-                  <span class="tag">Python</span>
-                  <span class="tag">Excel</span>
-                  <span class="tag">PDF</span>
-                  <span class="tag">Validações</span>
-                  <span class="tag">Uploads</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="sistema">
-        <div class="container">
-          <div class="section-title reveal">
-            <div>
-              <h2>IJA System Atual</h2>
-              <p>
-                Uma visão resumida das áreas que fazem parte do sistema hoje,
-                com base nos módulos e serviços do repositório.
-              </p>
+              <button class="expand-demo" type="button" aria-expanded="false">
+                ⛶ Ampliar painel
+              </button>
             </div>
-          </div>
-
-          <div class="system-toolbar reveal" aria-label="Filtrar módulos do IJA System">
-            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">
-              <i class="ri-apps-2-line"></i> Todos
-            </button>
-            <button class="filter-btn" type="button" data-filter="operacao" aria-pressed="false">
-              <i class="ri-flight-takeoff-line"></i> Operação
-            </button>
-            <button class="filter-btn" type="button" data-filter="agro" aria-pressed="false">
-              <i class="ri-seedling-line"></i> Agro
-            </button>
-            <button class="filter-btn" type="button" data-filter="dados" aria-pressed="false">
-              <i class="ri-bar-chart-2-line"></i> Dados
-            </button>
-            <button class="filter-btn" type="button" data-filter="gestao" aria-pressed="false">
-              <i class="ri-settings-3-line"></i> Gestão
-            </button>
-          </div>
-
-          <div class="grid system-grid reveal">
-            <article class="card module-card" data-category="gestao dados">
-              <h3><i class="ri-dashboard-3-line"></i> Painéis administrativos</h3>
-              <p>Dashboard geral, solicitações, canceladas, histórico de OS, filtros por endereço, data, status, unidade, região e protocolo.</p>
-            </article>
-            <article class="card module-card" data-category="gestao operacao">
-              <h3><i class="ri-team-line"></i> UVIS e equipes</h3>
-              <p>Cadastro de UVIS, equipes, membros, acesso operacional, isolamento de dados por perfil, prefeitura e região.</p>
-            </article>
-            <article class="card module-card" data-category="operacao">
-              <h3><i class="ri-plane-line"></i> Pilotos e ordens de serviço</h3>
-              <p>Fluxos para piloto, OS, formulários de execução, dosagem, assinatura, fotos, vídeos, anexos e histórico.</p>
-            </article>
-            <article class="card module-card" data-category="operacao gestao">
-              <h3><i class="ri-car-line"></i> Frota e equipamentos</h3>
-              <p>Gestão de veículos, drones, baterias, checklists semanais, logs de km, abastecimento e manutenção.</p>
-            </article>
-            <article class="card module-card" data-category="agro operacao">
-              <h3><i class="ri-seedling-line"></i> Agro</h3>
-              <p>Clientes, fornecedores, pilotos agro, equipes, equipamentos, orçamentos, contratos, OS agro e RD de mapeamento.</p>
-            </article>
-            <article class="card module-card" data-category="agro dados">
-              <h3><i class="ri-bank-card-line"></i> Financeiro agro</h3>
-              <p>Contas a receber, contas a pagar, entradas, saídas, bancos, categorias, conciliação, caixa diário e relatórios gerais.</p>
-            </article>
-            <article class="card module-card" data-category="operacao dados">
-              <h3><i class="ri-map-2-line"></i> Mapas e dados DJI</h3>
-              <p>Importação de flight logs, KML de rotas, métricas de área, volume, duração, bateria, pilotos, aeronaves e equipes.</p>
-            </article>
-            <article class="card module-card" data-category="dados gestao">
-              <h3><i class="ri-file-excel-2-line"></i> Relatórios</h3>
-              <p>Exportações em Excel/PDF, relatórios de solicitações, coleta de imagens, logs DJI e documentos operacionais.</p>
-            </article>
-            <article class="card module-card" data-category="gestao">
-              <h3><i class="ri-shield-user-line"></i> Segurança e operação</h3>
-              <p>Autenticação, auditoria de mutações, backup, anexos, CEP/geocode, notificações, chatbot e painel dev.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="experiencia">
-        <div class="container">
-          <div class="section-title reveal">
-            <div>
-              <h2>Experiência</h2>
-              <p>Vivência prática em suporte, ERP e desenvolvimento de sistemas web.</p>
-            </div>
-          </div>
-
-          <div class="timeline reveal">
-            <article class="card timeline-item">
-              <div class="timeline-date">Atual</div>
-              <div>
-                <h3>IJA Drones - Desenvolvedor de Software</h3>
-                <p>
-                  Desenvolvimento e evolução do IJA System com Python, Flask,
-                  PostgreSQL, Jinja2, Bootstrap e JavaScript. Atuação em módulos
-                  administrativos, operação de drones, equipes, checklists,
-                  relatórios, importações DJI/KML, financeiro agro, controle de
-                  acesso e melhorias de usabilidade.
-                </p>
+            <div class="app-window" id="demo-app">
+              <div class="app-topbar">
+                <button
+                  class="app-menu"
+                  type="button"
+                  aria-label="Recolher menu da demonstração"
+                  aria-expanded="true"
+                >
+                  ☰
+                </button>
+                <span class="ija-logo">IJA</span>
+                <strong id="app-brand"
+                  >IJA System <span>(Prefeituras)</span></strong
+                >
+                <button class="app-theme" type="button" aria-pressed="false">
+                  <span>☾</span><span class="theme-label">Tema escuro</span>
+                </button>
+                <button
+                  class="app-avatar"
+                  type="button"
+                  aria-label="Perfil demonstrativo"
+                >
+                  <span>●</span>⌄
+                </button>
               </div>
-            </article>
-
-            <article class="card timeline-item">
-              <div class="timeline-date">2025</div>
-              <div>
-                <h3>GF Innovation - Desenvolvedor Full-Stack</h3>
-                <p>
-                  Participação em projetos corporativos, manutenção evolutiva,
-                  organização de demandas, qualidade técnica e desenvolvimento
-                  com Java, PostgreSQL, Git, Docker e tecnologias web.
-                </p>
-              </div>
-            </article>
-
-            <article class="card timeline-item">
-              <div class="timeline-date">2022 - 2024</div>
-              <div>
-                <h3>TCI Sistemas - Suporte Técnico e ERP</h3>
-                <p>
-                  Atendimento a clientes, treinamentos, suporte técnico,
-                  manutenção de ERP, banco de dados e compreensão prática de
-                  problemas reais em sistemas de gestão.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="formacao">
-        <div class="container">
-          <div class="section-title reveal">
-            <div>
-              <h2>Formação e Certificações</h2>
-              <p>Base acadêmica e capacitações que sustentam a prática em desenvolvimento e operação.</p>
-            </div>
-          </div>
-
-          <div class="grid formation-grid reveal">
-            <article class="card content-card">
-              <h3>Formação</h3>
-              <ul class="education-list">
-                <li>Sistemas de Informação - UNOPAR, em andamento.</li>
-                <li>Análise e Desenvolvimento de Sistemas - SENAI Itajubá.</li>
-                <li>Base prática em desenvolvimento web, banco de dados e sistemas corporativos.</li>
-              </ul>
-            </article>
-
-            <article class="card content-card">
-              <h3>Certificações e complementos</h3>
-              <ul class="education-list">
-                <li>Introdução à Programação e Lógica de Programação - Fundação Bradesco.</li>
-                <li>ITIL, Metodologia Lean e capacitações complementares em TI.</li>
-                <li>Pilotagem Profissional de Drones.</li>
-                <li>Inglês com foco em leitura técnica e ampliação de vocabulário.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contato">
-        <div class="container">
-          <div class="section-title reveal">
-            <div>
-              <h2>Contato</h2>
-              <p>Aberto para conversar sobre desenvolvimento web, back-end, sistemas internos e automação de processos.</p>
-            </div>
-          </div>
-
-          <div class="grid contact-grid reveal">
-            <article class="card content-card contact-card">
-              <h3>Enviar mensagem</h3>
-              <form action="https://formspree.io/f/mgvzqnaw" method="POST" id="contactForm">
-                <div class="form-row">
-                  <div>
-                    <label for="nome">Nome</label>
-                    <input id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required />
+              <div class="app-body">
+                <aside class="app-sidebar" aria-label="Áreas da demonstração">
+                  <nav class="sidebar-links" aria-label="Menu do sistema"></nav>
+                  <div class="sidebar-footer">
+                    <span class="mini-avatar">AD</span
+                    ><span>Admin<small>Ambiente demonstrativo</small></span>
                   </div>
-                  <div>
-                    <label for="email">Email</label>
-                    <input id="email" type="email" name="email" placeholder="voce@exemplo.com" autocomplete="email" required />
-                  </div>
+                </aside>
+                <div
+                  class="app-main"
+                  id="demo-content"
+                  tabindex="0"
+                  role="region"
+                  aria-label="Conteúdo do painel"
+                ></div>
+              </div>
+            </div>
+            <div class="demo-online">
+              <i></i>
+              <div>
+                <span>DEMONSTRAÇÃO INTERATIVA</span
+                ><strong id="demo-online-label">Operação UVIS</strong>
+              </div>
+            </div>
+            <div class="stage-footer">
+              <span>DADOS FICTÍCIOS · ALTERAÇÕES TEMPORÁRIAS</span
+              ><a
+                href="https://www.system.oceanoazuldrones.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Acessar o sistema oficial ↗</a
+              >
+            </div>
+          </div>
+          <dialog id="demo-dialog" aria-labelledby="demo-dialog-title">
+            <div class="dialog-header">
+              <h2 id="demo-dialog-title">Nova solicitação</h2>
+              <button
+                type="button"
+                data-close-demo
+                aria-label="Fechar formulário"
+              >
+                ✕
+              </button>
+            </div>
+            <form id="demo-create-form">
+              <label
+                >Unidade ou propriedade<input
+                  name="name"
+                  required
+                  maxlength="70"
+                  placeholder="Ex.: Unidade demonstração" /></label
+              ><label
+                >Tipo de operação<select name="type">
+                  <option>Tratamento</option>
+                  <option>Monitoramento</option>
+                  <option>Pulverização</option>
+                  <option>Mapeamento</option>
+                </select></label
+              ><label
+                >Data da operação<input type="date" name="date" required
+              /></label>
+              <p>Registro fictício salvo somente nesta página.</p>
+              <button type="submit" class="button button-lime">
+                Criar na demonstração ↗
+              </button>
+            </form>
+          </dialog>
+          <div class="case-grid" id="case-ija">
+            <div class="case-title">
+              <span class="eyebrow">POR TRÁS DA INTERFACE</span>
+              <h3>Do campo ao painel.<br />Cada etapa importa.</h3>
+              <a
+                class="text-link"
+                href="https://ijadrones.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Conhecer a IJA Drones ↗</a
+              >
+            </div>
+            <div class="case-story">
+              <p>
+                Desenvolvo e evoluo a plataforma que reúne solicitações,
+                equipes, pilotos, frota, mapas e relatórios da IJA Drones. Um
+                produto construído a partir das necessidades de quem faz a
+                operação acontecer.
+              </p>
+              <div class="case-columns">
+                <div>
+                  <h4>O desafio</h4>
+                  <p>
+                    Conectar demandas, execução em campo e prestação de contas,
+                    reduzindo a dependência de planilhas e informações
+                    dispersas.
+                  </p>
                 </div>
                 <div>
-                  <label for="mensagem">Mensagem</label>
-                  <textarea id="mensagem" name="mensagem" placeholder="Me conte o que você precisa" required></textarea>
+                  <h4>Minha atuação</h4>
+                  <p>
+                    Regras de negócio, banco de dados, interfaces, integrações e
+                    manutenção evolutiva. Do fluxo do usuário à implementação.
+                  </p>
                 </div>
-                <button class="btn btn-primary" type="submit" id="submit-button">
-                  <i class="ri-send-plane-2-line"></i>
-                  Enviar
-                </button>
-                <div id="form-status" class="form-message" role="status" aria-live="polite"></div>
-              </form>
-            </article>
-
-            <aside class="card content-card">
-              <h3>Links rápidos</h3>
-              <p>
-                Prefere falar direto? Me chama pelo WhatsApp, LinkedIn ou e-mail.
-              </p>
-              <div class="contact-links">
-                <a href="mailto:contat.joao10@gmail.com">
-                  <i class="ri-mail-line"></i>
-                  contat.joao10@gmail.com
-                </a>
-                <a href="tel:+5535984687649">
-                  <i class="ri-phone-line"></i>
-                  +55 35 98468-7649
-                </a>
-                <a href="https://api.whatsapp.com/send?phone=5535984687649" target="_blank" rel="noopener">
-                  <i class="ri-whatsapp-line"></i>
-                  WhatsApp
-                </a>
-                <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/" target="_blank" rel="noopener">
-                  <i class="ri-linkedin-fill"></i>
-                  LinkedIn
-                </a>
-                <a href="https://github.com/JpGomes035" target="_blank" rel="noopener">
-                  <i class="ri-github-fill"></i>
-                  GitHub
-                </a>
               </div>
-            </aside>
+              <div class="stack-line">
+                Python <span>/</span> Flask <span>/</span> PostgreSQL
+                <span>/</span> JavaScript <span>/</span> Jinja2
+              </div>
+            </div>
           </div>
+          <aside class="registration-card" aria-labelledby="registration-title">
+            <div class="registration-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 40 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              >
+                <path d="M20 3 35 9v13c0 10-15 19-15 19S5 32 5 22V9Z" />
+                <path d="m12 21 6 6 11-13" /></svg
+              ><span>INPI</span>
+            </div>
+            <div class="registration-copy">
+              <span class="eyebrow">REGISTRO DE PROGRAMA DE COMPUTADOR</span>
+              <h3 id="registration-title">
+                Um projeto com autoria documentada.
+              </h3>
+              <p>
+                Sou coautor do IJA System, ao lado de Pedro Henrique Cruz Vilas
+                Bôas, conforme o certificado de registro expedido pelo INPI.
+              </p>
+              <dl>
+                <div>
+                  <dt>PROCESSO</dt>
+                  <dd>BR 51 2026 007433-9</dd>
+                </div>
+                <div>
+                  <dt>TITULAR</dt>
+                  <dd>IJA Drones Brasil Ltda. – ME</dd>
+                </div>
+                <div>
+                  <dt>CERTIFICADO EXPEDIDO EM</dt>
+                  <dd>15 de setembro de 2026</dd>
+                </div>
+              </dl>
+            </div>
+            <a
+              class="text-link registration-link"
+              href="assets/registro-ija-system-inpi.pdf"
+              target="_blank"
+              rel="noopener"
+              >Consultar certificado <span>↗</span
+              ><small>PDF · Documento fornecido</small></a
+            >
+          </aside>
+          <div class="capabilities">
+            <article>
+              <span class="cap-icon">◎</span>
+              <h4>Operação urbana</h4>
+              <p>
+                Solicitações UVIS, agenda, ordens de serviço e acompanhamento de
+                ações de campo.
+              </p>
+            </article>
+            <article>
+              <span class="cap-icon">↗</span>
+              <h4>Gestão agro</h4>
+              <p>
+                Do orçamento ao contrato, da execução da missão ao controle
+                financeiro.
+              </p>
+            </article>
+            <article>
+              <span class="cap-icon">⌖</span>
+              <h4>Dados no mapa</h4>
+              <p>
+                Geolocalização, registros de voo DJI e importação de rotas KML.
+              </p>
+            </article>
+            <article>
+              <span class="cap-icon">▤</span>
+              <h4>Histórico e controle</h4>
+              <p>
+                Perfis de acesso, auditoria, anexos e exportações em PDF e
+                Excel.
+              </p>
+            </article>
+          </div>
+          <div class="other-projects">
+            <article class="work-card">
+              <a
+                class="work-image procontrol-image"
+                href="Site/index.html"
+                target="_blank"
+                rel="noopener"
+                ><div class="mini-browser">
+                  <div class="browser-dots">
+                    <i></i><i></i><i></i
+                    ><span>ProControl / Gestão empresarial</span>
+                  </div>
+                  <img
+                    src="home.jpg"
+                    alt="Tela do sistema de gestão empresarial ProControl"
+                    width="1920"
+                    height="1080"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="image-action">Explorar projeto ↗</span></a
+              >
+              <div class="work-meta">
+                <span>02 / PROJETO PESSOAL</span><span>PHP · MySQL</span>
+              </div>
+              <h3>ProControl <span>↗</span></h3>
+              <p>
+                Meu projeto de gestão empresarial: estoque, vendas, PDV,
+                financeiro e comunicação conectados. Conheça os módulos e as
+                telas originais na apresentação do ProControl.
+              </p>
+            </article>
+            <article class="work-card">
+              <button
+                class="work-image chat-image"
+                type="button"
+                data-lightbox="Site/img2/chat.png"
+                data-title="Chat Corporativo — ProControl"
+              >
+                <div class="mini-browser">
+                  <div class="browser-dots">
+                    <i></i><i></i><i></i><span>ProControl / Comunicação</span>
+                  </div>
+                  <img
+                    src="Site/img2/chat.png"
+                    alt="Interface do chat corporativo ProControl"
+                    width="1920"
+                    height="1080"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="image-action">Ampliar interface ↗</span>
+              </button>
+              <div class="work-meta">
+                <span>03 / COMUNICAÇÃO INTERNA</span
+                ><span>PHP · JavaScript</span>
+              </div>
+              <h3>Conversas que conectam <span>↗</span></h3>
+              <p>
+                Comunicação entre usuários, grupos e setores integrada ao
+                ambiente de trabalho.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="about-section" id="sobre">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">02 / UM POUCO SOBRE MIM</span
+            ><span class="subtle">Curiosidade que vira construção.</span>
+          </div>
+          <div class="about-grid">
+            <div class="about-art" aria-label="Monograma de João Pedro">
+              <span class="art-corner">PESSOAS + PROCESSOS + CÓDIGO</span>
+              <div class="monogram">jp<span>.</span></div>
+              <div class="art-bottom">
+                <span>João Pedro Gomes</span><span>CRIANDO DESDE 2022 ↗</span>
+              </div>
+            </div>
+            <div class="about-copy">
+              <h2>
+                Eu gosto de entender.<br /><span class="muted"
+                  >E depois, construir.</span
+                >
+              </h2>
+              <p>
+                Minha trajetória começou perto de quem usa o sistema todos os
+                dias: no suporte, nos treinamentos e na rotina de um ERP. Foi
+                ali que aprendi que uma boa solução começa com uma boa pergunta.
+              </p>
+              <p>
+                Hoje sou desenvolvedor full-stack, com foco em back-end e um
+                olhar atento à interface. Trabalho com sistemas de gestão,
+                automações e produtos que precisam fazer sentido tanto no código
+                quanto na operação.
+              </p>
+              <p>
+                No IJA System, conecto essas duas pontas: a complexidade dos
+                processos e a clareza de uma experiência bem resolvida.
+              </p>
+              <dl class="profile-facts">
+                <div>
+                  <dt>BASE</dt>
+                  <dd>Itajubá, Minas Gerais</dd>
+                </div>
+                <div>
+                  <dt>IDIOMAS</dt>
+                  <dd>Português nativo · Inglês para leitura técnica</dd>
+                </div>
+              </dl>
+              <a class="text-link" href="assets/CVJoao.pdf" download
+                >Conheça minha trajetória completa <span>↓</span></a
+              >
+            </div>
+          </div>
+          <div class="skill-row">
+            <span>FERRAMENTAS<br />DO MEU DIA A DIA</span>
+            <div>Python</div>
+            <div>Flask</div>
+            <div>PostgreSQL</div>
+            <div>JavaScript</div>
+            <div>PHP</div>
+            <div>Git</div>
+          </div>
+        </div>
+      </section>
+      <section class="experience-section container" id="experiencia">
+        <div class="experience-intro">
+          <span class="eyebrow">03 / TRAJETÓRIA</span>
+          <h2>Experiência que<br />vem da prática.</h2>
+          <p>
+            Cada etapa trouxe um jeito melhor de entender problemas e construir
+            soluções.
+          </p>
+          <a
+            class="text-link"
+            href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Conecte-se no LinkedIn ↗</a
+          >
+        </div>
+        <div class="timeline">
+          <article>
+            <span class="timeline-period"
+              ><i class="status-dot"></i> 2025 — ATUAL</span
+            >
+            <h3>Desenvolvimento de Sistemas</h3>
+            <h4>IJA Drones · Estágio</h4>
+            <p>
+              Desenvolvimento e evolução do IJA System. Operação de drones,
+              fluxos UVIS e agro, integrações, relatórios e usabilidade.
+            </p>
+          </article>
+          <article>
+            <span class="timeline-period">2025</span>
+            <h3>Desenvolvedor Full-Stack</h3>
+            <h4>GF Innovation</h4>
+            <p>
+              Projetos corporativos e manutenção evolutiva com Java, PostgreSQL,
+              Git, Docker e tecnologias web.
+            </p>
+          </article>
+          <article>
+            <span class="timeline-period">2022 — 2024</span>
+            <h3>Analista em Suporte Computacional</h3>
+            <h4>TCI Sistemas</h4>
+            <p>
+              Do estágio em suporte técnico à atuação como analista:
+              atendimento, treinamentos, banco de dados e suporte a ERP. A base
+              do meu olhar para a experiência do usuário.
+            </p>
+          </article>
+          <div class="education">
+            <span class="eyebrow">FORMAÇÃO</span>
+            <p>
+              Sistemas de Informação
+              <span>UNOPAR · conclusão prevista para dezembro de 2026</span>
+            </p>
+            <p>
+              Análise e Desenvolvimento de Sistemas
+              <span>SENAI Itajubá · 2022</span>
+            </p>
+          </div>
+        </div>
+      </section>
+      <section
+        class="learning-section"
+        id="certificacoes"
+        aria-labelledby="learning-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">04 / FORMAÇÃO COMPLEMENTAR</span>
+            <span class="subtle">Tecnologia, operação e visão de negócio.</span>
+          </div>
+          <div class="learning-intro">
+            <h2 id="learning-title">
+              Aprender também<br />faz parte de construir.
+            </h2>
+            <p>
+              Cursos e capacitações que complementam minha formação e ampliam
+              meu repertório para trabalhar com sistemas, pessoas e processos.
+            </p>
+          </div>
+          <div class="learning-grid">
+            <article class="learning-item">
+              <span class="learning-number" aria-hidden="true">01 /</span>
+              <div>
+                <h3>ITIL</h3>
+                <p>Gestão de serviços de tecnologia.</p>
+                <span class="learning-source">SENAI Itajubá · 2022</span>
+              </div>
+            </article>
+            <article class="learning-item">
+              <span class="learning-number" aria-hidden="true">02 /</span>
+              <div>
+                <h3>Fundamentos de programação</h3>
+                <p>Introdução à Programação e Lógica de Programação.</p>
+                <span class="learning-source">Fundação Bradesco</span>
+              </div>
+            </article>
+            <article class="learning-item">
+              <span class="learning-number" aria-hidden="true">03 /</span>
+              <div>
+                <h3>Pilotagem Profissional de Drones</h3>
+                <p>Formação complementar em operação de drones.</p>
+                <span class="learning-source">Operação & tecnologia</span>
+              </div>
+            </article>
+            <article class="learning-item">
+              <span class="learning-number" aria-hidden="true">04 /</span>
+              <div>
+                <h3>Processos & estratégia</h3>
+                <p>Metodologia Lean e Planejamento Estratégico.</p>
+                <span class="learning-source"
+                  >Gestão & melhoria de processos</span
+                >
+              </div>
+            </article>
+            <article class="learning-item">
+              <span class="learning-number" aria-hidden="true">05 /</span>
+              <div>
+                <h3>Mercado financeiro</h3>
+                <p>
+                  Mercado Financeiro de A a Z, Fundos de Investimento, FIDC,
+                  Compliance e Perfil do Investidor.
+                </p>
+                <span class="learning-source"
+                  >Formação complementar em negócios</span
+                >
+              </div>
+            </article>
+            <article class="learning-item">
+              <span class="learning-number" aria-hidden="true">06 /</span>
+              <div>
+                <h3>Direito Internacional</h3>
+                <p>Estudos complementares à formação em tecnologia.</p>
+                <span class="learning-source"
+                  >Conhecimento multidisciplinar</span
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="contact-section" id="contato">
+        <div class="container">
+          <div class="contact-top">
+            <span class="eyebrow">05 / PRÓXIMO PROJETO</span
+            ><span>UMA BOA CONVERSA É UM BOM COMEÇO.</span>
+          </div>
+          <h2>Vamos tirar sua<br />ideia do papel<span>?</span></h2>
+          <div class="contact-bottom">
+            <p>
+              Tem um desafio, uma oportunidade ou uma ideia?<br />Me conta.
+              Vamos construir algo que faça sentido.
+            </p>
+            <a
+              class="button button-dark"
+              href="https://wa.me/5535984687649?text=Ol%C3%A1%2C%20Jo%C3%A3o!%20Conheci%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar."
+              target="_blank"
+              rel="noopener noreferrer"
+              >Vamos conversar <span>↗</span></a
+            >
+          </div>
+          <a class="email-link" href="mailto:contat.joao10@gmail.com"
+            >contat.joao10@gmail.com ↗</a
+          >
         </div>
       </section>
     </main>
-
-    <footer>
-      <div class="container footer-inner">
-        <span>© <span id="year"></span> João Pedro Gomes.</span>
-        <div class="footer-links">
-          <a class="pill" href="assets/CVJoao.pdf" download><i class="ri-download-2-line"></i> CV</a>
-        </div>
+    <footer class="container footer">
+      <a class="wordmark" href="#inicio" aria-label="Voltar ao início"
+        >jp<span>.</span></a
+      ><span
+        >© <span id="year">2026</span> João Pedro Gomes. Feito com
+        intenção.</span
+      >
+      <div>
+        <a
+          href="https://github.com/JpGomes035"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub ↗</a
+        ><a
+          href="https://www.linkedin.com/in/jo%C3%A3o-pedro-gomes-17880224a/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn ↗</a
+        ><a href="#inicio">Voltar ao topo ↑</a>
       </div>
     </footer>
-
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      const nav = document.querySelector(".nav");
-      const menuBtn = document.querySelector(".menu-btn");
-      const links = document.querySelectorAll(".nav-links a");
-
-      menuBtn?.addEventListener("click", () => {
-        const expanded = nav.classList.toggle("open");
-        menuBtn.setAttribute("aria-expanded", String(expanded));
-      });
-
-      links.forEach((link) => {
-        link.addEventListener("click", () => {
-          nav.classList.remove("open");
-          menuBtn?.setAttribute("aria-expanded", "false");
-        });
-      });
-
-      const filterButtons = document.querySelectorAll(".filter-btn");
-      const moduleCards = document.querySelectorAll(".module-card");
-
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const filter = button.dataset.filter;
-
-          filterButtons.forEach((item) => {
-            const isActive = item === button;
-            item.classList.toggle("active", isActive);
-            item.setAttribute("aria-pressed", String(isActive));
-          });
-
-          moduleCards.forEach((card) => {
-            const categories = card.dataset.category?.split(" ") ?? [];
-            card.hidden = filter !== "all" && !categories.includes(filter);
-          });
-        });
-      });
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-
-      const revealItems = document.querySelectorAll(".reveal");
-      const revealVisibleItems = () => {
-        revealItems.forEach((item) => {
-          const rect = item.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-            item.classList.add("show");
-          }
-        });
-      };
-
-      revealItems.forEach((item) => observer.observe(item));
-      window.addEventListener("load", revealVisibleItems);
-      window.addEventListener("hashchange", () => requestAnimationFrame(revealVisibleItems));
-      setTimeout(revealVisibleItems, 120);
-
-      const sections = document.querySelectorAll("main section[id]");
-      const navObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            links.forEach((link) => {
-              link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
-            });
-          });
-        },
-        { rootMargin: "-42% 0px -50% 0px", threshold: 0.01 }
-      );
-
-      sections.forEach((section) => navObserver.observe(section));
-
-      const form = document.getElementById("contactForm");
-      const statusDiv = document.getElementById("form-status");
-      const submitBtn = document.getElementById("submit-button");
-
-      form?.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const data = new FormData(form);
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Enviando...';
-
-        try {
-          const response = await fetch(form.action, {
-            method: form.method,
-            body: data,
-            headers: { Accept: "application/json" },
-          });
-
-          if (response.ok) {
-            statusDiv.textContent = "Mensagem enviada com sucesso. Retornarei em breve.";
-            statusDiv.className = "form-message form-success";
-            form.reset();
-          } else {
-            statusDiv.textContent = "Não foi possível enviar agora. Me chame pelo WhatsApp ou e-mail.";
-            statusDiv.className = "form-message form-error";
-          }
-        } catch {
-          statusDiv.textContent = "Erro de conexão. Me chame pelo WhatsApp ou e-mail.";
-          statusDiv.className = "form-message form-error";
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="ri-send-plane-2-line"></i> Enviar';
-          statusDiv.style.display = "block";
-        }
-      });
-    </script>
+    <dialog id="image-dialog" aria-labelledby="image-dialog-title">
+      <div class="dialog-header">
+        <h2 id="image-dialog-title">Interface do projeto</h2>
+        <button type="button" class="close-dialog" aria-label="Fechar imagem">
+          ✕
+        </button>
+      </div>
+      <img id="dialog-image" alt="" />
+    </dialog>
+    <div class="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

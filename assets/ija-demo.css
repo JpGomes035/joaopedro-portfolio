@@ -1,0 +1,1023 @@
+/* IJA showcase: proportions and visual language based on the public demo. */
+#mockup-ija {
+  width: min(1440px, calc(100vw - 64px));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 30px 32px 26px;
+  border: 1px solid #496572;
+  border-radius: 14px;
+  background:
+    linear-gradient(#0a2a3fd6, #102e3ad9),
+    url("ija-city.webp") center / cover;
+  scroll-margin-top: 25px;
+}
+#mockup-ija[data-segment="agro"] {
+  background-image: linear-gradient(#172e21c9, #172e21e0), url("ija-agro.webp");
+  border-color: #506544;
+}
+#mockup-ija:before {
+  display: none;
+}
+#mockup-ija .stage-heading {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+}
+#mockup-ija .stage-heading > span {
+  font-size: 9px;
+  color: #d9e6e9;
+}
+#mockup-ija .segment-control {
+  background: #ffffff12;
+  border: 1px solid #ffffff26;
+  padding: 5px;
+}
+#mockup-ija .segment-control button {
+  color: #e7eef1;
+  font:
+    600 11px Inter,
+    sans-serif;
+  padding: 11px 23px;
+}
+#mockup-ija .segment-control button.active {
+  background: #087fb7;
+  color: white;
+}
+#mockup-ija[data-segment="agro"] .segment-control button.active {
+  background: #477847;
+}
+.expand-demo {
+  justify-self: end;
+  background: #ffffff0b;
+  color: #e7eef1;
+  border: 1px solid #ffffff30;
+  border-radius: 25px;
+  padding: 10px 14px;
+  font-size: 10px;
+}
+#demo-app {
+  --app-bg: #f7f9fc;
+  --app-ink: #46546b;
+  --app-muted: #7d90ac;
+  --app-blue: #047eb9;
+  --app-line: #e5ebf3;
+  --app-soft: #e4f4fc;
+  margin-top: 28px;
+  border: 1px solid #d2e0e5;
+  border-radius: 27px;
+  font-family: Inter, sans-serif;
+  box-shadow: 0 30px 65px #071c2c66;
+}
+#demo-app[data-segment="agro"] {
+  --app-blue: #357341;
+  --app-soft: #edf5e9;
+}
+#demo-app.dark {
+  --app-bg: #13232c;
+  --app-card: #20323d;
+  --app-ink: #d9e6ed;
+  --app-muted: #a5b9c9;
+  --app-blue: #55bcec;
+  --app-line: #374a56;
+  --app-soft: #223f50;
+  border-color: #415663;
+}
+#demo-app[data-segment="agro"].dark {
+  --app-blue: #98ca86;
+  --app-soft: #2b4532;
+}
+#demo-app .app-topbar {
+  height: 68px;
+  padding: 0 19px;
+  gap: 15px;
+  box-shadow: 0 4px 12px #30496106;
+  position: relative;
+  z-index: 1;
+}
+#demo-app .app-menu {
+  width: 43px;
+  height: 43px;
+  font-size: 22px;
+  border-width: 1.5px;
+  box-shadow: 0 3px 7px #06345110;
+  flex-shrink: 0;
+}
+#demo-app .ija-logo {
+  width: 39px;
+  height: 39px;
+  border-width: 2.5px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+#demo-app .app-topbar > strong {
+  font:
+    500 17px Georgia,
+    serif;
+  white-space: nowrap;
+}
+#demo-app[data-segment="agro"] #app-brand span {
+  font:
+    800 10px Inter,
+    sans-serif;
+  background: var(--app-soft);
+  border-radius: 12px;
+  padding: 5px 9px;
+  margin-left: 7px;
+}
+#demo-app .app-theme {
+  padding: 9px 15px;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  height: 40px;
+  box-shadow: 0 3px 9px #123d3010;
+}
+#demo-app .app-theme > span:first-child {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--app-soft);
+}
+#demo-app .app-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  border: 1.5px solid var(--app-blue);
+  background: var(--app-card);
+  color: var(--app-blue);
+  border-radius: 30px;
+  width: 70px;
+  height: 39px;
+  font-size: 12px;
+}
+#demo-app .app-avatar > span {
+  border: 1px solid var(--app-blue);
+  background: var(--app-soft);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+}
+#demo-app .app-body {
+  display: grid;
+  grid-template-columns: 16% minmax(0, 1fr);
+  height: clamp(560px, 43vw, 680px);
+  min-height: 0;
+}
+#demo-app .app-sidebar {
+  padding: 14px 9px;
+  overflow: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #b9c6cf transparent;
+  background: var(--app-card);
+}
+#demo-app .sidebar-links {
+  display: grid;
+  gap: 5px;
+}
+#demo-app .sidebar-links button {
+  position: relative;
+  display: flex;
+  padding: 15px 10px;
+  min-height: 43px;
+  gap: 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--app-muted);
+}
+#demo-app .sidebar-links button > span:first-child {
+  color: var(--app-blue);
+  font-size: 14px;
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+#demo-app .sidebar-links button .nav-label {
+  color: inherit;
+  font-size: inherit;
+  text-align: left;
+  line-height: 1.4;
+}
+#demo-app .sidebar-links button.selected {
+  background: var(--app-soft);
+}
+#demo-app .sidebar-links button.selected:before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  background: var(--app-blue);
+  border-radius: 0 4px 4px 0;
+}
+.nav-badge {
+  background: #b76e64;
+  color: white;
+  border-radius: 9px;
+  padding: 2px 6px;
+  font-size: 7px;
+  margin-left: auto;
+}
+.nav-live {
+  font-size: 6px;
+  color: #258d74;
+  margin-left: auto;
+}
+#demo-app .sidebar-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  font-size: 10px;
+}
+#demo-app .sidebar-footer small {
+  font-size: 7px;
+}
+#demo-app .app-main {
+  overflow: auto;
+  min-height: 0;
+  padding: 25px 21px;
+  scrollbar-width: thin;
+  scrollbar-color: #b9c6cf transparent;
+  overscroll-behavior: contain;
+}
+#demo-app .app-title-row {
+  margin-bottom: 22px;
+  gap: 12px;
+}
+#demo-app .app-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#demo-app .title-icon {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  background: var(--app-soft);
+  color: var(--app-blue);
+  border: 1px solid #aadcf880;
+  border-radius: 9px;
+  flex-shrink: 0;
+  font-size: 17px;
+}
+#demo-app .app-title h3 {
+  font:
+    800 clamp(19px, 1.65vw, 27px)/1.1 Inter,
+    sans-serif;
+  letter-spacing: -1px;
+}
+#demo-app .app-title p {
+  font-size: 8px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+#demo-app .app-title p strong {
+  color: var(--app-blue);
+}
+#demo-app .app-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+#demo-app .app-action {
+  font:
+    700 8px/1.2 Inter,
+    sans-serif;
+  padding: 11px 13px;
+  border: 1px solid transparent;
+  background: #04a7c2;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px #143b4c14;
+}
+#demo-app .app-action.secondary {
+  background: #2e8b5e;
+}
+#demo-app .app-action.danger {
+  background: #f53d46;
+}
+#demo-app .app-action.outline {
+  background: var(--app-card);
+  color: var(--app-blue);
+  border-color: var(--app-line);
+}
+#demo-app[data-segment="agro"] .app-action:not(.danger):not(.outline) {
+  background: #427746;
+}
+#demo-app .demo-filters {
+  margin-bottom: 13px;
+  box-shadow: 0 7px 18px #18364d06;
+  border-radius: 11px;
+}
+#demo-app .demo-filters summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  list-style: none;
+  color: #376993;
+  font-size: 10px;
+}
+#demo-app.dark .demo-filters summary {
+  color: var(--app-blue);
+}
+#demo-app .demo-filters summary:before {
+  content: "▾";
+  font-size: 11px;
+}
+#demo-app .demo-filters summary::-webkit-details-marker {
+  display: none;
+}
+#demo-app .demo-filters summary b {
+  font-size: 7px;
+  letter-spacing: 0.4px;
+  border: 1px solid #c1e7fa;
+  background: var(--app-soft);
+  color: var(--app-blue);
+  border-radius: 20px;
+  padding: 6px 9px;
+}
+#demo-app .demo-filters summary i {
+  font-style: normal;
+  margin-left: auto;
+}
+#demo-app .demo-request {
+  grid-template-columns: 1.02fr 1.05fr 0.94fr;
+  border-radius: 13px;
+  margin-top: 12px;
+  box-shadow: 0 4px 15px #18364d04;
+}
+#demo-app .request-summary,
+#demo-app .request-details,
+#demo-app .request-form {
+  padding: 13px;
+  min-width: 0;
+}
+#demo-app .request-details {
+  display: block;
+}
+#demo-app .request-summary h4 {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4174a0;
+  margin-bottom: 9px;
+  font-weight: 500;
+}
+#demo-app.dark .request-summary h4 {
+  color: var(--app-blue);
+}
+#demo-app .request-pills {
+  gap: 4px;
+  flex-wrap: wrap;
+}
+#demo-app .request-pills span {
+  font-size: 6px;
+  padding: 5px 7px;
+  background: #8192ab;
+}
+#demo-app .request-pills .green {
+  background: #2f9166;
+}
+#demo-app .team-note {
+  font-size: 8px;
+  margin: 10px 0;
+}
+#demo-app .request-meta {
+  font-size: 8px;
+  padding-top: 7px;
+}
+#demo-app .request-meta p {
+  display: flex;
+  gap: 8px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+#demo-app .request-meta p > span {
+  color: #90a4ba;
+  flex-shrink: 0;
+}
+#demo-app .request-meta small {
+  font-size: 7px;
+  display: block;
+  margin: 4px 0 0 16px;
+  line-height: 1.5;
+}
+#demo-app .request-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+#demo-app .request-buttons button {
+  font-size: 8px;
+  padding: 9px 13px;
+}
+#demo-app .coordinates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font: 600 8px/1.4 monospace;
+  padding: 9px;
+  margin-bottom: 9px;
+  min-height: 35px;
+}
+#demo-app .coordinates button {
+  background: var(--app-card);
+  color: #f53d46;
+  border: 1px solid #ff7780;
+  border-radius: 15px;
+  padding: 4px 9px;
+  font-size: 9px;
+}
+#demo-app .technical-table {
+  font-size: 8px;
+}
+#demo-app .technical-table th,
+#demo-app .technical-table td {
+  padding: 9px 8px;
+  line-height: 1.35;
+}
+#demo-app .technical-table th {
+  font-weight: 600;
+}
+#demo-app .yes-chip {
+  display: inline-block;
+  background: #379869;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 7px;
+}
+#demo-app .request-form {
+  gap: 9px;
+  font-size: 8px;
+}
+#demo-app .coordinate-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+#demo-app .request-form label {
+  gap: 5px;
+}
+#demo-app .request-form input,
+#demo-app .request-form select {
+  font:
+    600 8px/1.4 Inter,
+    sans-serif;
+  padding: 9px 8px;
+  border-radius: 7px;
+}
+#demo-app .request-form input::placeholder {
+  color: var(--app-muted);
+  opacity: 0.7;
+}
+#demo-app .request-controls {
+  padding: 9px;
+  background: var(--app-bg);
+  border: 1px solid var(--app-line);
+  border-radius: 8px;
+  display: grid;
+  gap: 9px;
+}
+#demo-app .attachment-control {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 1px solid #799dc5;
+  color: #3a709d;
+  border-radius: 30px;
+  min-height: 35px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+}
+#demo-app.dark .attachment-control {
+  color: var(--app-blue);
+}
+#demo-app .attachment-control input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+#demo-app .attachment-control:focus-within {
+  outline: 2px solid var(--app-blue);
+  outline-offset: 2px;
+}
+#demo-app .save-demo {
+  padding: 9px;
+  background: #087fb7;
+  font-size: 16px;
+  font-weight: 400;
+}
+#demo-app[data-segment="agro"] .save-demo {
+  background: #427746;
+}
+#demo-app.collapsed .app-body {
+  grid-template-columns: minmax(0, 1fr);
+}
+#demo-app.collapsed .app-sidebar {
+  display: none;
+}
+#mockup-ija .stage-footer {
+  margin-top: 25px;
+  padding-right: 265px;
+  color: #d2e0e6;
+  font-size: 8px;
+  flex-wrap: wrap;
+}
+#mockup-ija .stage-footer a {
+  color: #e8f5f8;
+  border-bottom: 1px solid #ffffff50;
+  padding-bottom: 3px;
+}
+.demo-online {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 235px;
+  padding: 15px 19px;
+  border: 1px solid #dce5ed;
+  background: #fffffff5;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px #092b3d33;
+  position: absolute;
+  right: 50px;
+  bottom: 18px;
+}
+.demo-online i {
+  width: 8px;
+  height: 8px;
+  background: #00a4c6;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #e7f4df;
+}
+.demo-online span {
+  display: block;
+  font:
+    800 7px Inter,
+    sans-serif;
+  color: #008cbd;
+  letter-spacing: 0.6px;
+}
+.demo-online strong {
+  display: block;
+  margin-top: 5px;
+  font:
+    700 11px Inter,
+    sans-serif;
+  color: #46546b;
+}
+#demo-app .agro-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+#demo-app .agro-stats > div {
+  border: 1px solid var(--app-line);
+  border-radius: 10px;
+  background: var(--app-card);
+  padding: 14px 12px;
+}
+#demo-app .agro-stats span {
+  font-size: 8px;
+  color: var(--app-muted);
+}
+#demo-app .agro-stats strong {
+  display: block;
+  color: var(--app-blue);
+  font-size: 24px;
+  margin-top: 9px;
+}
+#demo-app .agro-group {
+  background: var(--app-card);
+  border: 1px solid var(--app-line);
+  border-radius: 13px;
+  padding: 18px;
+  margin-top: 13px;
+}
+#demo-app .agro-group h4 {
+  color: var(--app-blue);
+  font-size: 15px;
+}
+#demo-app .agro-group > p {
+  margin-top: 5px;
+  font-size: 9px;
+  color: var(--app-muted);
+}
+#demo-app .agro-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 15px;
+}
+#demo-app .agro-shortcuts button {
+  text-align: left;
+  background: var(--app-bg);
+  border: 1px solid var(--app-line);
+  padding: 13px;
+  border-radius: 8px;
+  color: var(--app-ink);
+  position: relative;
+}
+#demo-app .agro-shortcuts button:hover {
+  border-color: var(--app-blue);
+}
+#demo-app .agro-shortcuts button > span {
+  color: var(--app-blue);
+  font-size: 18px;
+}
+#demo-app .agro-shortcuts strong {
+  display: block;
+  font-size: 10px;
+  margin-top: 9px;
+}
+#demo-app .agro-shortcuts small {
+  display: block;
+  font-size: 8px;
+  color: var(--app-muted);
+  line-height: 1.5;
+  margin-top: 5px;
+}
+#demo-app .agro-shortcuts i {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-style: normal;
+  color: var(--app-blue);
+  font-size: 10px;
+}
+#demo-app .demo-footnote {
+  font-size: 8px;
+}
+#demo-app .demo-table-scroll {
+  overflow: auto;
+}
+#demo-app .demo-related {
+  margin-top: 20px;
+}
+#mockup-ija.expanded {
+  width: calc(100vw - 24px);
+}
+#mockup-ija.expanded .app-body {
+  height: 75vh;
+}
+#demo-dialog {
+  max-width: 470px;
+}
+#demo-create-form {
+  display: grid;
+  gap: 18px;
+}
+#demo-create-form label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+}
+#demo-create-form label[hidden] {
+  display: none;
+}
+#demo-create-form input,
+#demo-create-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--ink);
+}
+#demo-create-form p {
+  font-size: 11px;
+  color: var(--muted);
+}
+[data-close-demo] {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+@media (min-width: 1600px) {
+  #demo-app .app-body {
+    grid-template-columns: 17% minmax(0, 1fr);
+  }
+  #demo-app .sidebar-links button {
+    font-size: 12px;
+    min-height: 55px;
+  }
+  #demo-app .request-summary,
+  #demo-app .request-details,
+  #demo-app .request-form {
+    padding: 16px;
+  }
+  #demo-app .technical-table,
+  #demo-app .request-form {
+    font-size: 10px;
+  }
+  #demo-app .request-form input,
+  #demo-app .request-form select {
+    font-size: 10px;
+  }
+  #demo-app .request-summary h4 {
+    font-size: 14px;
+  }
+  #demo-app .request-meta {
+    font-size: 10px;
+  }
+  #demo-app .app-action {
+    font-size: 10px;
+  }
+}
+@media (max-width: 1000px) {
+  #mockup-ija {
+    width: calc(100vw - 32px);
+    padding: 23px 18px;
+  }
+  #mockup-ija .stage-heading > span {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  #demo-app .app-body {
+    grid-template-columns: 145px minmax(0, 1fr);
+  }
+  #demo-app .sidebar-links button {
+    padding: 13px 9px;
+    gap: 10px;
+    font-size: 9px;
+  }
+  #demo-app .app-main {
+    padding: 20px 14px;
+  }
+  #demo-app .app-title-row {
+    flex-wrap: wrap;
+  }
+  #demo-app .app-actions {
+    margin-left: auto;
+  }
+  #demo-app .request-summary,
+  #demo-app .request-details,
+  #demo-app .request-form {
+    padding: 10px;
+  }
+  #demo-app .coordinates {
+    font-size: 7px;
+    flex-wrap: wrap;
+  }
+  #demo-app .request-form input,
+  #demo-app .request-form select {
+    padding: 8px 5px;
+  }
+  #demo-app .agro-shortcuts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  #mockup-ija {
+    width: calc(100vw - 24px);
+    padding: 17px 10px 20px;
+    margin-inline-start: 50%;
+    border-radius: 12px;
+  }
+  #mockup-ija .stage-heading {
+    grid-template-columns: 1fr auto;
+    gap: 15px 8px;
+  }
+  #mockup-ija .stage-heading > span {
+    justify-content: start;
+    font-size: 7px;
+  }
+  #mockup-ija .segment-control {
+    grid-row: 2;
+    grid-column: 1/-1;
+    justify-self: center;
+  }
+  #mockup-ija .segment-control button {
+    padding: 10px 22px;
+    font-size: 10px;
+  }
+  .expand-demo {
+    font-size: 8px;
+    padding: 8px 10px;
+  }
+  #demo-app {
+    border-radius: 17px;
+    margin-top: 18px;
+  }
+  #demo-app .app-topbar {
+    height: 59px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  #demo-app .app-menu {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  #demo-app .ija-logo {
+    width: 29px;
+    height: 29px;
+    font-size: 9px;
+  }
+  #demo-app .app-topbar > strong {
+    font-size: 13px;
+  }
+  #demo-app .app-topbar > strong span {
+    display: none;
+  }
+  #demo-app .app-theme {
+    padding: 5px 8px;
+    height: 31px;
+    font-size: 8px;
+    gap: 4px;
+  }
+  #demo-app .app-theme > span:first-child {
+    width: 19px;
+    height: 19px;
+    font-size: 14px;
+  }
+  #demo-app .app-avatar {
+    display: none;
+  }
+  #demo-app .app-body {
+    display: flex;
+    flex-direction: column;
+    height: 620px;
+  }
+  #demo-app .app-sidebar {
+    padding: 7px;
+    overflow: visible;
+    flex-shrink: 0;
+    border: 0;
+    border-bottom: 1px solid var(--app-line);
+  }
+  #demo-app .sidebar-links {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  #demo-app .sidebar-links button {
+    flex-shrink: 0;
+    min-height: 35px;
+    padding: 9px;
+    font-size: 9px;
+    gap: 6px;
+  }
+  #demo-app .sidebar-links button.selected:before {
+    display: none;
+  }
+  #demo-app .sidebar-footer {
+    display: none;
+  }
+  #demo-app .app-main {
+    padding: 18px 11px;
+    flex: 1;
+  }
+  #demo-app .app-title h3 {
+    font-size: 22px;
+  }
+  #demo-app .title-icon {
+    width: 32px;
+    height: 32px;
+  }
+  #demo-app .app-title-row {
+    gap: 14px;
+    margin-bottom: 15px;
+  }
+  #demo-app .app-actions {
+    width: 100%;
+    justify-content: start;
+    margin: 0;
+    gap: 5px;
+  }
+  #demo-app .app-action {
+    font-size: 8px;
+    padding: 10px 11px;
+  }
+  #demo-app .demo-filters summary {
+    font-size: 9px;
+    padding: 12px 9px;
+    gap: 6px;
+  }
+  #demo-app .demo-filters summary b {
+    font-size: 6px;
+    padding: 5px 7px;
+  }
+  #demo-app .demo-request {
+    grid-template-columns: 1fr;
+  }
+  #demo-app .request-summary,
+  #demo-app .request-details {
+    border-right: 0;
+    border-bottom: 1px solid var(--app-line);
+    padding: 15px;
+  }
+  #demo-app .request-summary h4 {
+    font-size: 14px;
+  }
+  #demo-app .request-summary > p,
+  #demo-app .request-meta {
+    font-size: 10px;
+  }
+  #demo-app .request-meta small {
+    font-size: 8px;
+  }
+  #demo-app .request-pills span {
+    font-size: 7px;
+  }
+  #demo-app .technical-table {
+    font-size: 10px;
+  }
+  #demo-app .coordinates {
+    font-size: 10px;
+    flex-wrap: nowrap;
+  }
+  #demo-app .request-form {
+    padding: 15px;
+    font-size: 10px;
+    gap: 12px;
+  }
+  #demo-app .request-form input,
+  #demo-app .request-form select {
+    font-size: 12px;
+    padding: 11px 9px;
+  }
+  #demo-app .request-controls {
+    padding: 12px;
+    gap: 12px;
+  }
+  #demo-app .save-demo {
+    font-size: 17px;
+    padding: 12px;
+  }
+  #demo-app .attachment-control {
+    min-height: 42px;
+  }
+  #mockup-ija .stage-footer {
+    padding-right: 0;
+    margin-top: 16px;
+    flex-direction: column;
+    align-items: start;
+    gap: 9px;
+    font-size: 7px;
+  }
+  #mockup-ija .stage-footer > a {
+    display: inline-block;
+  }
+  .demo-online {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: fit-content;
+    margin: -10px 10px 0 auto;
+    padding: 12px 16px;
+    z-index: 2;
+  }
+  .demo-online strong {
+    font-size: 10px;
+  }
+  .demo-online span {
+    font-size: 6px;
+  }
+  #demo-app .agro-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+  }
+  #demo-app .agro-stats > div:last-child {
+    grid-column: 1/-1;
+  }
+  #demo-app .agro-group {
+    padding: 14px;
+  }
+  #demo-app .agro-shortcuts {
+    gap: 8px;
+  }
+  #demo-app .agro-shortcuts button {
+    padding: 10px;
+  }
+  #demo-app .agro-shortcuts strong {
+    font-size: 10px;
+  }
+  #mockup-ija.expanded .app-body {
+    height: 80vh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mockup-ija * {
+    scroll-behavior: auto;
+  }
+}
