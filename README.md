@@ -38,6 +38,16 @@ As telas detalhadas seguem também as capturas fornecidas pelo autor: relatório
 
 ## Conteúdo e publicação
 
+Os cards de sites institucionais apresentam [IJA Drones](https://www.ijadrones.com.br/) e [Oceano Azul Drones](https://www.oceanoazuldrones.com.br/), com participação no desenvolvimento em colaboração com Pedro Henrique Cruz Vilas Bôas, conforme informado por João Pedro. Ambos incluem um link para o portfólio de Pedro Henrique. As imagens `assets/project-ija-website.jpg` e `assets/project-oceano-website.jpg` são capturas das páginas públicas feitas em 01/10/2026; são prévias estáticas, não iframes ou integrações com esses sites. As descrições resumem a apresentação pública de cada empresa, sem atribuir resultados operacionais ao desenvolvimento do site.
+
+### Documentação pública e experiência do portfólio
+
+- `ija-system.html` e `assets/ija-docs.css`: caderno público do IJA System, com redação própria baseada no README fornecido em outubro de 2026. Inclui diagramas conceituais de UVIS, agro, arquitetura, autorização e mídias. Números de testes são um retrato histórico reportado pelo documento, não uma nova execução. Os guias internos não fornecidos não são reproduzidos nem vinculados como páginas inexistentes.
+- `assets/hero-studio.css`, `assets/hero-studio.js` e `assets/experience.css`: notebook em perspectiva CSS, visualização de código/interface, iluminação, objetos de cenário e toca-discos. Respeita movimento reduzido. Não usa modelos externos nem WebGL.
+- `assets/lofi.js`: instrumental procedural original via Web Audio, com acordes, baixo, melodia e percussão a 76 BPM. Não baixa faixas, não usa streaming e não depende de bibliotecas. O áudio começa somente por ação explícita no player, inicia com volume de 25%, tem pausa/volume e é interrompido ao ocultar a aba. Não retoma automaticamente.
+
+A documentação e todos os novos recursos usam caminhos relativos para funcionar também em `/joaopedro-portfolio/` no GitHub Pages. Nenhuma modificação é realizada no IJA System de produção.
+
 O conteúdo profissional foi reaproveitado do portfólio existente. A descrição do IJA System foi atualizada a partir da documentação local do projeto e da referência pública da empresa, sem copiar dados operacionais privados. Revise as informações profissionais e o currículo ao atualizar sua trajetória.
 
 Este site pode ser servido por hospedagem estática usando a raiz do repositório. A implementação local não publica automaticamente no GitHub ou em outro serviço.

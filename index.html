@@ -32,6 +32,10 @@
     <script src="assets/ija-demo.js" defer></script>
     <script src="assets/portfolio.js" defer></script>
     <link rel="stylesheet" href="assets/ui-icons.css" />
+    <link rel="stylesheet" href="assets/hero-studio.css" />
+    <script src="assets/hero-studio.js" defer></script>
+    <link rel="stylesheet" href="assets/experience.css" />
+    <script src="assets/lofi.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -79,6 +83,58 @@
         <h1>
           Boa ideia.<br />Bom design.<br /><span>Sistema de verdade.</span>
         </h1>
+        <div class="dev-studio" aria-label="Notebook 3D interativo">
+          <div class="studio-scene" aria-hidden="true">
+            <div class="studio-orbit"></div>
+            <div class="studio-shadow"></div>
+            <div class="studio-model">
+              <div class="studio-cube"><i></i><i></i><i></i></div>
+              <div class="studio-database"><i></i><i></i><i></i><span>DATA</span></div>
+              <div class="studio-turntable"><div class="studio-record"><i>jp.</i></div><span class="record-arm"></span><small>LO-FI / 76 BPM</small></div>
+              <div class="studio-chip chip-code">&lt;/&gt;<span>DESENVOLVER</span></div>
+              <div class="studio-chip chip-design"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="m12 3 9 9-9 9-9-9Z"/><path d="M3 12h18M12 3v18"/></svg><span>CRIAR</span></div>
+              <div class="studio-laptop">
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-display">
+                    <div class="editor-bar"><span class="editor-dots"><i></i><i></i><i></i></span><span data-studio-filename>portfolio.js</span><span class="editor-branch">main*</span></div>
+                    <div class="studio-code" data-studio-code>
+                      <div><em>01</em><span class="syntax-comment">// Da ideia à experiência.</span></div>
+                      <div><em>02</em><span><b>const</b> developer = {</span></div>
+                      <div><em>03</em><span>  nome: <strong>'João Pedro'</strong>,</span></div>
+                      <div><em>04</em><span>  foco: <strong>'Full-stack'</strong>,</span></div>
+                      <div><em>05</em><span>  design: <b>true</b>,</span></div>
+                      <div><em>06</em><span>  propósito: <strong>'Simplificar'</strong></span></div>
+                      <div><em>07</em><span>};</span></div>
+                      <div><em>08</em><span></span></div>
+                      <div><em>09</em><span><b>build</b>(ideia).<b>then</b>(impacto);</span></div>
+                      <div><em>10</em><span class="editor-cursor"></span></div>
+                    </div>
+                    <div class="studio-preview" data-studio-preview hidden>
+                      <div class="preview-nav"><strong>jp<span>.</span></strong><span>DESIGN + CÓDIGO</span></div>
+                      <div class="preview-body"><span>IDEIAS EM MOVIMENTO</span><strong>Menos ruído.<br />Mais propósito.</strong><div class="preview-tiles"><i></i><i></i><i></i></div></div>
+                    </div>
+                    <div class="editor-status"><span><i></i> <span data-studio-status>Pronto para criar</span></span><span>UTF-8 · JP</span></div>
+                  </div>
+                  <span class="laptop-signature">JOÃO PEDRO / CREATIVE DEVELOPER</span>
+                </div>
+                <div class="laptop-deck"><div class="laptop-keys"></div><div class="laptop-trackpad"></div></div>
+                <div class="laptop-edge"></div>
+              </div>
+            </div>
+          </div>
+          <div class="studio-toolbar">
+            <span class="studio-label">LAB / 01</span>
+            <div class="studio-controls" role="group" aria-label="Visualização do notebook">
+              <button type="button" data-studio-view="code" aria-pressed="true">Código</button>
+              <button type="button" data-studio-view="preview" aria-pressed="false">Interface</button>
+              <button type="button" class="studio-rotate" aria-label="Girar notebook" title="Girar notebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 8a8 8 0 1 0 1 7M19 3v5h-5"/></svg></button>
+              <button type="button" class="studio-light" aria-label="Iluminação do cenário" aria-pressed="false" title="Iluminação do cenário"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></svg></button>
+            </div>
+          </div>
+          <span class="studio-hint">Design e código, em outra dimensão.</span>
+          <span class="studio-announcement" role="status" aria-live="polite"></span>
+        </div>
         <div class="hero-bottom">
           <p>
             Sou João Pedro Gomes. Conecto design, código e negócio para
@@ -362,6 +418,11 @@
               </div>
             </div>
           </div>
+          <a class="ija-doc-card" href="ija-system.html">
+            <span class="doc-card-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="16" y="3" width="16" height="12" rx="2"/><path d="M24 15v9M9 31v-7h30v7"/><rect x="2" y="31" width="14" height="12" rx="2"/><rect x="32" y="31" width="14" height="12" rx="2"/></svg></span>
+            <span><span class="eyebrow">DOCUMENTAÇÃO / IJA SYSTEM</span><strong>As decisões por trás do sistema.</strong><span class="doc-card-description">Fluxos operacionais, arquitetura, dados e integrações. Explore o projeto além das telas.</span></span>
+            <span class="doc-card-cta">Explorar documentação <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>
+          </a>
           <aside class="registration-card" aria-labelledby="registration-title">
             <div class="registration-mark" aria-hidden="true">
               <svg
@@ -380,8 +441,9 @@
                 Um projeto com autoria documentada.
               </h3>
               <p>
-                Sou coautor do IJA System, ao lado de Pedro Henrique Cruz Vilas
-                Bôas, conforme o certificado de registro expedido pelo INPI.
+                Sou coautor do IJA System, ao lado de
+                <a class="coauthor-link" href="https://pedro-cruzz.github.io/portfolio_dev/" target="_blank" rel="noopener noreferrer" title="Portfólio de Pedro Henrique — abre em nova aba">Pedro Henrique Cruz Vilas Bôas</a>,
+                conforme o certificado de registro expedido pelo INPI.
               </p>
               <dl>
                 <div>
@@ -569,6 +631,32 @@
                 Comunicação entre usuários, grupos e setores integrada ao
                 ambiente de trabalho.
               </p>
+            </article>
+            <article class="work-card website-project">
+              <a class="work-image ija-website-image" href="https://www.ijadrones.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Visitar o site da IJA Drones — abre em nova aba">
+                <div class="mini-browser">
+                  <div class="browser-dots"><i></i><i></i><i></i><span>ijadrones.com.br</span></div>
+                  <img src="assets/project-ija-website.jpg" alt="Página inicial do site da IJA Drones, com apresentação de tecnologia aplicada ao campo" width="1440" height="980" loading="lazy" />
+                </div>
+                <span class="image-action">Visitar site <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>
+              </a>
+              <div class="work-meta"><span>04 / SITE INSTITUCIONAL</span><span>Desenvolvimento colaborativo</span></div>
+              <h3><a href="https://www.ijadrones.com.br/" target="_blank" rel="noopener noreferrer">IJA Drones <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></h3>
+              <p>Site institucional que apresenta as soluções da IJA Drones em pulverização agrícola, mapeamento e gestão digital de missões, conectando a operação de campo ao ecossistema de software da empresa.</p>
+              <p class="project-collaboration">Participei do desenvolvimento em colaboração com <a class="coauthor-link" href="https://pedro-cruzz.github.io/portfolio_dev/" target="_blank" rel="noopener noreferrer" title="Portfólio de Pedro Henrique — abre em nova aba">Pedro Henrique Cruz Vilas Bôas</a>.</p>
+            </article>
+            <article class="work-card website-project">
+              <a class="work-image oceano-website-image" href="https://www.oceanoazuldrones.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Visitar o site da Oceano Azul Drones — abre em nova aba">
+                <div class="mini-browser">
+                  <div class="browser-dots"><i></i><i></i><i></i><span>oceanoazuldrones.com.br</span></div>
+                  <img src="assets/project-oceano-website.jpg" alt="Página inicial da Oceano Azul Drones, apresentando soluções com drones para campo, cidades e infraestrutura" width="1440" height="980" loading="lazy" />
+                </div>
+                <span class="image-action">Visitar site <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>
+              </a>
+              <div class="work-meta"><span>05 / SITE INSTITUCIONAL</span><span>Desenvolvimento colaborativo</span></div>
+              <h3><a href="https://www.oceanoazuldrones.com.br/" target="_blank" rel="noopener noreferrer">Oceano Azul Drones <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></h3>
+              <p>Site institucional dedicado às soluções com drones para agricultura, cidades, energia e infraestrutura. Reúne serviços, operações de campo e canais de contato para apresentar a atuação da empresa.</p>
+              <p class="project-collaboration">Participei do desenvolvimento em colaboração com <a class="coauthor-link" href="https://pedro-cruzz.github.io/portfolio_dev/" target="_blank" rel="noopener noreferrer" title="Portfólio de Pedro Henrique — abre em nova aba">Pedro Henrique Cruz Vilas Bôas</a>.</p>
             </article>
           </div>
         </div>
@@ -910,5 +998,13 @@
       <img id="dialog-image" alt="" />
     </dialog>
     <div class="toast" role="status" aria-live="polite"></div>
+    <aside class="lofi-player" aria-label="Trilha sonora opcional">
+      <button type="button" class="lofi-toggle" aria-pressed="false" aria-label="Reproduzir lo-fi">
+        <span class="lofi-disc" aria-hidden="true"><i></i></span><span><strong data-lofi-label>Ativar lo-fi</strong><small>JP studio / som opcional</small></span>
+        <svg class="lofi-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z"/></svg>
+      </button>
+      <details class="lofi-settings"><summary aria-label="Ajustar volume" title="Ajustar volume"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h4l5-4v12l-5-4H4Zm13-2a6 6 0 0 1 0 8"/></svg></summary><div><label for="lofi-volume">Volume <output id="lofi-volume-value">25%</output></label><input id="lofi-volume" type="range" min="0" max="100" value="25"/><p>Instrumental gerado no navegador. Sem streaming. Pausa ao sair da aba.</p></div></details>
+      <span class="lofi-message" role="status" aria-live="polite"></span>
+    </aside>
   </body>
 </html>

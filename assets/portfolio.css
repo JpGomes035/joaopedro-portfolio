@@ -9,6 +9,14 @@
   --heading: "Manrope", sans-serif;
   color-scheme: dark;
 }
+.coauthor-link {
+  text-decoration: underline;
+  text-decoration-color: #8ba36d;
+  text-underline-offset: 3px;
+}
+.coauthor-link:hover {
+  color: var(--lime);
+}
 .registration-card {
   display: grid;
   grid-template-columns: 86px 1fr auto;
