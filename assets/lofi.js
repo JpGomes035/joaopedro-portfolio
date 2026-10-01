@@ -7,6 +7,7 @@
   if (!player) return;
   const button = player.querySelector('.lofi-toggle');
   const label = player.querySelector('[data-lofi-label]');
+  const subtitle = button.querySelector('small');
   const icon = player.querySelector('.lofi-play-icon path');
   const message = player.querySelector('.lofi-message');
   const volume = player.querySelector('#lofi-volume');
@@ -18,12 +19,48 @@
   let nextBeat = 0;
   let step = 0;
   let generation = 0;
+  let previousSessionType = null;
   const sources = new Set();
   const bpm = 76;
   const eighth = 60 / bpm / 2;
   const chords = [[48,52,55,59],[45,48,52,55],[50,53,57,60],[43,47,50,53]];
   const melody = [76,null,79,null,74,null,71,72, 72,null,76,null,79,76,null,72, 77,null,81,null,76,null,74,72, 74,null,71,67,null,71,74,null];
   const hz = midi => 440 * 2 ** ((midi - 69) / 12);
+
+  function requestPlaybackSession() {
+    // iOS 17+: Web Audio otherwise uses the ambient/ringer audio category.
+    // Only claim the music session after an explicit tap, never on page load.
+    try {
+      const session = navigator.audioSession;
+      if (!session) return;
+      if (previousSessionType === null) previousSessionType = session.type;
+      session.type = 'playback';
+    } catch { /* Optional API: older Safari and other browsers can still play. */ }
+  }
+  function releasePlaybackSession() {
+    try {
+      if (previousSessionType !== null && navigator.audioSession?.type === 'playback') {
+        navigator.audioSession.type = previousSessionType;
+      }
+    } catch { /* The platform may manage the session itself. */ }
+    previousSessionType = null;
+  }
+  function withAudioTimeout(promise, milliseconds = 4000) {
+    let timeout;
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('Audio activation timed out')), milliseconds); }),
+    ]).finally(() => clearTimeout(timeout));
+  }
+  function unlockAudio() {
+    // Start a silent, one-frame source synchronously inside the tap handler.
+    // This primes mobile audio output without a looping silent media element.
+    const source = context.createBufferSource();
+    source.buffer = context.createBuffer(1, 1, context.sampleRate);
+    source.connect(context.destination);
+    keep(source, []);
+    source.start(0);
+  }
 
   function keep(source, nodes) {
     sources.add(source);
@@ -96,6 +133,7 @@
     button.setAttribute('aria-pressed',String(playing));
     button.setAttribute('aria-label',playing ? 'Pausar lo-fi' : 'Reproduzir lo-fi');
     label.textContent = playing ? 'Lo-fi tocando' : 'Ativar lo-fi';
+    subtitle.textContent = 'JP studio / som opcional';
     icon.setAttribute('d',playing ? 'M7 5h4v14H7Zm7 0h4v14h-4Z' : 'm9 5 10 7-10 7Z');
   }
   function initialize() {
@@ -109,8 +147,14 @@
     // Seeded noise buffer makes the timbre repeatable across sessions.
     let seed = 451;
     for (let i=0;i<data.length;i++) { seed = (seed*16807)%2147483647; data[i] = (seed/2147483647)*2-1; }
-    context.addEventListener('statechange', () => {
-      if (playing && context.state !== 'running') { pause(false); message.textContent = 'Áudio interrompido. Use Reproduzir lo-fi para continuar.'; }
+    const engine = context;
+    engine.addEventListener('statechange', () => {
+      if (engine !== context) return;
+      if (playing && engine.state !== 'running') {
+        pause(false);
+        subtitle.textContent = 'Áudio interrompido · toque para voltar';
+        message.textContent = 'Áudio interrompido. Use Reproduzir lo-fi para continuar.';
+      }
     });
   }
   async function pause(suspend = true) {
@@ -118,16 +162,25 @@
     clearInterval(timer); timer = null;
     for (const source of sources) { try { source.stop(); } catch { /* Already ended. */ } }
     sources.clear();
+    if (master && context && context.state !== 'closed') {
+      master.gain.cancelScheduledValues(context.currentTime);
+      master.gain.setValueAtTime(0, context.currentTime);
+    }
     updateUI();
     if (context && suspend && context.state === 'running') {
-      try { await context.suspend(); } catch { /* Closing or interrupted context. */ }
+      try { await withAudioTimeout(context.suspend(), 1000); } catch { /* Muted even if suspension is delayed. */ }
     }
+    if (!playing) releasePlaybackSession();
   }
   async function play() {
     const attempt = ++generation;
     try {
-      if (!context) initialize();
-      await context.resume();
+      requestPlaybackSession();
+      if (!context || context.state === 'closed') initialize();
+      // Both calls must run before the first await to retain the user gesture.
+      const resume = context.resume();
+      unlockAudio();
+      await withAudioTimeout(resume);
       if (attempt !== generation || document.hidden) { await pause(); return; }
       if (context.state !== 'running') throw new Error('Audio is unavailable');
       master.gain.cancelScheduledValues(context.currentTime);
@@ -138,7 +191,13 @@
       message.textContent = 'Lo-fi ativado. Você pode pausar ou ajustar o volume.';
     } catch {
       await pause();
+      const failedContext = context;
+      context = null;
+      if (failedContext && failedContext.state !== 'closed') {
+        failedContext.close().catch(() => {});
+      }
       label.textContent = 'Tentar áudio';
+      subtitle.textContent = 'Toque para tentar novamente';
       message.textContent = 'Não foi possível iniciar o áudio neste navegador. Tente novamente usando o botão.';
     }
   }
