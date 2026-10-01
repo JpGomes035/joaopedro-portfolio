@@ -40,6 +40,8 @@ As telas detalhadas seguem também as capturas fornecidas pelo autor: relatório
 
 ### Fidelidade ao projeto IJA local
 
+O cabeçalho da demonstração mantém a logo circular IJA e o nome “IJA System (Prefeituras)” (ou “IJA System AGRO”), conforme a identidade escolhida para o portfólio. As capturas do tour usam esse mesmo cabeçalho.
+
 As capturas reais fornecidas em 01/10/2026 orientam também `assets/ija-production.js` e `assets/ija-production.css`: central de relatórios com cinco destinos, relatórios de OS, tabela de equipes, coleta de imagens e formulário de pedido de voo. A agenda e os indicadores abrem em outubro de 2026 com registros sintéticos. Os gráficos diferenciam roscas, barras horizontais e colunas, conforme as referências. Os logotipos Oceano Azul foram copiados dos assets do projeto local, sem modificar os originais; a marca JP do portfólio foi preservada.
 
 Nenhuma captura operacional foi incluída no site. Nomes, identificadores e endereços são fictícios, e as miniaturas de levantamentos são ilustrações SVG explicitamente rotuladas, sem fotos reais, GPS, placas ou logins operacionais. O formulário cria somente um registro temporário na demonstração. Retornos e logs de voo são prévias ilustrativas, sem automação ou telemetria. As exportações disponíveis são CSV, sem prometer PDF, ZIP ou Excel não implementados.

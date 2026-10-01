@@ -1,10 +1,4 @@
 /* User-provided production screenshots: recreated UI, never published raw captures. */
-#demo-app[data-segment="uvis"] .ija-logo{display:none}
-#demo-app #app-brand{display:flex;align-items:center;gap:10px}
-#demo-app #app-brand img{width:155px;height:auto}
-#demo-app .ip-brand-dark,#demo-app.dark .ip-brand-light{display:none}
-#demo-app.dark .ip-brand-dark{display:block}
-#demo-app .ip-demo-label{font:600 8px Poppins,sans-serif;letter-spacing:1px;color:var(--app-muted)}
 #demo-app[data-view="media"] .ip-stats article{--tone:#00a3c4!important;border-left:0}
 #demo-app .ir-request-head{display:none}
 #demo-app .ir-request-head + .demo-request{border-radius:16px}
@@ -83,4 +77,3 @@
 @media(max-width:1000px){#demo-app .ip-stats{grid-template-columns:repeat(3,minmax(0,1fr))}#demo-app .ip-center,#demo-app .ip-media-grid,#demo-app .ir-extra-charts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){#demo-app .ip-center,#demo-app .ip-charts,#demo-app .ip-media-grid,#demo-app .ir-extra-charts,#demo-app .ip-fields{grid-template-columns:1fr}#demo-app .ip-stats{grid-template-columns:repeat(2,minmax(0,1fr))}#demo-app .ip-request{padding:20px}#demo-app .ip-request :is(input,select,textarea){font-size:16px!important}#demo-app .ip-filter{flex-wrap:wrap}#demo-app .app-title h3{font-size:23px}#demo-app .ip-center button{min-height:160px}#demo-app .ip-request footer{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){#demo-app .ip-center button{transition:none}}
-@media(max-width:760px){#demo-app #app-brand img{width:115px}#demo-app .ip-demo-label{display:none}}

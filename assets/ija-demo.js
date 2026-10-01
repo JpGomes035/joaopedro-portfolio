@@ -309,7 +309,7 @@
     app.dataset.segment = segment;
     stage.dataset.segment = segment;
     $("#app-brand").innerHTML =
-      segment === "uvis" ? '<img class="ip-brand-light" src="assets/ija-oceano-light.png" alt="Oceano Azul"><img class="ip-brand-dark" src="assets/ija-oceano-dark.png" alt="Oceano Azul"><span class="ip-demo-label">DEMO</span>' : 'IJA System <span>AGRO</span>';
+      `IJA System <span>${segment === "uvis" ? "(Prefeituras)" : "AGRO"}</span>`;
     $("#demo-online-label").textContent =
       segment === "uvis" ? "Operação UVIS" : "Operação Agrícola";
     navigation();
