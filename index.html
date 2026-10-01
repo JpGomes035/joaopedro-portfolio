@@ -22,13 +22,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/portfolio.css" />
     <link rel="stylesheet" href="assets/ija-demo.css" />
     <link rel="stylesheet" href="assets/ija-views.css" />
+    <link rel="stylesheet" href="assets/ija-reference.css" />
+    <link rel="stylesheet" href="assets/ija-production.css" />
     <script src="assets/ija-views.js" defer></script>
+    <script src="assets/ija-reference.js" defer></script>
+    <script src="assets/ija-production.js" defer></script>
     <script src="assets/ija-demo.js" defer></script>
     <script src="assets/portfolio.js" defer></script>
     <link rel="stylesheet" href="assets/ui-icons.css" />
@@ -36,6 +40,8 @@
     <script src="assets/hero-studio.js" defer></script>
     <link rel="stylesheet" href="assets/experience.css" />
     <link rel="stylesheet" href="assets/studio-playground.css" />
+    <link rel="stylesheet" href="assets/project-stories.css" />
+    <script src="assets/project-stories.js" defer></script>
     <script src="assets/lofi.js?v=20261001-mobile" defer></script>
   </head>
   <body>
@@ -243,6 +249,10 @@
               <span>Full-stack</span><span>Interface & usabilidade</span
               ><span>Gestão operacional</span>
             </div>
+          </div>
+          <div class="project-discovery">
+            <div><span class="eyebrow">DO FLUXO À INTERFACE</span><p>Entenda o sistema antes de explorar os detalhes.</p></div>
+            <div class="discovery-actions"><button type="button" class="discovery-primary" data-project-tour aria-haspopup="dialog" aria-controls="project-story-dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z"/></svg> Conheça em 30 segundos</button><button type="button" data-project-story="ija" aria-haspopup="dialog" aria-controls="project-story-dialog">Como construí <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button></div>
           </div>
           <div class="mockup-stage" id="mockup-ija" data-segment="uvis">
             <div class="stage-heading">
@@ -589,6 +599,7 @@
                 financeiro e comunicação conectados. Conheça os módulos e as
                 telas originais na apresentação do ProControl.
               </p>
+              <button class="story-link" type="button" data-project-story="procontrol" aria-haspopup="dialog" aria-controls="project-story-dialog">Como construí <span aria-hidden="true">+</span></button>
             </article>
             <article class="work-card">
               <button
@@ -644,6 +655,7 @@
                 Comunicação entre usuários, grupos e setores integrada ao
                 ambiente de trabalho.
               </p>
+              <button class="story-link" type="button" data-project-story="chat" aria-haspopup="dialog" aria-controls="project-story-dialog">Por dentro do módulo <span aria-hidden="true">+</span></button>
             </article>
             <article class="work-card website-project">
               <a class="work-image ija-website-image" href="https://www.ijadrones.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Visitar o site da IJA Drones — abre em nova aba">
@@ -656,6 +668,7 @@
               <div class="work-meta"><span>04 / SITE INSTITUCIONAL</span><span>Desenvolvimento colaborativo</span></div>
               <h3><a href="https://www.ijadrones.com.br/" target="_blank" rel="noopener noreferrer">IJA Drones <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></h3>
               <p>Site institucional que apresenta as soluções da IJA Drones em pulverização agrícola, mapeamento e gestão digital de missões, conectando a operação de campo ao ecossistema de software da empresa.</p>
+              <button class="story-link" type="button" data-project-story="ija-site" aria-haspopup="dialog" aria-controls="project-story-dialog">Bastidores do projeto <span aria-hidden="true">+</span></button>
               <p class="project-collaboration">Participei do desenvolvimento em colaboração com <a class="coauthor-link" href="https://pedro-cruzz.github.io/portfolio_dev/" target="_blank" rel="noopener noreferrer" title="Portfólio de Pedro Henrique — abre em nova aba">Pedro Henrique Cruz Vilas Bôas</a>.</p>
             </article>
             <article class="work-card website-project">
@@ -669,6 +682,7 @@
               <div class="work-meta"><span>05 / SITE INSTITUCIONAL</span><span>Desenvolvimento colaborativo</span></div>
               <h3><a href="https://www.oceanoazuldrones.com.br/" target="_blank" rel="noopener noreferrer">Oceano Azul Drones <svg class="ui-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></h3>
               <p>Site institucional dedicado às soluções com drones para agricultura, cidades, energia e infraestrutura. Reúne serviços, operações de campo e canais de contato para apresentar a atuação da empresa.</p>
+              <button class="story-link" type="button" data-project-story="oceano" aria-haspopup="dialog" aria-controls="project-story-dialog">Bastidores do projeto <span aria-hidden="true">+</span></button>
               <p class="project-collaboration">Participei do desenvolvimento em colaboração com <a class="coauthor-link" href="https://pedro-cruzz.github.io/portfolio_dev/" target="_blank" rel="noopener noreferrer" title="Portfólio de Pedro Henrique — abre em nova aba">Pedro Henrique Cruz Vilas Bôas</a>.</p>
             </article>
           </div>
@@ -1001,6 +1015,16 @@
         ></a>
       </div>
     </footer>
+    <dialog id="project-story-dialog" aria-labelledby="story-title">
+      <header class="story-header"><div><span class="eyebrow" id="story-kicker">BASTIDORES / PROJETOS</span><h2 id="story-title">Por trás da interface.</h2></div><button type="button" class="story-close" aria-label="Fechar apresentação do projeto" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></header>
+      <div class="story-intro"><p id="story-intro"></p><span class="story-tag" id="story-tag"></span></div>
+      <nav class="story-steps" aria-label="Etapas da apresentação"></nav>
+      <div class="story-layout">
+        <figure class="story-screen"><div class="story-browser" aria-hidden="true"><i></i><i></i><i></i><span id="story-screen-label"></span></div><img id="story-image" alt="" width="1280" height="650"/><figcaption id="story-caption"></figcaption></figure>
+        <section class="story-copy" aria-labelledby="story-section-title"><span class="eyebrow" id="story-counter"></span><h3 id="story-section-title"></h3><p id="story-description"></p><ul id="story-points"></ul><div class="story-credit" id="story-credit"></div><a class="story-destination" id="story-destination" href="ija-system.html">Explorar projeto</a></section>
+      </div>
+      <footer class="story-footer"><div class="story-controls"><button type="button" class="story-prev">Anterior</button><button type="button" class="story-next">Próxima etapa</button></div><button type="button" class="story-play" aria-pressed="false">Reproduzir tour · 30s</button><span class="story-status" role="status" aria-live="polite"></span></footer>
+    </dialog>
     <dialog id="studio-dialog" class="studio-dialog" aria-labelledby="studio-dialog-title">
       <header class="playground-header"><div><span class="eyebrow">JP / CREATIVE LAB</span><h2 id="studio-dialog-title">Seu ponto de vista.</h2></div><button type="button" class="playground-close" aria-label="Fechar explorador 3D" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></header>
       <div class="playground-layout">

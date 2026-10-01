@@ -23,12 +23,12 @@ window.createIjaDetailedViews = function (ctx) {
     "Cancelada",
   ];
   const colors = [
-    "#8494ae",
-    "#ddba13",
-    "#329564",
-    "#f88417",
-    "#8a32ff",
-    "#fa424c",
+    "#718096",
+    "#f3e526",
+    "#2f855a",
+    "#f7630c",
+    "#9b30ff",
+    "#e53e3e",
     "#4b5662",
   ];
   const regions = ["NORTE", "LESTE", "SUL", "OESTE", "CENTRO"];
@@ -37,10 +37,10 @@ window.createIjaDetailedViews = function (ctx) {
     new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(
       new Date(value + "-15T12:00:00"),
     );
-  let period = "2026-08",
+  let period = "2026-10",
     region = "Todas",
     agendaRegion = "Todas",
-    calendarMonth = "2026-08",
+    calendarMonth = "2026-10",
     calendarMode = "month",
     equipmentFilter = "recent";
   const queries = { users: "", vehicles: "" },
@@ -48,7 +48,7 @@ window.createIjaDetailedViews = function (ctx) {
   const archive = {};
   ["uvis", "agro"].forEach((segment, s) => {
     archive[segment] = [];
-    [8, 9].forEach((month) => {
+    [8, 9, 10].forEach((month) => {
       const days = Array.from(
         { length: new Date(2026, month, 0).getDate() },
         (_, i) => i + 1,
@@ -93,6 +93,10 @@ window.createIjaDetailedViews = function (ctx) {
             ],
           team: `Equipe ${(i % 4) + 1}`,
           type: s ? "Pulverização" : i % 3 ? "Tratamento" : "Monitoramento",
+          visit: i % 3 ? 'Aedes' : 'Vistoria',
+          focus: ['Terreno','Imóvel fechado','Edificação abandonada'][i%3],
+          property: ['Imóvel Geral','Área pública','Terreno'][i%3],
+          height: [10,15,20,25][i%4]+' m',
         });
       }
     });
@@ -185,17 +189,17 @@ window.createIjaDetailedViews = function (ctx) {
         [
           "Concluídas",
           records.filter((r) => r.status === "Concluído").length,
-          "#8a32ff",
+          "#9b30ff",
         ],
         [
           "Recusadas",
           records.filter((r) => r.status === "Recusado").length,
-          "#fa424c",
+          "#e53e3e",
         ],
         [
           "Aprovadas",
           records.filter((r) => r.status === "Aprovado").length,
-          "#329564",
+          "#2f855a",
         ],
       ];
       groups.push([
@@ -210,6 +214,20 @@ window.createIjaDetailedViews = function (ctx) {
         return `${color} ${start}% ${offset}%`;
       });
       return `<div class="iv-donut-layout"><div class="iv-donut" role="img" aria-label="Distribuição por status, ${total} solicitações. Os valores estão na legenda." style="background:conic-gradient(${total ? stops.join(",") : "#e3e9ef 0% 100%"})"><div><strong>${n(total)}</strong><span>solicitações</span></div></div><ul class="iv-chart-legend">${groups.map(([name, value, color]) => `<li><i style="background:${color}"></i><span>${name}</span><b>${total ? ((value / total) * 100).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) : "0"}%</b><small>${value}</small></li>`).join("")}</ul></div>`;
+    }
+    if (kind.startsWith('by:')) {
+      const field=kind.slice(3), counts=new Map();
+      records.forEach(r=>{const label=r[field]||'Não informado';counts.set(label,(counts.get(label)||0)+1);});
+      const values=[...counts].sort((a,b)=>b[1]-a[1]), max=Math.max(1,...values.map(([,value])=>value));
+      if(!values.length)return '<p>Nenhum registro no período.</p>';
+      const palette=['#2e5384','#00a3c4','#2f855a','#7042c3'];
+      if(['type','visit','property'].includes(field)){
+        let offset=0;
+        const stops=values.map(([,value],i)=>{const start=offset;offset+=value/total*100;return `${palette[i%palette.length]} ${start}% ${offset}%`;});
+        return `<div class="iv-donut-layout"><div class="iv-donut" role="img" aria-label="${h(values.map(x=>x.join(': ')).join(', '))}" style="background:conic-gradient(${stops.join(',')})"><div></div></div><ul class="iv-chart-legend">${values.map(([label,value],i)=>`<li><i style="background:${palette[i%palette.length]}"></i><span>${h(label)}</span><b>${value}</b></li>`).join('')}</ul></div>`;
+      }
+      if(['name','height'].includes(field))return `<div class="ip-columns">${values.slice(0,10).map(([label,value])=>`<div><b>${value}</b><i style="height:${value/max*160}px;background:${field==='height'?'#ff8010':'#1bc59a'}"></i><span title="${h(label)}">${h(label)}</span></div>`).join('')}</div>`;
+      return `<div class="iv-bars iv-breakdown-bars" role="img" aria-label="${h(values.map(([label,value])=>label+': '+value).join(', '))}">${values.map(([label,value])=>`<div><span title="${h(label)}">${h(label)}</span><div class="iv-bar-track"><i style="width:${value/max*100}%;background:#7042c3"></i></div><b>${value}</b></div>`).join('')}</div>`;
     }
     const values = regions.map((name) => [
         name,
@@ -230,8 +248,8 @@ window.createIjaDetailedViews = function (ctx) {
         "CANCELADAS",
       ];
     return (
-      reportFilters() +
-      `<div class="iv-report-heading"><h3>Dados de ${h(monthName(period))}</h3>${btn("▣ Exportar CSV", 'data-iv-export="reports"', "secondary")}</div><div class="iv-stats iv-stats-four">${stat("TOTAL", rows.length, "#326499")}${statuses.map((s, i) => stat(labels[i], rows.filter((r) => r.status === s).length, colors[i])).join("")}</div><div class="iv-charts"><section class="iv-chart-card"><header><h4>◕ Status</h4><span>Período filtrado</span><button type="button" data-iv-chart="status">⛶ Expandir</button></header>${chart("status")}</section><section class="iv-chart-card"><header><h4>⌖ Solicitações por Região</h4><span>Período filtrado</span><button type="button" data-iv-chart="regions">⛶ Expandir</button></header>${chart("regions")}</section></div><section class="iv-section"><h4>Resumo por região</h4>${table(
+      title('Relatórios','Indicadores da operação · dados de demonstração',btn('Central','data-view="report-center"','outline')+btn('Relatórios OS','data-view="os-reports"','outline')) + reportFilters() +
+      `<div class="iv-report-heading"><h3>Dados de ${h(monthName(period))}</h3>${btn("▣ Exportar CSV", 'data-iv-export="reports"', "secondary")}</div><div class="iv-stats iv-stats-four">${stat("TOTAL", rows.length, "#326499")}${statuses.map((s, i) => stat(labels[i], rows.filter((r) => r.status === s).length, colors[i])).join("")}</div><div class="iv-charts"><section class="iv-chart-card"><header><h4>◕ Status</h4><span>Período filtrado</span><button type="button" data-iv-chart="status">⛶ Expandir</button></header>${chart("status")}</section><section class="iv-chart-card"><header><h4>⌖ Solicitações por Região</h4><span>Período filtrado</span><button type="button" data-iv-chart="regions">⛶ Expandir</button></header>${chart("regions")}</section></div><div class="iv-charts ir-extra-charts">${[["Tipo de Operação","type"],["Unidades (UVIS)","name"],["Foco","focus"],["Tipo de Visita","visit"],["Tipo de Imóvel","property"],["Altura de Voo","height"]].map(([label,field])=>`<section class="iv-chart-card iv-breakdown"><header><h4>${label}</h4><button type="button" data-iv-chart="by:${field}">Expandir</button></header>${chart("by:"+field)}</section>`).join("")}</div><section class="iv-section"><h4>Resumo por região</h4>${table(
         ["REGIÃO", "SOLICITAÇÕES", "CONCLUÍDAS", "TAXA DE CONCLUSÃO"],
         regions.map((r) => {
           const items = rows.filter((x) => x.region === r),
@@ -414,7 +432,7 @@ window.createIjaDetailedViews = function (ctx) {
         [
           "EM MANUTENÇÃO",
           assets.filter((r) => r.status === "Em manutenção").length,
-          "#fa424c",
+          "#e53e3e",
           "maintenance",
           "Ver equipamentos parados",
           icons.maintenance,
@@ -433,7 +451,7 @@ window.createIjaDetailedViews = function (ctx) {
         )}</div><section class="iv-section"><div class="iv-section-heading"><h4>◷ ${equipmentFilter === "recent" ? "Atividades Recentes de Cadastro" : equipmentFilter === "maintenance" ? "Equipamentos em manutenção" : "Inventário de equipamentos"}</h4><div>${btn("Todos", 'data-iv-equipment="all"', "outline")}${btn("Recentes", 'data-iv-equipment="recent"', "outline")}</div></div>${table(
         [
           "TIPO",
-          "DENOMINAÇÃO / MODELO",
+          "RENOMAÇÃO / MODELO",
           "Nº DE SÉRIE",
           "STATUS",
           "CADASTRADO EM",
@@ -460,7 +478,7 @@ window.createIjaDetailedViews = function (ctx) {
         (filters.vehicles === "Todos" ||
           filters.vehicles === "Excluído" ||
           (filters.vehicles === "Revisão próxima"
-            ? r.revision - r.km > 0 && r.revision - r.km <= 1500
+            ? r.revision - r.km > 0 && r.revision - r.km <= 2000
             : filters.vehicles === "Revisão atrasada"
               ? r.revision - r.km <= 0
               : r.status === filters.vehicles)),
@@ -476,13 +494,14 @@ window.createIjaDetailedViews = function (ctx) {
           btn("＋ Novo Veículo", 'data-iv-create="vehicles"') +
           btn("▣ Exportar", 'data-iv-export="vehicles"', "secondary"),
       ) +
-      `<div class="iv-stats iv-stats-four">${stat("FROTA", fleet.length, "#267bff")}${stat("REVISÕES", fleet.filter((r) => r.revision - r.km > 0 && r.revision - r.km <= 1500).length, "#d6ac0c")}${stat("ATRASADOS", fleet.filter((r) => r.revision - r.km <= 0).length, "#fa424c")}${stat("MARCADOS", fleet.filter((r) => r.scheduled).length, "#329564")}</div>` +
+      `<div class="iv-stats iv-stats-four">${stat("FROTA", fleet.length, "#267bff")}${stat("REVISÕES", fleet.filter((r) => r.revision - r.km > 0 && r.revision - r.km <= 2000).length, "#d6ac0c")}${stat("ATRASADOS", fleet.filter((r) => r.revision - r.km <= 0).length, "#e53e3e")}${stat("MARCADOS", fleet.filter((r) => r.scheduled).length, "#2f855a")}</div>` +
       filtersMarkup("vehicles", "Veículo, identificação ou equipe") +
       table(
         [
           "VEÍCULO / IDENTIFICAÇÃO",
           "FROTA / OP.",
           "EQUIPE RESPONSÁVEL",
+          "SUPERVISOR RESPONSÁVEL",
           "KM ATUAL",
           "KM RESTANTE",
           "ÚLTIMA MOVIMENTAÇÃO",
@@ -495,8 +514,9 @@ window.createIjaDetailedViews = function (ctx) {
             `<strong>${h(r.name)}</strong><small>${h(r.serial)}</small>`,
             `<div class="iv-tag-stack">${pill("PRÓPRIA", "outline")}${pill(r.operation, "outline")}</div>`,
             `<label class="iv-team"><small>${r.team === "Sem equipe" ? "Sem piloto vinculado" : "Piloto " + r.id}</small><select data-iv-team="${r.id}" aria-label="Equipe do veículo ${r.id}">${options(["Sem equipe", "Equipe 1", "Equipe 2", "Equipe 3", "Equipe 4"], r.team)}</select></label>`,
+            '<span class="iv-supervisor">Supervisor demonstração</span>',
             pill(n(r.km) + " km", "outline"),
-            `<strong class="${remaining <= 0 ? "iv-red" : remaining <= 1500 ? "iv-yellow" : "iv-green"}">${n(remaining)} km</strong>`,
+            `<strong class="${remaining <= 0 ? "iv-red" : remaining <= 2000 ? "iv-yellow" : "iv-green"}">${n(remaining)} km</strong>`,
             `<strong>${n(Math.max(0, r.km - 100))} → ${n(r.km)} km</strong><small>${r.scheduled ? "Revisão agendada" : "Registro demonstrativo"}<br>30/08/2026 08:00</small>`,
             pill(
               r.archived ? "Excluído" : r.status,
@@ -680,7 +700,7 @@ window.createIjaDetailedViews = function (ctx) {
       modal(
         d.ivChart === "status"
           ? "Distribuição por status"
-          : "Solicitações por região",
+          : d.ivChart.startsWith('by:') ? ({type:'Tipo de Operação',name:'Unidades (UVIS)',focus:'Foco',visit:'Tipo de Visita',property:'Tipo de Imóvel',height:'Altura de Voo'}[d.ivChart.slice(3)] || 'Distribuição') : "Solicitações por região",
         `<p class="iv-modal-period">${h(monthName(period))} · ${h(region)}</p>` +
           chart(d.ivChart),
         true,

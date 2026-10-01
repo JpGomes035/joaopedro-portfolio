@@ -137,8 +137,26 @@
   }
   const button = (label, action, extra = "") =>
     `<button type="button" class="app-action ${extra}" ${action}>${label}</button>`;
+  function viewIcon(name) {
+    name=({'report-center':'reports','os-reports':'reports',teams:'clients',media:'equipment','flight-request':'pilots','flight-logs':'pilots',returns:'agenda'})[name]||name;
+    const paths = {
+      dashboard:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+      history:'<path d="M3 11a9 9 0 1 1 3 8M3 4v7h7M12 7v5l3 2"/>',
+      notifications:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
+      reports:'<path d="M4 3v18h17M8 16v-5m5 5V7m5 9V4"/>',
+      agenda:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18M7 14h2m4 0h2m-8 4h2"/>',
+      users:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',
+      clients:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/>',
+      pilots:'<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="9" r="3"/><path d="M7 18a5 5 0 0 1 10 0"/>',
+      equipment:'<path d="m12 2 9 5v10l-9 5-9-5V7Z M3 7l9 5 9-5M12 12v10M7 4l10 6"/>',
+      vehicles:'<path d="M3 7h12v11H3ZM15 11h4l3 4v3h-7"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/>',
+      maps:'<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v5m0 12v5M1 12h5m12 0h5"/>',
+      finance:'<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 12h1m12 0h1"/>',
+    };
+    return `<svg class="ir-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.dashboard}</svg>`;
+  }
   function title(title, subtitle, actions = "") {
-    return `<div class="app-title-row"><div class="app-title"><span class="title-icon" aria-hidden="true">▦</span><div><h3>${title}</h3><p>${subtitle}</p></div></div><div class="app-actions">${actions}</div></div>`;
+    return `<div class="app-title-row"><div class="app-title"><span class="title-icon" aria-hidden="true">${viewIcon(view)}</span><div><h3>${title}</h3><p>${subtitle}</p></div></div><div class="app-actions">${actions}</div></div>`;
   }
   function navigation() {
     const links =
@@ -147,11 +165,12 @@
             ["dashboard", "▦", "Dashboard"],
             ["history", "◷", "Histórico OS"],
             ["notifications", "◆", "Notificações"],
-            ["reports", "▤", "Relatórios"],
+            ["report-center", "▤", "Relatórios"],
             ["agenda", "▣", "Agenda"],
             ["users", "◎", "Usuário"],
             ["clients", "◉", "Clientes"],
             ["pilots", "✈", "Pilotos"],
+            ["teams", "", "Equipes"],
             ["equipment", "⚙", "Equipamentos"],
             ["vehicles", "▰", "Veículos"],
             ["maps", "⌖", "Mapas"],
@@ -166,7 +185,7 @@
     $(".sidebar-links").innerHTML = links
       .map(
         ([id, icon, label]) =>
-          `<button type="button" data-view="${id}"${view === id ? ' class="selected" aria-current="page"' : ""}><span aria-hidden="true">${icon}</span><span class="nav-label">${label}</span>${id === "notifications" ? '<b class="nav-badge">2</b>' : id === "vehicles" ? '<b class="nav-badge">2</b>' : id === "maps" ? '<b class="nav-live">LIVE</b>' : ""}</button>`,
+          `<button type="button" data-view="${id}"${(view === id || (id === 'report-center' && ['reports','os-reports','media','returns','flight-logs'].includes(view))) ? ' class="selected" aria-current="page"' : ""}><span aria-hidden="true">${viewIcon(id)}</span><span class="nav-label">${label}</span>${id === "notifications" ? `<b class="nav-badge">${referenceViews.unread()}</b>` : id === "vehicles" ? '<b class="nav-badge">2</b>' : id === "maps" ? '<b class="nav-live">DEMO</b>' : ""}</button>`,
       )
       .join("");
   }
@@ -178,13 +197,13 @@
     const rows =
       segment === "uvis"
         ? [
-            ["Tipo de visita", "Aedes"],
+            ["Tipo de visita", r.visit || "Aedes"],
             ["Tipo de operação", r.type],
-            ["Tipo de imóvel", r.area],
-            ["D.A", "61"],
-            ["Altura", "20 m"],
+            ["Tipo de imóvel", r.property || r.area],
+            ["D.A", r.district || "Distrito Exemplo"],
+            ["Altura", r.height || "20 m"],
             ["Foco", r.focus],
-            ["Apoio CET?", "Sim"],
+            ["Apoio CET?", r.support || "Não"],
           ]
         : [
             ["Tipo de operação", r.type],
@@ -194,7 +213,7 @@
             ["Foco", r.focus],
             ["Equipe", r.team],
           ];
-    return `<article class="demo-request" data-card="${r.id}"><section class="request-summary" aria-label="Resumo da solicitação ${r.id}"><h4>#${r.id} ${html(r.name)}</h4><div class="request-pills"><span${r.status === "Concluído" ? ' class="green"' : ""}>${html(r.status.toUpperCase())}</span><span>${segment === "uvis" ? r.region : "AGRO"}</span></div><p class="team-note">♟ ${r.team === "Sem equipe" ? "Sem equipe atribuída" : html(r.team)}</p><div class="request-meta"><p><span>▢</span><strong>Agendada para ${r.date} às ${r.time}</strong></p><p><span>◷</span>Criada em 29/09/2026 às 16:25</p><p><span>⌖</span>${html(r.place)}</p><small>Local ilustrativo · sem vínculo com uma operação real</small></div><div class="request-buttons">${r.status === "Cancelada" ? button("↶ Restaurar", `data-restore="${r.id}"`) : button("□ Editar", `data-edit="${r.id}"`) + button("▥ Deletar", `data-cancel="${r.id}"`, "danger")}</div></section><section class="request-details" aria-label="Dados técnicos da solicitação ${r.id}"><div class="coordinates"><span>${html(r.lat)}, ${html(r.lng)}</span><button type="button" data-location="${r.id}" aria-label="Ver localização demonstrativa ${r.id}">▤</button></div><table class="technical-table"><tbody>${rows.map(([key, value]) => `<tr><th scope="row">${key}</th><td>${value === "Sim" ? '<span class="yes-chip">Sim</span>' : html(value)}</td></tr>`).join("")}</tbody></table></section><form class="request-form" data-record="${r.id}"><div class="coordinate-fields"><label>Latitude<input name="lat" aria-label="Latitude da solicitação ${r.id}" value="${html(r.lat)}" inputmode="decimal" pattern="-?[0-9]+([.][0-9]+)?" required></label><label>Longitude<input name="lng" aria-label="Longitude da solicitação ${r.id}" value="${html(r.lng)}" inputmode="decimal" pattern="-?[0-9]+([.][0-9]+)?" required></label></div><label>Protocolo<input name="protocol" aria-label="Protocolo da solicitação ${r.id}" placeholder="Protocolo" value="${html(r.protocol)}" maxlength="40"></label><div class="request-controls"><label>Status<select name="status" aria-label="Status da solicitação ${r.id}">${options(["Pendente", "Em análise", "Aprovado", "Concluído", "Cancelada"], r.status)}</select></label><label>Equipe responsável<select name="team" aria-label="Equipe da solicitação ${r.id}">${options(teams, r.team)}</select></label><label class="attachment-control"><span>⌕ ${r.attachments.length ? `${r.attachments.length} anexo(s)` : "Anexar"}</span><input type="file" multiple accept="image/*,.pdf" data-attachment="${r.id}" aria-label="Anexar arquivo à demonstração ${r.id}"></label><button type="submit" class="save-demo">Salvar</button></div></form></article>`;
+    return `<article class="demo-request" data-card="${r.id}"><section class="request-summary" aria-label="Resumo da solicitação ${r.id}"><h4>#${r.id} ${html(r.name)}</h4><div class="request-pills"><span${r.status === "Concluído" ? ' class="green"' : ""}>${html(r.status.toUpperCase())}</span><span>${segment === "uvis" ? r.region : "AGRO"}</span></div><p class="team-note">${viewIcon("clients")} ${r.team === "Sem equipe" ? "Sem equipe atribuída" : html(r.team)}</p><div class="request-meta"><p><span>▢</span><strong>Agendada para ${r.date} às ${r.time}</strong></p><p><span>◷</span>Criada em 29/09/2026 às 16:25</p><p><span>⌖</span>${html(r.place)}</p><small>Local ilustrativo · sem vínculo com uma operação real</small></div><div class="request-buttons">${r.status === "Cancelada" ? button("↶ Restaurar", `data-restore="${r.id}"`) : button("□ Editar", `data-edit="${r.id}"`) + button("▥ Deletar", `data-cancel="${r.id}"`, "danger")}</div></section><section class="request-details" aria-label="Dados técnicos da solicitação ${r.id}"><div class="coordinates"><span>${html(r.lat)}, ${html(r.lng)}</span><button type="button" data-location="${r.id}" aria-label="Ver localização demonstrativa ${r.id}">▤</button></div><table class="technical-table"><tbody>${rows.map(([key, value]) => `<tr><th scope="row">${key}</th><td>${value === "Sim" ? '<span class="yes-chip">Sim</span>' : html(value)}</td></tr>`).join("")}</tbody></table></section><form class="request-form" data-record="${r.id}"><div class="coordinate-fields"><label>Latitude<input name="lat" aria-label="Latitude da solicitação ${r.id}" value="${html(r.lat)}" inputmode="decimal" pattern="-?[0-9]+([.][0-9]+)?" required></label><label>Longitude<input name="lng" aria-label="Longitude da solicitação ${r.id}" value="${html(r.lng)}" inputmode="decimal" pattern="-?[0-9]+([.][0-9]+)?" required></label></div><label>Protocolo<input name="protocol" aria-label="Protocolo da solicitação ${r.id}" placeholder="Protocolo" value="${html(r.protocol)}" maxlength="40"></label><div class="request-controls"><label>Status<select name="status" aria-label="Status da solicitação ${r.id}">${options(["Pendente", "Em análise", "Aprovado", "Concluído", "Cancelada"], r.status)}</select></label><label>Equipe responsável<select name="team" aria-label="Equipe da solicitação ${r.id}">${options(teams, r.team)}</select></label><label class="attachment-control"><span>⌕ ${r.attachments.length ? `${r.attachments.length} anexo(s)` : "Anexar"}</span><input type="file" multiple accept="image/*,.pdf" data-attachment="${r.id}" aria-label="Anexar arquivo à demonstração ${r.id}"></label><button type="submit" class="save-demo">Salvar</button></div></form></article>`;
   }
   function table(columns, rows) {
     return `<div class="demo-table-scroll"><table class="demo-data-table"><thead><tr>${columns.map((c) => `<th>${c}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr>${row.map((c) => `<td>${html(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
@@ -209,19 +228,19 @@
             "clients",
             "◎",
             "Clientes",
-            `${collections.clients.rows.length} cadastro(s)`,
+            `${referenceViews.total("clients")} cadastro(s)`,
           ],
           [
             "suppliers",
             "▦",
             "Fornecedores",
-            `${collections.suppliers.rows.length} cadastro(s)`,
+            `${referenceViews.total("suppliers")} cadastro(s)`,
           ],
           [
             "quotes",
             "▤",
             "Orçamentos",
-            `${collections.quotes.rows.length} proposta(s)`,
+            `${referenceViews.total("quotes")} proposta(s)`,
           ],
           [
             "contracts",
@@ -258,14 +277,14 @@
       title(
         "Painel Agro",
         "Acesso rápido aos fluxos comercial, operacional e financeiro do Agro.",
-        button("＋ Novo Cliente", 'data-new="clients"') +
-          button("▦ Novo Fornecedor", 'data-new="suppliers"', "secondary") +
-          button("▤ Novo Orçamento", 'data-new="quotes"', "outline"),
+        button("＋ Novo Cliente", 'data-ir-create="clients"') +
+          button("▦ Novo Fornecedor", 'data-ir-create="suppliers"', "secondary") +
+          button("▤ Novo Orçamento", 'data-ir-create="quotes"', "outline"),
       ) +
       `<div class="agro-stats">${[
-        ["Clientes", collections.clients.rows.length],
-        ["Fornecedores", collections.suppliers.rows.length],
-        ["Orçamentos", collections.quotes.rows.length],
+        ["Clientes", referenceViews.total("clients")],
+        ["Fornecedores", referenceViews.total("suppliers")],
+        ["Orçamentos", referenceViews.total("quotes")],
         [
           "Fila operacional",
           data.agro.filter((r) => r.status !== "Concluído").length,
@@ -290,12 +309,15 @@
     app.dataset.segment = segment;
     stage.dataset.segment = segment;
     $("#app-brand").innerHTML =
-      `IJA System <span>${segment === "uvis" ? "(Prefeituras)" : "AGRO"}</span>`;
+      segment === "uvis" ? '<img class="ip-brand-light" src="assets/ija-oceano-light.png" alt="Oceano Azul"><img class="ip-brand-dark" src="assets/ija-oceano-dark.png" alt="Oceano Azul"><span class="ip-demo-label">DEMO</span>' : 'IJA System <span>AGRO</span>';
     $("#demo-online-label").textContent =
       segment === "uvis" ? "Operação UVIS" : "Operação Agrícola";
     navigation();
     const records = data[segment];
-    const detailed = detailedViews.render(view);
+    app.dataset.view = view;
+    const production = productionViews.render(view);
+    const reference = production !== null ? production : referenceViews.render(view);
+    const detailed = reference !== null ? reference : detailedViews.render(view);
     if (detailed !== null) {
       content.innerHTML =
         detailed +
@@ -329,6 +351,7 @@
             ),
         ) +
         `<details class="demo-filters"${filter !== "Todos" ? " open" : ""}><summary><span>Filtros de Busca</span><b>${segment === "uvis" ? "UVIS/PREFEITURA" : "OPERAÇÃO AGRO"}</b><i>⌄</i></summary><div class="filter-fields"><label>Status da operação<select id="status-filter">${options(["Todos", "Pendente", "Em análise", "Aprovado", "Concluído"], filter)}</select></label></div></details>` +
+        (segment === "uvis" && visible.length ? '<div class="ir-request-head"><span>Unidade</span><span>Dados da Operação</span><span>Decisão & Ajustes</span></div>' : '') +
         (visible.length
           ? visible.map(requestCard).join("")
           : '<div class="empty-state">Nenhuma solicitação encontrada neste filtro.</div>');
@@ -425,6 +448,8 @@
   stage.addEventListener("click", (event) => {
     const target = event.target.closest("button");
     if (!target) return;
+    if (productionViews.handleClick(target)) return;
+    if (referenceViews.handleClick(target)) return;
     if (detailedViews.handleClick(target)) return;
     if (target.dataset.segment) {
       segment = target.dataset.segment;
@@ -519,6 +544,8 @@
     }
   });
   content.addEventListener("submit", (event) => {
+    if (productionViews.handleSubmit(event)) return;
+    if (referenceViews.handleSubmit(event)) return;
     if (detailedViews.handleSubmit(event)) return;
     if (!event.target.matches(".request-form")) return;
     event.preventDefault();
@@ -588,5 +615,7 @@
     getSegment: () => segment,
     getRecords: () => data[segment],
   });
+  const referenceViews = window.createIjaReferenceViews({html,options,button,title,toast,render,getSegment:()=>segment,getRecords:()=>data[segment]});
+  const productionViews = window.createIjaProductionViews({html,options,button,title,toast,render,navigate,makeRecord,getSegment:()=>segment,getRecords:()=>data[segment]});
   render();
 })();

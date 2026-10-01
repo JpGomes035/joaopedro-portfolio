@@ -1,0 +1,111 @@
+/* Scoped adaptation of Ija-System tokens, tables, listings and page toolbars.
+   Source: app/static/css/{base,components,modules,pages,themes/dark}. */
+#demo-app { --app-bg:#f4f7f9; --app-card:#fff; --app-ink:#2d3748; --app-muted:#718096; --app-blue:#1a4a7c; --app-line:#edf2f7; --app-soft:rgba(0,163,196,.12); --ir-primary:#2c5282; --ir-accent:#00a3c4; --ir-success:#2f855a; --ir-danger:#e53e3e; font-family:Poppins,Arial,sans-serif; }
+#demo-app[data-segment="agro"] { --app-blue:#20613b; --ir-primary:#2c7048; --ir-accent:#2f8f4f; --app-soft:#e8f4ec; }
+#demo-app.dark { --app-bg:#0d1622; --app-card:#182433; --app-ink:#edf3fb; --app-muted:#9aa8ba; --app-blue:#7cb8ff; --ir-primary:#4f94f0; --ir-accent:#23c0d6; --ir-success:#339a6b; --ir-danger:#e46060; --app-line:#233549; --app-soft:rgba(35,192,214,.14); }
+#demo-app[data-segment="agro"].dark { --app-blue:#7fd8a7; --ir-primary:#57c78b; --ir-accent:#34d17d; --app-soft:rgba(52,209,125,.14); }
+#demo-app button,#demo-app input,#demo-app select { font-family:inherit; }
+#demo-app .app-header,#demo-app .app-sidebar { background:var(--app-card); }
+#demo-app .app-title h3 { color:var(--app-blue); font-weight:700; letter-spacing:-.5px; }
+#demo-app .app-title p { color:var(--app-muted); }
+#demo-app .app-action { background:var(--ir-accent); border-color:var(--ir-accent); border-radius:50rem; box-shadow:0 2px 4px #0000000d; font-size:11px; font-weight:600; }
+#demo-app .app-action.secondary { background:var(--ir-success); border-color:var(--ir-success); }
+#demo-app .app-action.danger { background:var(--ir-danger); border-color:var(--ir-danger); }
+#demo-app .app-action.outline { background:transparent; color:var(--app-blue); border-color:var(--app-blue); }
+#demo-app .save-demo { background:var(--ir-primary); }
+#demo-app .demo-data-table th,#demo-app .iv-table thead th,#demo-app .ir-table th { background:var(--app-blue); color:#fff; font-weight:600; letter-spacing:.5px; }
+#demo-app.dark .demo-data-table th,#demo-app.dark .iv-table thead th,#demo-app.dark .ir-table th { background:#233d58; color:#edf3fb; }
+#demo-app .iv-stat,#demo-app .iv-chart-card,#demo-app .iv-section,#demo-app .demo-filters { border:0; border-radius:16px; box-shadow:0 4px 12px #00000014; background:var(--app-card); }
+#demo-app .iv-chart-card header h4 { color:var(--ir-primary); }
+#demo-app .iv-bar-track i { background:var(--ir-primary); }
+#demo-app .ir-extra-charts { margin-top:20px; }
+#demo-app .iv-breakdown-bars > div { grid-template-columns:minmax(80px,135px) 1fr 25px; }
+#demo-app .iv-breakdown-bars > div > span { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+#demo-app .iv-breakdown-bars { max-height:310px; overflow:auto; }
+#demo-app .iv-fleet { min-width:1080px; }
+#demo-app .app-topbar { background:var(--app-card); }
+#demo-app .iv-calendar-toolbar h4,#demo-app .iv-day { color:var(--ir-primary); }
+#demo-app .iv-event { background:#a8bfe1; color:#fff; }
+#demo-app .iv-event.approved { background:#377cf2; }
+#demo-app .iv-event.review { background:#f59a12; color:#213047; }
+#demo-app .iv-stat { border-left:4px solid var(--stat-color); }
+#demo-app :is(h3,h4) { font-family:inherit; }
+#demo-app .sidebar-links button.selected { color:var(--ir-accent); background:var(--app-soft); border-left:4px solid var(--ir-accent); }
+#demo-app .sidebar-links button { border-left:4px solid transparent; }
+#demo-app .ir-icon { width:18px; height:18px; vertical-align:middle; flex-shrink:0; }
+#demo-app .ir-request-head { display:grid; grid-template-columns:1fr 1fr 1fr; padding:17px 18px; border-radius:16px 16px 0 0; background:var(--app-blue); color:#fff; font-size:11px; font-weight:600; letter-spacing:.3px; }
+#demo-app .ir-request-head + .demo-request { margin-top:0; border-radius:0 0 16px 16px; }
+#demo-app .request-summary h4 { color:var(--ir-primary); font-weight:700; }
+#demo-app .request-controls { background:var(--app-bg); }
+#demo-app .ir-table-wrap { overflow:auto; border-radius:16px; box-shadow:0 4px 12px #00000014; background:var(--app-card); }
+#demo-app .ir-table { border-collapse:separate; border-spacing:0; width:100%; text-align:left; font-size:11px; color:var(--app-ink); }
+#demo-app .ir-table th { font-size:10px; text-transform:uppercase; padding:16px; white-space:nowrap; }
+#demo-app .ir-table td { padding:18px 16px; border-bottom:1px solid var(--app-line); vertical-align:middle; line-height:1.7; }
+#demo-app .ir-table strong { color:var(--ir-primary); font-weight:600; }
+#demo-app .ir-table tr:hover td { background:var(--app-soft); }
+#demo-app .ir-actions { display:flex; gap:6px; min-width:160px; }
+#demo-app .ir-actions button { min-height:36px; padding:8px 13px; }
+#demo-app .ir-badge { display:inline-block; padding:3px 9px; border-radius:6px; color:var(--ir-primary); background:var(--app-soft); font-size:10px; font-weight:600; white-space:nowrap; }
+#demo-app .ir-badge.outline { background:transparent; border:1px solid var(--app-line); color:var(--app-ink); }
+#demo-app .ir-badge.green { color:var(--ir-success); background:#2f855a18; }
+#demo-app .ir-badge.red { color:var(--ir-danger); background:#e53e3e18; }
+#demo-app .ir-region-tags { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+#demo-app .ir-contact { color:var(--ir-accent); }
+#demo-app .ir-list-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 4px; font-size:11px; color:var(--app-muted); }
+#demo-app .ir-filters form { display:flex; flex-wrap:wrap; align-items:end; gap:12px; padding:0 18px 18px; }
+#demo-app .ir-filters label { display:grid; gap:5px; flex:1 1 180px; font-size:11px; color:var(--app-muted); }
+#demo-app .ir-filters input,#demo-app .ir-filters select { width:100%; border:1px solid var(--app-line); padding:10px 12px; border-radius:8px; background:var(--app-card); color:var(--app-ink); font-size:12px; min-height:40px; }
+#demo-app .ir-panel,#demo-app .ir-notifications { background:var(--app-card); border-radius:16px; box-shadow:0 4px 12px #00000014; overflow:hidden; }
+#demo-app .ir-panel { padding:22px; }
+#demo-app .ir-panel h4 { font-size:17px; color:var(--app-blue); font-weight:600; }
+#demo-app .ir-panel p { color:var(--app-muted); font-size:12px; line-height:1.8; margin:8px 0 16px; }
+#demo-app .ir-panel small { font-size:11px; color:var(--app-muted); }
+#demo-app .ir-finance-layout { display:grid; grid-template-columns:1.5fr 1fr; gap:20px; }
+#demo-app .ir-shortcuts { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+#demo-app .ir-shortcuts button { text-align:left; border:1px solid var(--app-line); border-left:4px solid var(--ir-primary); border-radius:12px; background:var(--app-card); padding:18px; color:var(--app-ink); }
+#demo-app .ir-shortcuts strong { display:block; color:var(--app-blue); margin-bottom:8px; }
+#demo-app .ir-shortcuts span { font-size:11px; color:var(--app-muted); line-height:1.6; }
+#demo-app .ir-panel dl { display:grid; grid-template-columns:1fr auto; gap:14px; margin-top:22px; font-size:12px; }
+#demo-app .ir-panel dd { color:var(--ir-success); font-weight:600; }
+#demo-app .ir-notice { margin:0; padding:18px 24px; border-bottom:1px solid var(--app-line); font-size:11px; color:var(--app-muted); line-height:1.8; }
+#demo-app .ir-notification { display:flex; gap:16px; align-items:center; padding:24px; border-bottom:1px solid var(--app-line); background:var(--app-soft); }
+#demo-app .ir-notification.is-read { background:var(--app-card); }
+#demo-app .ir-notification > div:nth-child(2) { flex:1; }
+#demo-app .ir-notification h4 { font-size:13px; color:var(--app-blue); font-weight:600; }
+#demo-app .ir-notification p { font-size:12px; color:var(--app-muted); margin:8px 0; }
+#demo-app .ir-notification small { font-size:10px; color:var(--app-muted); }
+#demo-app .ir-notice-icon { color:var(--ir-primary); }
+#demo-app .ir-map { position:relative; height:320px; border-radius:12px; border:1px solid var(--app-line); background:repeating-linear-gradient(45deg,transparent 0 58px,#ffffff80 59px 70px,transparent 71px 140px),repeating-linear-gradient(-35deg,#daead4 0 60px,#ffffff80 61px 70px,#dfe9d9 71px 140px); }
+#demo-app .ir-map button { position:absolute; display:grid; gap:5px; justify-items:center; background:var(--app-card); color:var(--ir-primary); border:1px solid var(--app-line); border-radius:8px; padding:10px; box-shadow:0 3px 12px #0002; font-size:11px; }
+#demo-app .ir-map-label { position:absolute; bottom:10px; left:10px; right:10px; background:#fff; color:#2c5282; padding:8px; font-size:9px; text-align:center; }
+#ija-reference-dialog { width:min(620px,calc(100% - 24px)); max-height:calc(100dvh - 24px); padding:24px; background:#fff; border:1px solid #dbe4ee; border-radius:16px; color:#2d3748; font-family:Poppins,Arial,sans-serif; }
+#ija-reference-dialog.ir-dark { background:#182433; color:#edf3fb; }
+#ija-reference-dialog header { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:20px; }
+#ija-reference-dialog h2 { font-size:20px; }
+#ija-reference-dialog header button { border:1px solid #718096; border-radius:50%; width:44px; height:44px; background:transparent; color:inherit; flex-shrink:0; }
+#ija-reference-dialog .ir-icon { width:20px; height:20px; }
+#ija-reference-dialog form { display:grid; gap:14px; }
+#ija-reference-dialog label { display:grid; gap:6px; font-size:12px; }
+#ija-reference-dialog input { padding:12px; width:100%; border:1px solid #cbd5e1; border-radius:8px; font:inherit; color:inherit; background:transparent; }
+#ija-reference-dialog .app-action { padding:12px 20px; border:0; border-radius:50rem; background:#00a3c4; color:#fff; }
+#ija-reference-dialog .ir-modal-note { font-size:11px; color:#718096; margin-top:20px; }
+#ija-reference-dialog .ir-details { display:grid; grid-template-columns:1fr 1.5fr; gap:15px; font-size:13px; }
+#ija-reference-dialog .ir-details dd { overflow-wrap:anywhere; }
+#ija-reference-dialog .ir-preview-note { font-size:13px; line-height:1.8; margin-bottom:20px; }
+#ija-reference-dialog .ir-table { width:100%; font-size:12px; text-align:left; }
+#ija-reference-dialog .ir-table td,#ija-reference-dialog .ir-table th { padding:12px; border-bottom:1px solid #cbd5e1; }
+@media(max-width:1000px) { #demo-app .ir-request-head { display:none; } #demo-app .ir-finance-layout { grid-template-columns:1fr; } }
+@media(max-width:760px) {
+  #demo-app .ir-table-wrap { overflow:hidden; }
+  #demo-app .ir-table,#demo-app .ir-table tbody,#demo-app .ir-table tr,#demo-app .ir-table td { display:block; width:100%; }
+  #demo-app .ir-table thead { display:none; }
+  #demo-app .ir-table tr { padding:14px; border-bottom:3px solid var(--app-bg); }
+  #demo-app .ir-table td { padding:10px 4px; overflow-wrap:anywhere; }
+  #demo-app .ir-table td::before { content:attr(data-label); display:block; font-size:9px; text-transform:uppercase; color:var(--app-muted); margin-bottom:5px; }
+  #demo-app .ir-actions button { min-height:44px; }
+  #demo-app .ir-notification { flex-wrap:wrap; padding:18px; }
+  #demo-app .ir-shortcuts { grid-template-columns:1fr; }
+  #demo-app .ir-panel { padding:18px; }
+  #demo-app .ir-list-footer { flex-wrap:wrap; }
+  #ija-reference-dialog input { font-size:16px; }
+}

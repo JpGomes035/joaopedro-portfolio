@@ -24,7 +24,7 @@ Abra http://127.0.0.1:4173. Não é necessário instalar dependências nem execu
 - `Site/index.html`, `Site/css/procontrol.css` e `Site/js/procontrol.js`: landing page do projeto pessoal ProControl, com módulos navegáveis, capturas originais ampliáveis, FAQ e contato. Arquivos antigos de CSS/JS e bibliotecas foram mantidos, mas não são carregados pela nova página.
 - `assets/registro-ija-system-inpi.pdf`: certificado fornecido pelo autor, preservado integralmente. O destaque do IJA System identifica a coautoria de João Pedro Gomes da Silva e Pedro Henrique Cruz Vilas Bôas e a titularidade da IJA Drones Brasil Ltda. – ME.
 
-As fontes Manrope e DM Sans são carregadas pelo Google Fonts, com alternativas locais em caso de indisponibilidade.
+As fontes Manrope, DM Sans e Poppins (na demonstração IJA) são carregadas pelo Google Fonts, com alternativas locais em caso de indisponibilidade.
 
 ## Demonstração IJA System
 
@@ -37,6 +37,22 @@ Referência visual e fundos: https://www.ijadrones.com.br/#plataforma. O link pa
 As telas detalhadas seguem também as capturas fornecidas pelo autor: relatórios com oito indicadores, gráfico de rosca e barras por região, filtros por mês/região e ampliação; agenda mensal e em lista, detalhes dos eventos e exportação; usuários editáveis com exclusão reversível; inventário de drones e baterias por situação; frota com equipes, quilometragem e alertas de revisão calculados. Há operações fictícias em agosto e setembro de 2026. Os gráficos usam CSS, sem dependências. Exportações são CSV, não arquivos Excel nativos. A rota do dia é uma sequência ilustrativa por horário, sem navegação geográfica.
 
 ## Conteúdo e publicação
+
+### Fidelidade ao projeto IJA local
+
+As capturas reais fornecidas em 01/10/2026 orientam também `assets/ija-production.js` e `assets/ija-production.css`: central de relatórios com cinco destinos, relatórios de OS, tabela de equipes, coleta de imagens e formulário de pedido de voo. A agenda e os indicadores abrem em outubro de 2026 com registros sintéticos. Os gráficos diferenciam roscas, barras horizontais e colunas, conforme as referências. Os logotipos Oceano Azul foram copiados dos assets do projeto local, sem modificar os originais; a marca JP do portfólio foi preservada.
+
+Nenhuma captura operacional foi incluída no site. Nomes, identificadores e endereços são fictícios, e as miniaturas de levantamentos são ilustrações SVG explicitamente rotuladas, sem fotos reais, GPS, placas ou logins operacionais. O formulário cria somente um registro temporário na demonstração. Retornos e logs de voo são prévias ilustrativas, sem automação ou telemetria. As exportações disponíveis são CSV, sem prometer PDF, ZIP ou Excel não implementados.
+
+As telas representadas no portfólio foram comparadas com templates e estilos do projeto local Ija-System, sem iniciar seu servidor ou conectar ao banco. `assets/ija-reference.css` aplica a tipografia Poppins, paleta, cartões, tabelas e temas de referência. `assets/ija-reference.js` complementa pilotos, clientes, histórico, notificações, mapas ilustrativos e cadastros do Agro. A comparação abrange os templates de administração, relatórios, agenda, usuários, clientes, pilotos, equipamentos, veículos e módulos comerciais/financeiros do Agro — não constitui uma auditoria de todas as páginas ou funções do produto.
+
+Os relatórios incluem oito gráficos ampliáveis. Pilotos têm regiões principal/alternativa e contato; histórico apresenta equipe e situação da aplicação; frota inclui supervisor e alertas de revisão. Cadastros demonstrativos permitem filtrar, editar, arquivar, restaurar e exportar CSV. As notificações podem ser marcadas como lidas. O financeiro reproduz a organização em indicadores e atalhos, mas não executa transações; o mapa é explicitamente esquemático, sem GPS ou rastreamento. Todos os dados são fictícios e temporários. O tour utiliza capturas atualizadas dessa demonstração, não capturas da produção.
+
+### Tour guiado e bastidores dos projetos
+
+`assets/project-stories.js` e `assets/project-stories.css` acrescentam apresentações independentes em um diálogo nativo. O tour do IJA percorre solicitação, agenda, equipe e relatórios, com avanço manual ou reprodução opcional de 30 segundos (7,5 segundos por etapa). A reprodução pausa ao ocultar a aba ou fechar a apresentação; a preferência de movimento reduzido mantém a navegação manual. Os bastidores de IJA System, ProControl, comunicação interna e dos dois sites institucionais apresentam contexto, construção e interface, preservando os créditos de coautoria.
+
+As imagens `assets/tour-*.jpg` foram capturadas do mockup local com dados fictícios. Não acessam produção, não modificam os formulários da demonstração e são carregadas conforme a apresentação é explorada. As demais capturas são as já presentes no portfólio. Fechar a apresentação devolve o foco ao botão de origem; todos os caminhos locais são relativos, compatíveis com o GitHub Pages em subdiretório.
 
 Os cards de sites institucionais apresentam [IJA Drones](https://www.ijadrones.com.br/) e [Oceano Azul Drones](https://www.oceanoazuldrones.com.br/), com participação no desenvolvimento em colaboração com Pedro Henrique Cruz Vilas Bôas, conforme informado por João Pedro. Ambos incluem um link para o portfólio de Pedro Henrique. As imagens `assets/project-ija-website.jpg` e `assets/project-oceano-website.jpg` são capturas das páginas públicas feitas em 01/10/2026; são prévias estáticas, não iframes ou integrações com esses sites. As descrições resumem a apresentação pública de cada empresa, sem atribuir resultados operacionais ao desenvolvimento do site.
 
